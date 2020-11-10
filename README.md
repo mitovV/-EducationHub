@@ -1,2 +1,2 @@
-# -EducationHub
+# EducationHub
 Knowledge sharing platform
