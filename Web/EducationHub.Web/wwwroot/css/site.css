@@ -45,6 +45,10 @@ body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
 }
+.lime {
+    background-color: #0eeb49;
+}
+
 .footer {
     position: absolute;
     bottom: 0;
