@@ -1,0 +1,22 @@
+﻿@model string
+
+@if (!String.IsNullOrEmpty(Model))
+{
+    var statusMessageClass = Model.Contains("is un") ? "red" : "green";
+    <div class="row">
+        <div id="msg-div" class="@statusMessageClass col s4 offset-s4 flow-text center" role="alert">
+            <button id="msg-btn" type="button" class="btn waves-effect waves-light light-green lighten-2 left"><span aria-hidden="true">&times;</span></button>
+            @Model
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            var button = document.querySelector("#msg-btn");
+            button.addEventListener("click", function () {
+                document.cookie = button.dataset.cookieString;
+                document.getElementById("msg-div").remove();
+            }, false);
+        })();
+    </script>
+}

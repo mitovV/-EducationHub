@@ -12,6 +12,7 @@ a.navbar-brand {
 html {
     font-size: 14px;
 }
+
 @media (min-width: 768px) {
     html {
         font-size: 16px;
@@ -21,6 +22,7 @@ html {
 .border-top {
     border-top: 1px solid #e5e5e5;
 }
+
 .border-bottom {
     border-bottom: 1px solid #e5e5e5;
 }
@@ -41,12 +43,20 @@ html {
     min-height: 100%;
 }
 
+.brand-logo {
+    margin-left: 20px;
+}
+
+.logout {
+    margin-right: 10px;
+}
+.mobile-logout{
+    margin-left:30px;
+}
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-}
-.lime {
-    background-color: #0eeb49;
+    background-color: whitesmoke;
 }
 
 .footer {

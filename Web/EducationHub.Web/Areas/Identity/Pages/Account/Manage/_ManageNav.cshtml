@@ -1,0 +1,15 @@
+﻿@inject SignInManager<User> SignInManager
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+<ul class="center light-green-text lighten-2">
+    <li class="nav-item"><a class="@ManageNavPages.IndexNavClass(ViewContext) waves-effect waves-light light-green-text lighten-2" id="profile" asp-page="./Index"><i class="fas fa-user"></i> Profile</a></li>
+    <li class="nav-item"><a class="@ManageNavPages.EmailNavClass(ViewContext) waves-effect waves-light light-green-text lighten-2" id="email" asp-page="./Email"><i class="fas fa-envelope"></i> Email</a></li>
+    <li class="nav-item"><a class="@ManageNavPages.ChangePasswordNavClass(ViewContext) waves-effect waves-light light-green-text lighten-2" id="change-password" asp-page="./ChangePassword"><i class="fas fa-lock"></i> Password</a></li>
+    @if (hasExternalLogins)
+    {
+        <li id="external-logins" class="nav-item"><a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">External logins</a></li>
+    }
+    <li class="nav-item"><a class="@ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext) waves-effect waves-light light-green-text lighten-2" id="two-factor" asp-page="./TwoFactorAuthentication"><i class="fas fa-fingerprint"></i> Two-factor authentication</a></li>
+    <li class="nav-item"><a class="@ManageNavPages.PersonalDataNavClass(ViewContext) waves-effect waves-light light-green-text lighten-2" id="personal-data" asp-page="./PersonalData"><i class="far fa-id-card"></i> Personal data</a></li>
+</ul>

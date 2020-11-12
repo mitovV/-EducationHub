@@ -1,55 +1,113 @@
 ﻿@using EducationHub.Common
+@using EducationHub.Data.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@this.ViewData["Title"] - @GlobalConstants.SystemName</title>
-    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true" />
-    <link href="~/css/site.min.css" rel="stylesheet" asp-append-version="true" />
+
+    <link href="~/lib/fontawesome/css/all.css" rel="stylesheet" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" asp-append-version="true"/>
+    <link type="text/css" rel="stylesheet" href="/lib/materialize/dist/css/materialize.css" media="screen,projection" asp-append-version="true" />
+    <link href="~/css/site.min.css" rel="stylesheet" type="text/css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm border-bottom box-shadow mb-3 lime">
-            <div class="container">
-                <a class="navbar-brand text-light" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
+        <nav class="nav-wrapper lighten-2  light-green">
+            <a class="brand-logo waves-effect" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <div class=" active">
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    @if (this.SignInManager.IsSignedIn(this.User))
+                    {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark waves-effect waves-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @(this.User.Identity.Name)!</a>
+                        </li>
+                        if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Administration" asp-controller="Dashboard" asp-action="Index" title="Admin">Admin</a>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@(this.Url.Action("Index", "Home", new { area = string.Empty }))">
+                                <button type="submit" class="nav-link btn btn-link text-dark logout">Logout</button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav">
+                            <a class="nav-content waves-effect waves-light" asp-area="Identity" asp-page="/Account/Register">Register</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-content waves-effect waves-light" asp-area="Identity" asp-page="/Account/Login">Login</a>
                         </li>
-                    </ul>
-                </div>
+                    }
+                </ul>
+                <ul class="sidenav transparent with-header" id="mobile-demo">
+                    <li>
+                        <a class="waves-effect waves-light light-green-text accent-4" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    </li>
+                    @if (this.SignInManager.IsSignedIn(this.User))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark light-green-text lighten-2" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @(this.User.Identity.Name)!</a>
+                        </li>
+                        if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark light-green-text lighten-2" asp-area="Administration" asp-controller="Dashboard" asp-action="Index" title="Admin">Admin</a>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@(this.Url.Action("Index", "Home", new { area = string.Empty }))">
+                                <button type="submit" class="nav-link btn btn-link text-dark mobile-logout">Logout</button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav">
+                            <a class="nav-content light-green-text accent-4 waves-effect waves-light" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-content light-green-text accent-4 waves-effect waves-light" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                        </li>
+                    }
+                </ul>
             </div>
         </nav>
     </header>
-    
-    <div class="container">
+
+    <div class="">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
             @this.RenderBody()
         </main>
     </div>
-    
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; @DateTime.Now.Year - @GlobalConstants.SystemName - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
+    <footer class="modal-footer lighten-2 light-green">
+        <div class="row">
+            <div class="col s12 m6 l3">
+                &copy; @DateTime.Now.Year - @GlobalConstants.SystemName - <a class="grey-text text-lighten-5" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+            <div class="col s12 m6 l2 offset-l7">
+                <a class="grey-text text-lighten-5" href="https://github.com/mitovV/EducationHub" target="_blank"><i class="fab fa-github grey-text text-lighten-5"></i> Open Source System</a>
+            </div>
         </div>
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
     <script src="~/js/site.min.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="/lib/materialize/dist/js/materialize.js"></script>
     @await this.RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
