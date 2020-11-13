@@ -16,10 +16,11 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Services.Data;
     using Services.Data.Categories;
     using Services.Mapping;
     using Services.Messaging;
-    using Web.ViewModels;
+    using ViewModels;
 
     public class Startup
     {
@@ -61,6 +62,7 @@
 
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ICategoriesService, CategoriesService>();
+            services.AddTransient<IGetCountsService, GetCountsService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

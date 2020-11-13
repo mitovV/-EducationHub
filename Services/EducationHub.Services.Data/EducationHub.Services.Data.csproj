@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\EducationHub.Data.Common\EducationHub.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\EducationHub.Data.Models\EducationHub.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Web\EducationHub.Web.ViewModels\EducationHub.Web.ViewModels.csproj" />
     <ProjectReference Include="..\EducationHub.Services.Mapping\EducationHub.Services.Mapping.csproj" />
   </ItemGroup>
 

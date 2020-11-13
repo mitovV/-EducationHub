@@ -1,9 +1,14 @@
 ﻿@using EducationHub.Common
+@model EducationHub.Web.ViewModels.Home.IndexViewModel
 @{
     this.ViewData["Title"] = "Home Page";
 }
 
-<div class="center light-green-text lighten-2">
-    <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
+<div class="center light-green-text lighten-2 flow-text">
+    <h1>Welcome to @GlobalConstants.SystemName!</h1>
     <h3>Knowledge sharing platform.</h3>
+    <h4>Here you will find <button class="btn-floating pulse waves-effect waves-light light-green">@Model.CoursesCount</button> courses.</h4>
+    <h4><button class="btn-floating pulse waves-effect waves-light light-green darken-1">@Model.LessonsCount</button> Lessons that are not related to a course</h4>
+    <h4>In <button class="btn-floating pulse waves-effect waves-light light-green darken-2">@Model.CategoriesCount</button> categories.</h4>
+    <h5>If you want to share your knowledge or learn something new, you are welcome in our community.</h5>
 </div>
