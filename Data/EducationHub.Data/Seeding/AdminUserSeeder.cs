@@ -28,15 +28,9 @@
 
             var password = GlobalConstants.AdministratorPassword;
 
-            var result = await userManager.CreateAsync(user, password);
-
-            if (result.Succeeded)
-            {
-                await userManager.AddToRoleAsync(user, GlobalConstants.AdministratorRoleName);
-            }
-
+            await userManager.CreateAsync(user, password);
             await dbContext.Users.AddAsync(user);
-            await dbContext.SaveChangesAsync();
+            await userManager.AddToRoleAsync(user, GlobalConstants.AdministratorRoleName);
         }
     }
 }

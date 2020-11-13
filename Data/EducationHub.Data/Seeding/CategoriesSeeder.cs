@@ -48,7 +48,6 @@
             };
 
             await dbContext.Categories.AddRangeAsync(categories);
-            await dbContext.SaveChangesAsync();
         }
     }
 }
