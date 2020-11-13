@@ -1,9 +1,13 @@
 ﻿namespace EducationHub.Services.Data.Categories
 {
-    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
+
     using EducationHub.Data.Common.Repositories;
     using EducationHub.Data.Models;
+    using EducationHub.Services.Mapping;
+    using Web.ViewModels.Administration;
 
     public class CategoriesService : ICategoriesService
     {
@@ -26,5 +30,11 @@
             await this.repository.AddAsync(category);
             await this.repository.SaveChangesAsync();
         }
+
+        public IEnumerable<CategoryAdminViewModel> All()
+            => this.repository
+            .All()
+            .To<CategoryAdminViewModel>()
+            .ToList();
     }
 }
