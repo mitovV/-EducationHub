@@ -36,5 +36,12 @@
             .All()
             .To<CategoryAdminViewModel>()
             .ToList();
+
+        public async Task<Category> GetById(int id)
+        {
+            var caregoty = await this.repository.GetByIdWithDeletedAsync(id);
+
+            return caregoty;
+        }
     }
 }

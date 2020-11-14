@@ -8,6 +8,7 @@
     using Data.Models;
     using Data.Repositories;
     using Data.Seeding;
+    using EducationHub.Services.Data.Courses;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -63,6 +64,7 @@
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<IGetCountsService, GetCountsService>();
+            services.AddTransient<ICoursesService, CoursesService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
