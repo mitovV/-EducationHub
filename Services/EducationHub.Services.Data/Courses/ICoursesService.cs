@@ -1,11 +1,12 @@
 ﻿namespace EducationHub.Services.Data.Courses
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     using Web.ViewModels.Administration;
 
     public interface ICoursesService
     {
-        IEnumerable<CourseAdminViewModel> All();
+        Task<IEnumerable<CourseAdminViewModel>> AllAsync();
     }
 }

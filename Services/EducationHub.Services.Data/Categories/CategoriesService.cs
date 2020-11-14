@@ -1,12 +1,12 @@
 ﻿namespace EducationHub.Services.Data.Categories
 {
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
     using EducationHub.Data.Common.Repositories;
     using EducationHub.Data.Models;
     using EducationHub.Services.Mapping;
+    using Microsoft.EntityFrameworkCore;
     using Web.ViewModels.Administration;
 
     public class CategoriesService : ICategoriesService
@@ -31,17 +31,13 @@
             await this.repository.SaveChangesAsync();
         }
 
-        public IEnumerable<CategoryAdminViewModel> All()
-            => this.repository
-            .All()
-            .To<CategoryAdminViewModel>()
-            .ToList();
+        public async Task<IEnumerable<CategoryAdminViewModel>> AllAsync()
+            => await this.repository
+                .AllAsNoTracking()
+                .To<CategoryAdminViewModel>()
+                .ToListAsync();
 
-        public async Task<Category> GetById(int id)
-        {
-            var caregoty = await this.repository.GetByIdWithDeletedAsync(id);
-
-            return caregoty;
-        }
+        public async Task<Category> GetByIdAsync(int id)
+          => await this.repository.GetByIdWithDeletedAsync(id);
     }
 }

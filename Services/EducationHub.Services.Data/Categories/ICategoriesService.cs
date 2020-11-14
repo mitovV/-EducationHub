@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
+
     using EducationHub.Data.Models;
     using Web.ViewModels.Administration;
 
@@ -9,8 +10,8 @@
     {
         Task CreateAsync(string name, string pictureUrl, string userId);
 
-        IEnumerable<CategoryAdminViewModel> All();
+        Task<IEnumerable<CategoryAdminViewModel>> AllAsync();
 
-        Task<Category> GetById(int id);
+        Task<Category> GetByIdAsync(int id);
     }
 }

@@ -1,11 +1,12 @@
 ﻿namespace EducationHub.Services.Data.Courses
 {
     using System.Collections.Generic;
-    using System.Linq;
+    using System.Threading.Tasks;
 
     using EducationHub.Data.Common.Repositories;
     using EducationHub.Data.Models;
-    using EducationHub.Services.Mapping;
+    using Mapping;
+    using Microsoft.EntityFrameworkCore;
     using Web.ViewModels.Administration;
 
     public class CoursesService : ICoursesService
@@ -17,10 +18,10 @@
             this.courseRepository = courseRepository;
         }
 
-        public IEnumerable<CourseAdminViewModel> All()
-            => this.courseRepository
+        public async Task<IEnumerable<CourseAdminViewModel>> AllAsync()
+            => await this.courseRepository
                 .AllAsNoTracking()
                 .To<CourseAdminViewModel>()
-                .ToList();
+                .ToListAsync();
     }
 }
