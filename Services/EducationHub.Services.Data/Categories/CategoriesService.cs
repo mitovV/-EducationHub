@@ -1,6 +1,7 @@
 ﻿namespace EducationHub.Services.Data.Categories
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using EducationHub.Data.Common.Repositories;
@@ -37,7 +38,11 @@
                 .To<CategoryAdminViewModel>()
                 .ToListAsync();
 
-        public async Task<Category> GetByIdAsync(int id)
-          => await this.repository.GetByIdWithDeletedAsync(id);
+        public async Task<CategoryAdminViewModel> GetByIdAsync(int id)
+          => await this.repository
+            .All()
+            .Where(c => c.Id == id)
+            .To<CategoryAdminViewModel>()
+            .FirstOrDefaultAsync();
     }
 }

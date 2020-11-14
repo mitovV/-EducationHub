@@ -14,12 +14,12 @@
             this.categoriesService = categoriesService;
         }
 
-        public IActionResult All()
-            => this.View(this.categoriesService.All());
+        public async Task<IActionResult> All()
+            => this.View(await this.categoriesService.AllAsync());
 
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> EditAsync(int id)
         {
-            var viewModel = await this.categoriesService.GetById(id);
+            var viewModel = await this.categoriesService.GetByIdAsync(id);
 
             return this.View(viewModel);
         }

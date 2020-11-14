@@ -1,6 +1,5 @@
 ﻿namespace EducationHub.Web.Areas.Administration.Controllers
 {
-    using EducationHub.Services.Data.Categories;
     using EducationHub.Services.Data.Courses;
     using Microsoft.AspNetCore.Mvc;
 
@@ -14,6 +13,6 @@
         }
 
         public IActionResult All()
-            => this.View(this.coursesService.All());
+            => this.View(this.coursesService.AllAsync());
     }
 }

@@ -12,6 +12,6 @@
 
         Task<IEnumerable<CategoryAdminViewModel>> AllAsync();
 
-        Task<Category> GetByIdAsync(int id);
+        Task<CategoryAdminViewModel> GetByIdAsync(int id);
     }
 }
