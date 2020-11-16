@@ -37,20 +37,20 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var category in Model)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                    @Html.DisplayFor(modelItem => category.Name)
                 </td>
                 <td>
-                    <img class="responsive-img" src="@item.PictureUrl" width="100" asp-append-version="true">
+                    <img class="responsive-img" src="@category.PictureUrl" width="100" asp-append-version="true">
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Username)
+                    @Html.DisplayFor(modelItem => category.Username)
                 </td>
                 <td>
-                    @if (item.IsDeleted == false)
+                    @if (category.IsDeleted == false)
                     {
                         <span>No</span>
                     }
@@ -60,31 +60,31 @@
                     }
                 </td>
                 <td>
-                    @if (item.DeletedOn == null)
+                    @if (category.DeletedOn == null)
                     {
                         <span>No record</span>
                     }
                     else
                     {
-                        <span>@item.DeletedOn</span>
+                        <span>@category.DeletedOn</span>
                     }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CreatedOn)
+                    @Html.DisplayFor(modelItem => category.CreatedOn)
                 </td>
                 <td>
-                    @if (item.ModifiedOn == null)
+                    @if (category.ModifiedOn == null)
                     {
                         <span>No record</span>
                     }
                     else
                     {
-                        <span>@item.ModifiedOn</span>
+                        <span>@category.ModifiedOn</span>
                     }
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@category.Id" class="btn-small blue waves-effect waves-light">Edit</a> 
+                    <a asp-action="Delete" asp-route-id="@category.Id" class="btn-small red waves-effect waves-light">Delete</a>
                 </td>
             </tr>
         }

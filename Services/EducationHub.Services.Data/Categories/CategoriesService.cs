@@ -32,10 +32,10 @@
             await this.repository.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<CategoryAdminViewModel>> AllAsync()
+        public async Task<IEnumerable<T>> AllAsync<T>()
             => await this.repository
                 .AllAsNoTracking()
-                .To<CategoryAdminViewModel>()
+                .To<T>()
                 .ToListAsync();
 
         public async Task<CategoryAdminViewModel> GetByIdAsync(int id)

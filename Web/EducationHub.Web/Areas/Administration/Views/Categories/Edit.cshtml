@@ -14,28 +14,46 @@
             <div asp-validation-summary="ModelOnly" class="red-text"></div>
             <div>
                 <label asp-for="Name"></label>
-                <input asp-for="Name" class="center light-green-text lighten-2"/>
+                <input asp-for="Name" class="center light-green-text lighten-2" />
                 <span asp-validation-for="Name" class="red-text"></span>
             </div>
             <div>
-                <label asp-for="PictureUrl" ></label>
+                <label asp-for="PictureUrl"></label>
                 <input asp-for="PictureUrl" class="center light-green-text lighten-2" />
                 <span asp-validation-for="PictureUrl" class="red-text"></span>
             </div>
-            <div class="center">
+            <div>
+                <label asp-for="CreatedOn"></label>
+                <input asp-for="CreatedOn" class="center light-green-text lighten-2" placeholder="yyyy-MM-dd 00:00:00" />
+                <span asp-validation-for="CreatedOn" class="red-text"></span>
+            </div>
+            <div>
+                <label asp-for="ModifiedOn"></label>
+                <input asp-for="ModifiedOn" class="center light-green-text lighten-2" placeholder="yyyy-MM-dd 00:00:00" />
+                <span asp-validation-for="ModifiedOn" class="red-text"></span>
+            </div>
+            <div>
+                <label asp-for="DeletedOn"></label>
+                <input asp-for="DeletedOn" class="center light-green-text lighten-2" placeholder="yyyy-MM-dd 00:00:00" />
+                <span asp-validation-for="DeletedOn" class="red-text"></span>
+            </div>
+            <div>
+                <label asp-for="Username"></label>
+                <input asp-for="Username" class="center light-green-text lighten-2" />
+                <span asp-validation-for="DeletedOn" class="red-text"></span>
+            </div>
+            <div>
                 <label>
-                    <input asp-for="IsDeleted" />
+                    <input asp-for="IsDeleted"/>
                     <span>IsDeleted</span>
                 </label>
             </div>
-            <div >
-                <input type="submit" class="btn" />
+            <div>
+                <input type="submit" class="btn blue waves-effect waves-green" value="Submit" />
             </div>
         </form>
+        <a asp-action="All" class="center light-green-text lighten-2">Back to List</a>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 

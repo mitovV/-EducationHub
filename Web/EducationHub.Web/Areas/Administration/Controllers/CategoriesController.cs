@@ -1,8 +1,9 @@
 ﻿namespace EducationHub.Web.Areas.Administration.Controllers
 {
     using System.Threading.Tasks;
-    using EducationHub.Services.Data.Categories;
-    using EducationHub.Web.ViewModels.Administration;
+
+    using Services.Data.Categories;
+    using Web.ViewModels.Administration;
     using Microsoft.AspNetCore.Mvc;
 
     public class CategoriesController : AdministrationController
@@ -15,13 +16,26 @@
         }
 
         public async Task<IActionResult> All()
-            => this.View(await this.categoriesService.AllAsync());
+            => this.View(await this.categoriesService.AllAsync<CategoryAdminViewModel>());
 
-        public async Task<IActionResult> EditAsync(int id)
+        public async Task<IActionResult> Edit(int id)
         {
             var viewModel = await this.categoriesService.GetByIdAsync(id);
 
             return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(CategoryAdminViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View();
+            }
+
+
+
+            return this.RedirectToAction(nameof(this.All));
         }
     }
 }

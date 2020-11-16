@@ -1,28 +1,26 @@
 ﻿namespace EducationHub.Web.ViewModels.Administration
 {
-    using System;
+    using System.ComponentModel.DataAnnotations;
 
     using AutoMapper;
-    using EducationHub.Data.Models;
-    using EducationHub.Services.Mapping;
+    using Data.Common.Models;
+    using Data.Models;
+    using Services.Mapping;
 
-    public class CategoryAdminViewModel : IMapFrom<Category>, IHaveCustomMappings
+    using static Data.Common.Validations.DataValidation.Category;
+
+    public class CategoryAdminViewModel : BaseDeletableModel<int>, IMapFrom<Category>, IHaveCustomMappings
     {
-        public int Id { get; set; }
-
+        [Required]
+        [MaxLength(NameMaxLength)]
         public string Name { get; set; }
 
+        [Required]
+        [MaxLength(PictureUrlMaxLength)]
         public string PictureUrl { get; set; }
 
+        [Required]
         public string Username { get; set; }
-
-        public bool IsDeleted { get; set; }
-
-        public DateTime? DeletedOn { get; set; }
-
-        public DateTime CreatedOn { get; set; }
-
-        public DateTime? ModifiedOn { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)
         {

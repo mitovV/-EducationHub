@@ -3,14 +3,13 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using EducationHub.Data.Models;
     using Web.ViewModels.Administration;
 
     public interface ICategoriesService
     {
         Task CreateAsync(string name, string pictureUrl, string userId);
 
-        Task<IEnumerable<CategoryAdminViewModel>> AllAsync();
+        Task<IEnumerable<T>> AllAsync<T>();
 
         Task<CategoryAdminViewModel> GetByIdAsync(int id);
     }

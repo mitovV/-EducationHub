@@ -6,7 +6,7 @@
     using Services.Data;
     using Web.ViewModels;
 
-    public class HomeController : BaseController
+    public class HomeController : Controller
     {
         private readonly IGetCountsService getCountsService;
 
@@ -17,6 +17,11 @@
 
         public IActionResult Index()
         {
+            if (this.User.Identity.IsAuthenticated)
+            {
+                return this.Redirect("/Categories/All");
+            }
+
             var viewModel = this.getCountsService.GetCounts();
 
             return this.View(viewModel);
