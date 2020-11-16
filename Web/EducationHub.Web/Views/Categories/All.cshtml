@@ -9,14 +9,14 @@
 <div class="row">
     @foreach (var category in this.Model)
     {
-        <div class="col s12 l4">
+        <div class="col s12 m6 l4">
             <div class="card">
                 <div class="card-image">
                     <img src="@category.PictureUrl" height="300">
                     <span class="card-title">@category.Name</span>
                 </div>
                 <div class="card-action">
-                    <a href="@category.Id">@category.Name</a>
+                    <a href="/Categories/Details?Id=@category.Id">@category.Name</a>
                 </div>
             </div>
         </div>
