@@ -1,4 +1,4 @@
-﻿
+﻿@model EducationHub.Web.ViewModels.Categories.DetailsViewModel
 @{
     ViewData["Title"] = "Details";
 }
@@ -10,10 +10,10 @@
         <div class="card">
             <div class="card-image">
                 <img src="~/Images/courses.jpg" height="350">
-                <a asp-route="/Courser/All" class="btn-floating halfway-fab waves-effect waves-light red pulse"><i class="material-icons">add</i></a>
+                <a asp-controller="Courses" asp-action="ByCategory" asp-route-id="@Model.Id" class="btn-floating halfway-fab waves-effect waves-light red pulse"><i class="material-icons">add</i></a>
             </div>
             <div class="card-content green lighten-2">
-                <p class="center grey-text text-lighten-5">This category has 22 courses.</p>
+                <p class="center grey-text text-lighten-5">This category has @Model.CoursesCount courses.</p>
             </div>
         </div>
     </div>
@@ -21,10 +21,10 @@
         <div class="card">
             <div class="card-image">
                 <img src="~/Images/lessons.jpg" height="350">
-                <a asp-route="/Lessons/All" class="btn-floating halfway-fab waves-effect waves-light red pulse"><i class="material-icons">add</i></a>
+                <a asp-controller="Lessons" asp-action="ByCategory" asp-route-id="@Model.Id" class="btn-floating halfway-fab waves-effect waves-light red pulse"><i class="material-icons">add</i></a>
             </div>
             <div class="card-content green lighten-2">
-                <p class="center grey-text text-lighten-5">This category has 22 lessons that are not related to a course.</p>
+                <p class="center grey-text text-lighten-5">This category has @Model.NotRelatedLessons lessons that are not related to a course.</p>
             </div>
         </div>
     </div>

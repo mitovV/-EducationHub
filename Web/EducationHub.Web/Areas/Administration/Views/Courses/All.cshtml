@@ -58,21 +58,21 @@
                 <td>
                     @if (item.IsDeleted == false)
                     {
-                        <span>No</span>
+                        @:No
                     }
                     else
                     {
-                        <span>Yes</span>
+                        @:Yes
                     }
                 </td>
                 <td>
                     @if (item.DeletedOn == null)
                     {
-                        <span>No record</span>
+                        @:No record
                     }
                     else
                     {
-                        <span>@item.DeletedOn</span>
+                        @item.DeletedOn
                     }
                 </td>
                 <td>
@@ -81,11 +81,11 @@
                 <td>
                     @if (item.ModifiedOn == null)
                     {
-                        <span>No record</span>
+                        @:No record
                     }
                     else
                     {
-                        <span>@item.ModifiedOn</span>
+                        @item.ModifiedOn
                     }
                 </td>
                 <td>

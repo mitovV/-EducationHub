@@ -18,9 +18,7 @@
         public async Task<IActionResult> All()
             => this.View(await this.categoriesService.AllAsync<AllViewModel>());
 
-        public IActionResult Details(int id)
-        {
-            return this.View();
-        }
+        public async Task<IActionResult> Details(int id)
+            => this.View(await this.categoriesService.GetByIdAsync<DetailsViewModel>(id));
     }
 }

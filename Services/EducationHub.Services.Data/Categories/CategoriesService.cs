@@ -6,9 +6,8 @@
 
     using EducationHub.Data.Common.Repositories;
     using EducationHub.Data.Models;
-    using EducationHub.Services.Mapping;
     using Microsoft.EntityFrameworkCore;
-    using Web.ViewModels.Administration;
+    using Services.Mapping;
 
     public class CategoriesService : ICategoriesService
     {
@@ -38,11 +37,11 @@
                 .To<T>()
                 .ToListAsync();
 
-        public async Task<CategoryAdminViewModel> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync<T>(int id)
           => await this.repository
             .All()
             .Where(c => c.Id == id)
-            .To<CategoryAdminViewModel>()
+            .To<T>()
             .FirstOrDefaultAsync();
     }
 }

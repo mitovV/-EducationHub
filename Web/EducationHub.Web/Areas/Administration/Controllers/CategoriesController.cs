@@ -20,7 +20,7 @@
 
         public async Task<IActionResult> Edit(int id)
         {
-            var viewModel = await this.categoriesService.GetByIdAsync(id);
+            var viewModel = await this.categoriesService.GetByIdAsync<CategoryAdminViewModel>(id);
 
             return this.View(viewModel);
         }

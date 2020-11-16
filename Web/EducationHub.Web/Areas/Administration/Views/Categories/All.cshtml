@@ -52,11 +52,11 @@
                 <td>
                     @if (category.IsDeleted == false)
                     {
-                        <span>No</span>
+                        @:No
                     }
                     else
                     {
-                        <span>Yes</span>
+                        @:Yes
                     }
                 </td>
                 <td>
@@ -75,11 +75,11 @@
                 <td>
                     @if (category.ModifiedOn == null)
                     {
-                        <span>No record</span>
+                        @:No record
                     }
                     else
                     {
-                        <span>@category.ModifiedOn</span>
+                        @category.ModifiedOn
                     }
                 </td>
                 <td>

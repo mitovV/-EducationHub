@@ -24,5 +24,8 @@
 
         public virtual ICollection<Course> Courses { get; set; }
             = new HashSet<Course>();
+
+        public virtual ICollection<Lesson> Lessons { get; set; }
+            = new HashSet<Lesson>();
     }
 }
