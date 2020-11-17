@@ -33,8 +33,6 @@
                 return this.View();
             }
 
-
-
             return this.RedirectToAction(nameof(this.All));
         }
     }

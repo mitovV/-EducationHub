@@ -1,7 +1,7 @@
 ﻿namespace EducationHub.Services.Data
 {
-    using System;
     using System.Linq;
+
     using EducationHub.Data.Common.Repositories;
     using EducationHub.Data.Models;
     using Web.ViewModels.Home;

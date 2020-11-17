@@ -4,7 +4,6 @@
 
 namespace EducationHub.Web.Areas.Identity
 {
-
     public class IdentityHostingStartup : IHostingStartup
     {
         public void Configure(IWebHostBuilder builder)

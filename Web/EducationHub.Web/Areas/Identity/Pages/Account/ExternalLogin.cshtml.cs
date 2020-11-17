@@ -5,7 +5,8 @@
     using System.Text;
     using System.Text.Encodings.Web;
     using System.Threading.Tasks;
-    using EducationHub.Data.Models;
+
+    using Data.Models;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.UI.Services;
@@ -44,13 +45,6 @@
         [TempData]
         public string ErrorMessage { get; set; }
 
-        public class InputModel
-        {
-            [Required]
-            [EmailAddress]
-            public string Email { get; set; }
-        }
-
         public IActionResult OnGetAsync()
         {
             return this.RedirectToPage("./Login");
@@ -58,7 +52,6 @@
 
         public IActionResult OnPost(string provider, string returnUrl = null)
         {
-            // Request a redirect to the external login provider.
             var redirectUrl = this.Url.Page("./ExternalLogin", pageHandler: "Callback", values: new { returnUrl });
             var properties = this.signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
             return new ChallengeResult(provider, properties);
@@ -70,8 +63,9 @@
             if (remoteError != null)
             {
                 this.ErrorMessage = $"Error from external provider: {remoteError}";
-                return this.RedirectToPage("./Login", new {ReturnUrl = returnUrl });
+                return this.RedirectToPage("./Login", new { ReturnUrl = returnUrl });
             }
+
             var info = await this.signInManager.GetExternalLoginInfoAsync();
             if (info == null)
             {
@@ -79,7 +73,7 @@
                 return this.RedirectToPage("./Login", new { ReturnUrl = returnUrl });
             }
 
-            var result = await this.signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor : true);
+            var result = await this.signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
             if (result.Succeeded)
             {
                 this.logger.LogInformation("{Name} logged in with {LoginProvider} provider.", info.Principal.Identity.Name, info.LoginProvider);
@@ -131,7 +125,7 @@
                         var userId = await this.userManager.GetUserIdAsync(user);
                         var code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
                         code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                        var callbackUrl = Url.Page(
+                        var callbackUrl = this.Url.Page(
                             "/Account/ConfirmEmail",
                             pageHandler: null,
                             values: new { area = "Identity", userId = userId, code = code },
@@ -160,6 +154,13 @@
             this.ProviderDisplayName = info.ProviderDisplayName;
             this.ReturnUrl = returnUrl;
             return this.Page();
+        }
+
+        public class InputModel
+        {
+            [Required]
+            [EmailAddress]
+            public string Email { get; set; }
         }
     }
 }

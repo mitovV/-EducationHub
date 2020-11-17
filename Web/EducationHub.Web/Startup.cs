@@ -8,7 +8,6 @@
     using Data.Models;
     using Data.Repositories;
     using Data.Seeding;
-    using EducationHub.Services.Data.Courses;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -19,6 +18,7 @@
     using Microsoft.Extensions.Hosting;
     using Services.Data;
     using Services.Data.Categories;
+    using Services.Data.Courses;
     using Services.Mapping;
     using Services.Messaging;
     using ViewModels;
