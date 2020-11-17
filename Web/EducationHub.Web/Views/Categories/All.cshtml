@@ -1,5 +1,5 @@
 ﻿@using EducationHub.Web.ViewModels.Categories
-@model IEnumerable<AllViewModel>
+@model IEnumerable<CategoriesAllViewModel>
 @{
     ViewData["Title"] = "Categories";
 }
@@ -15,7 +15,7 @@
                     <img src="@category.PictureUrl" height="300">
                     <span class="card-title">@category.Name</span>
                 </div>
-                <div class="card-action">
+                <div class="card-action light-green lighten-4">
                     <a asp-controller="Categories" asp-action="Details" asp-route-id="@category.Id">@category.Name</a>
                 </div>
             </div>
