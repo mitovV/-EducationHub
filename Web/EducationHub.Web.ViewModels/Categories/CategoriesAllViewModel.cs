@@ -3,7 +3,7 @@
     using Data.Models;
     using Services.Mapping;
 
-    public class AllViewModel : IMapFrom<Category>
+    public class CategoriesAllViewModel : IMapFrom<Category>
     {
         public int Id { get; set; }
 
