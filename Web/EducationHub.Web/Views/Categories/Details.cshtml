@@ -1,6 +1,7 @@
 ﻿@model EducationHub.Web.ViewModels.Categories.CategoryDetailsViewModel
 @{
-    ViewData["Title"] = "Details";
+        ViewData["Title"] = "Details";
+        var noResurses = "<p class=\"center grey-text text-lighten-5\">No resources yet.</p>";
 }
 
 <h1 class="center light-green-text lighten-2">@ViewData["Title"]</h1>
@@ -13,7 +14,14 @@
                 <a asp-controller="Courses" asp-action="ByCategory" asp-route-id="@Model.Id" class="btn-floating btn-large halfway-fab waves-effect waves-light pulse yellow darken-1"><i class="material-icons">info</i></a>
             </div>
             <div class="card-content green lighten-2">
-                <p class="center grey-text text-lighten-5">This category has @Model.CoursesCount courses.</p>
+                @if (Model.CoursesCount < 1)
+                {
+                   @Html.Raw(noResurses);
+                }
+                else
+                {
+                    <p class="center grey-text text-lighten-5">This category has @Model.CoursesCount courses.</p>
+                }
             </div>
         </div>
     </div>
@@ -24,7 +32,14 @@
                 <a asp-controller="Lessons" asp-action="ByCategory" asp-route-id="@Model.Id" class="btn-floating btn-large halfway-fab waves-effect waves-light pulse yellow darken-1"><i class="material-icons">info</i></a>
             </div>
             <div class="card-content green lighten-2">
-                <p class="center grey-text text-lighten-5">This category has @Model.NotRelatedLessons lessons that are not related to a course.</p>
+                @if (Model.NotRelatedLessons < 1)
+                {
+                   @Html.Raw(noResurses);
+                }
+                else
+                {
+                    <p class="center grey-text text-lighten-5">This category has @Model.NotRelatedLessons lessons that are not related to a course.</p>
+                }
             </div>
         </div>
     </div>
