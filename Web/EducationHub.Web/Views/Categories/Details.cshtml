@@ -3,8 +3,8 @@
     ViewData["Title"] = "Details";
     var noResurses = "<p class=\"center grey-text text-lighten-5\">No resources yet.</p>";
     var disabled = "disabled";
-    var coursesCountBtn = Model.CoursesCount < 1 ? disabled : "";
-    var lessonsCountBtn = Model.NotRelatedLessons < 1 ? disabled : "";
+    var coursesCountBtn = Model.CoursesCount < 1 ? disabled : "pulse";
+    var lessonsCountBtn = Model.NotRelatedLessons < 1 ? disabled : "pulse";
 }
 
 <h1 class="center light-green-text lighten-2">@ViewData["Title"]</h1>
@@ -14,7 +14,7 @@
         <div class="card">
             <div class="card-image">
                 <img src="~/Images/courses.jpg" height="350">
-                <a asp-controller="Courses" asp-action="ByCategory" asp-route-id="@Model.Id" class="btn-floating btn-large halfway-fab waves-effect waves-light pulse yellow darken-1 @coursesCountBtn"><i class="material-icons">info</i></a>
+                <a asp-controller="Courses" asp-action="ByCategory" asp-route-id="@Model.Id" class="btn-floating btn-large halfway-fab waves-effect waves-light yellow darken-1 @coursesCountBtn"><i class="material-icons">info</i></a>
             </div>
             <div class="card-content green lighten-2">
                 @if (Model.CoursesCount < 1)
@@ -32,7 +32,7 @@
         <div class="card">
             <div class="card-image">
                 <img src="~/Images/lessons.jpg" height="350">
-                <a asp-controller="Lessons" asp-action="ByCategory" asp-route-id="@Model.Id" class="btn-floating btn-large halfway-fab waves-effect waves-light pulse yellow darken-1 @lessonsCountBtn"><i class="material-icons">info</i></a>
+                <a asp-controller="Lessons" asp-action="ByCategory" asp-route-id="@Model.Id" class="btn-floating btn-large halfway-fab waves-effect waves-light yellow darken-1 @lessonsCountBtn"><i class="material-icons">info</i></a>
             </div>
             <div class="card-content green lighten-2">
                 @if (Model.NotRelatedLessons < 1)
