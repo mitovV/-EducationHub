@@ -25,25 +25,25 @@
                 {
                     Name = "Programing Languages",
                     UserId = user.Id,
-                    PictureUrl = "https://www.simplilearn.com/ice9/free_resources_article_thumb/Best-Programming-Languages-to-Start-Learning-Today.jpg",
+                    PictureUrl = "https://res.cloudinary.com/dgw65zfwf/image/upload/v1605711654/EducationHub/Categories/Best-Programming-Languages-to-Start-Learning-Today_tyaj6n.jpg",
                 },
                 new Category
                 {
                     Name = "Basic Math",
                     UserId = user.Id,
-                    PictureUrl = "https://i.ytimg.com/vi/Kp2bYWRQylk/maxresdefault.jpg",
+                    PictureUrl = "https://res.cloudinary.com/dgw65zfwf/image/upload/v1605711703/EducationHub/Categories/maxresdefault_tvvi97.jpg",
                 },
                 new Category
                 {
                     Name = "Geography",
                     UserId = user.Id,
-                    PictureUrl = "https://geg.uoguelph.ca/geography/sites/default/files/uploads/geogImg_r.jpg",
+                    PictureUrl = "https://res.cloudinary.com/dgw65zfwf/image/upload/v1605711726/EducationHub/Categories/geogImg_r_qshnjy.jpg",
                 },
                 new Category
                 {
                     Name = "Chemistry",
                     UserId = user.Id,
-                    PictureUrl = "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera-course-photos.s3.amazonaws.com/fa/6926005ea411e490ff8d4c5d4ff426/chemistry_logo.png?auto=format%2Ccompress&dpr=1",
+                    PictureUrl = "https://res.cloudinary.com/dgw65zfwf/image/upload/v1605711749/EducationHub/Categories/chemistry_logo_yr5fqx.jpg",
                 },
             };
 
