@@ -1,7 +1,5 @@
 ﻿namespace EducationHub.Web.ViewModels.Administration
 {
-    using System;
-
     using AutoMapper;
     using Data.Common.Models;
     using Data.Models;
