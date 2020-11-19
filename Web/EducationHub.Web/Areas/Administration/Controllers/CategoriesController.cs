@@ -53,16 +53,21 @@
         [HttpPost]
         public async Task<IActionResult> Create(CreateCategoryInputModel model)
         {
+            if (model.Image.Length > 0)
+            {
+                var pictureUrl = await this.cloudinary.ImageUploadAsync(model.Image);
+                model.PictureUrl = pictureUrl;
+            }
+
+            // TODO: Check this!
             if (!this.ModelState.IsValid)
             {
                 return this.View();
             }
 
-            var pictureUrl = await this.cloudinary.ImageUploadAsync(model.Image);
-
             var user = await this.userManager.GetUserAsync(this.User);
 
-            await this.categoriesService.CreateAsync(model.Name, pictureUrl, user.Id);
+            await this.categoriesService.CreateAsync(model.Name, model.PictureUrl, user.Id);
 
             return this.RedirectToAction(nameof(this.All));
         }

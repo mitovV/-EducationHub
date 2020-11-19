@@ -1,23 +1,61 @@
-﻿@model EducationHub.Web.ViewModels.Administration.CreateCategoryInputModel
+﻿@using static EducationHub.Data.Common.Validations.DataValidation.Category
+@model EducationHub.Web.ViewModels.Administration.CreateCategoryInputModel
 @{
     ViewData["Title"] = "Create Category";
 }
 
 <h1 class="center light-green-text lighten-2">@ViewData["Title"]</h1>
 
-<div class="center">
+<div class="row">
     <form asp-action="Create" method="post" enctype="multipart/form-data">
-        <input asp-for="Name" />
-        <input asp-for="PictureUrl" />
-        <div class="file-field input-field">
-            <div class="btn">
-                <span>File</span>
+        <div class="center red-text" asp-validation-summary="All"></div>
+        <div class="input-field col s12 l6 offset-l3">
+            <input asp-for="Name" data-length="@NameMaxLength">
+            <label asp-for="Name"></label>
+            <span asp-validation-for="Name" class="red-text"></span>
+        </div>
+        <div id="PictureUrlInput" class="input-field col s12  l6 offset-l3">
+            <input asp-for="PictureUrl" data-length="@PictureUrlMaxLength">
+            <label asp-for="PictureUrl"></label>
+            <span asp-validation-for="PictureUrl" class="red-text"></span>
+        </div>
+        <div id="UploadImageInput" class="file-field input-field col s12  l6 offset-l3" hidden>
+            <div class="btn btn-small">
+                <span>Image<i class="material-icons right">cloud_upload</i></span>
                 <input asp-for="Image">
             </div>
             <div class="file-path-wrapper">
                 <input class="file-path validate" type="text">
             </div>
         </div>
-        <button class="btn btn-small"><i class="material-icons right">send</i>Submit</button>
+        <div class="col s6 l6 center">
+            <a class='dropdown-trigger btn btn-small' href='#' data-target='dropdown1'>Picture!</a>
+            <ul id='dropdown1' class='dropdown-content'>
+                <li><a id="PictureURL" href="#!">Picture URL</a></li>
+                <li><a id="UploadImage" href="#!"><i class="material-icons">cloud</i>Upload Picture</a></li>
+            </ul>
+        </div>
+        <div class="col s6 l6 right">
+            <button class="btn btn-small"><i class="material-icons right">send</i>Submit</button>
+        </div>
     </form>
 </div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('input#Name, input#PictureUrl').characterCounter();
+        });
+
+        $('.dropdown-trigger').dropdown();
+
+        $('#PictureURL').click(function () {
+            $('#PictureUrlInput').show();
+            $('#UploadImageInput').hide();
+        });
+        $('#UploadImage').click(function () {
+            $('#PictureUrlInput').hide();
+            $('#UploadImageInput').show();
+        });
+    </script>
+}
