@@ -53,7 +53,7 @@
         [HttpPost]
         public async Task<IActionResult> Create(CreateCategoryInputModel model)
         {
-            if (model.Image.Length > 0)
+            if (model.Image != null)
             {
                 var pictureUrl = await this.cloudinary.ImageUploadAsync(model.Image);
                 model.PictureUrl = pictureUrl;
