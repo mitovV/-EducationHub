@@ -1,0 +1,15 @@
+﻿@model EducationHub.Web.ViewModels.Administration.CreateCategoryInputModel
+@{
+    ViewData["Title"] = "Create Category";
+}
+
+<h1 class="center light-green-text lighten-2">@ViewData["Title"]</h1>
+
+<div class="center">
+    <form asp-action="Create" method="post">
+        <input asp-for="Name" />
+        <input asp-for="PictureUrl" />
+        <input asp-for="Image" />
+        <button>Send</button>
+    </form>
+</div>

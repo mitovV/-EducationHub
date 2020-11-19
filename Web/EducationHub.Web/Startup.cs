@@ -2,12 +2,14 @@
 {
     using System.Reflection;
 
+    using CloudinaryDotNet;
     using Data;
     using Data.Common;
     using Data.Common.Repositories;
     using Data.Models;
     using Data.Repositories;
     using Data.Seeding;
+    using EducationHub.Services;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -61,10 +63,20 @@
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
+            Account account = new Account(
+                                this.configuration["Cloudinary:CloudName"],
+                                this.configuration["Cloudinary:APIKey"],
+                                this.configuration["Cloudinary:APISecret"]);
+
+            Cloudinary cloudinary = new Cloudinary(account);
+
+            services.AddSingleton(cloudinary);
+
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<IGetCountsService, GetCountsService>();
             services.AddTransient<ICoursesService, CoursesService>();
+            services.AddTransient<ICloudinaryService, CloudinaryService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

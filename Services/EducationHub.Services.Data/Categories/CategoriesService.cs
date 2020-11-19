@@ -37,11 +37,25 @@
                 .To<T>()
                 .ToListAsync();
 
+        public async Task<IEnumerable<T>> AllWithDeletedAsync<T>()
+            => await this.repository
+                .AllWithDeleted()
+                .To<T>()
+                .ToListAsync();
+
         public async Task<T> GetByIdAsync<T>(int id)
           => await this.repository
             .All()
             .Where(c => c.Id == id)
             .To<T>()
             .FirstOrDefaultAsync();
+
+        public async Task DeleteAsync(int id)
+        {
+            var category = await this.repository.GetByIdWithDeletedAsync(id);
+
+            this.repository.Delete(category);
+            await this.repository.SaveChangesAsync();
+        }
     }
 }
