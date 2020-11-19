@@ -6,10 +6,18 @@
 <h1 class="center light-green-text lighten-2">@ViewData["Title"]</h1>
 
 <div class="center">
-    <form asp-action="Create" method="post">
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
         <input asp-for="Name" />
         <input asp-for="PictureUrl" />
-        <input asp-for="Image" />
-        <button>Send</button>
+        <div class="file-field input-field">
+            <div class="btn">
+                <span>File</span>
+                <input asp-for="Image">
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+            </div>
+        </div>
+        <button class="btn btn-small"><i class="material-icons right">send</i>Submit</button>
     </form>
 </div>

@@ -2,21 +2,24 @@
 {
     using System.Threading.Tasks;
 
+    using Data.Models;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    using Services;
     using Services.Data.Categories;
     using Web.ViewModels.Administration;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Identity;
-    using EducationHub.Data.Models;
 
     public class CategoriesController : AdministrationController
     {
         private readonly ICategoriesService categoriesService;
         private readonly UserManager<User> userManager;
+        private readonly ICloudinaryService cloudinary;
 
-        public CategoriesController(ICategoriesService categoriesService, UserManager<User> userManager)
+        public CategoriesController(ICategoriesService categoriesService, UserManager<User> userManager, ICloudinaryService cloudinary)
         {
             this.categoriesService = categoriesService;
             this.userManager = userManager;
+            this.cloudinary = cloudinary;
         }
 
         public async Task<IActionResult> All()
@@ -55,9 +58,11 @@
                 return this.View();
             }
 
+            var pictureUrl = await this.cloudinary.ImageUploadAsync(model.Image);
+
             var user = await this.userManager.GetUserAsync(this.User);
 
-            await this.categoriesService.CreateAsync(model.Name, model.PictureUrl, user.Id);
+            await this.categoriesService.CreateAsync(model.Name, pictureUrl, user.Id);
 
             return this.RedirectToAction(nameof(this.All));
         }

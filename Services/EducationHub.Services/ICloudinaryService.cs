@@ -2,8 +2,10 @@
 {
     using System.Threading.Tasks;
 
+    using Microsoft.AspNetCore.Http;
+
     public interface ICloudinaryService
     {
-        Task<string> ImageUploadAsync(string fileName, byte[] file);
+        Task<string> ImageUploadAsync(IFormFile file);
     }
 }

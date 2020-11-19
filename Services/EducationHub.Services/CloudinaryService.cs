@@ -5,6 +5,7 @@
 
     using CloudinaryDotNet;
     using CloudinaryDotNet.Actions;
+    using Microsoft.AspNetCore.Http;
 
     public class CloudinaryService : ICloudinaryService
     {
@@ -15,13 +16,20 @@
             this.cloudinary = cloudinary;
         }
 
-        public async Task<string> ImageUploadAsync(string fileName, byte[] file)
+        public async Task<string> ImageUploadAsync(IFormFile file)
         {
-            using var destinationStream = new MemoryStream(file);
+            byte[] destinationImage;
+
+            using var memoryStream = new MemoryStream();
+
+            await file.CopyToAsync(memoryStream);
+            destinationImage = memoryStream.ToArray();
+
+            using var destinationStream = new MemoryStream(destinationImage);
 
             var uploadParams = new ImageUploadParams()
             {
-                File = new FileDescription(fileName, destinationStream),
+                File = new FileDescription(file.FileName, destinationStream),
             };
 
             var uploadResult = await this.cloudinary.UploadAsync(uploadParams);
