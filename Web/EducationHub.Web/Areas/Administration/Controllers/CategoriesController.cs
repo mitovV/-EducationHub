@@ -14,12 +14,14 @@
         private readonly ICategoriesService categoriesService;
         private readonly UserManager<User> userManager;
         private readonly ICloudinaryService cloudinary;
+        private readonly IImageSharpService imageSharpService;
 
-        public CategoriesController(ICategoriesService categoriesService, UserManager<User> userManager, ICloudinaryService cloudinary)
+        public CategoriesController(ICategoriesService categoriesService, UserManager<User> userManager, ICloudinaryService cloudinary, IImageSharpService imageSharpService)
         {
             this.categoriesService = categoriesService;
             this.userManager = userManager;
             this.cloudinary = cloudinary;
+            this.imageSharpService = imageSharpService;
         }
 
         public async Task<IActionResult> All()
@@ -55,8 +57,11 @@
         {
             if (model.Image != null)
             {
-                var pictureUrl = await this.cloudinary.ImageUploadAsync(model.Image);
-                model.PictureUrl = pictureUrl;
+                if (this.imageSharpService.IsValidExtension(model.Image))
+                {
+                    var pictureUrl = await this.cloudinary.ImageUploadAsync(model.Image);
+                    model.PictureUrl = pictureUrl;
+                }
             }
 
             if (!this.ModelState.IsValid)

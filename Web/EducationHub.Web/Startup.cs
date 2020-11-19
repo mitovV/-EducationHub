@@ -77,6 +77,7 @@
             services.AddTransient<IGetCountsService, GetCountsService>();
             services.AddTransient<ICoursesService, CoursesService>();
             services.AddTransient<ICloudinaryService, CloudinaryService>();
+            services.AddTransient<IImageSharpService, ImageSharpService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
