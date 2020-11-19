@@ -59,12 +59,11 @@
                 model.PictureUrl = pictureUrl;
             }
 
-            // TODO: Check this!
             if (!this.ModelState.IsValid)
             {
                 if (string.IsNullOrWhiteSpace(model.PictureUrl))
                 {
-                return this.View();
+                    return this.View();
                 }
             }
 
