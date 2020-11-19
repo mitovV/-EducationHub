@@ -30,12 +30,16 @@
         }
 
         [HttpPost]
-        public IActionResult Edit(CategoryAdminViewModel model)
+        public async Task<IActionResult> Edit(CategoryAdminViewModel model)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.View();
             }
+
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            await this.categoriesService.EditAsync(model.Id, model.Name, model.PictureUrl, model.IsDeleted, user.Id);
 
             return this.RedirectToAction(nameof(this.All));
         }

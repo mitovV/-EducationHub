@@ -45,7 +45,7 @@
 
         public async Task<T> GetByIdAsync<T>(int id)
           => await this.repository
-            .All()
+            .AllWithDeleted()
             .Where(c => c.Id == id)
             .To<T>()
             .FirstOrDefaultAsync();
@@ -55,6 +55,19 @@
             var category = await this.repository.GetByIdWithDeletedAsync(id);
 
             this.repository.Delete(category);
+            await this.repository.SaveChangesAsync();
+        }
+
+        public async Task EditAsync(int id, string name, string pictureUrl, bool isDeleted, string userId)
+        {
+            var category = await this.repository.GetByIdWithDeletedAsync(id);
+
+            category.Name = name;
+            category.PictureUrl = pictureUrl;
+            category.UserId = userId;
+            category.IsDeleted = isDeleted;
+
+            this.repository.Update(category);
             await this.repository.SaveChangesAsync();
         }
     }
