@@ -62,7 +62,10 @@
             // TODO: Check this!
             if (!this.ModelState.IsValid)
             {
+                if (string.IsNullOrWhiteSpace(model.PictureUrl))
+                {
                 return this.View();
+                }
             }
 
             var user = await this.userManager.GetUserAsync(this.User);
