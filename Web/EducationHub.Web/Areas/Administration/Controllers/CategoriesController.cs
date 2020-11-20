@@ -55,21 +55,20 @@
         [HttpPost]
         public async Task<IActionResult> Create(CreateCategoryInputModel model)
         {
-            if (model.Image != null)
+            if (!this.ModelState.IsValid || (model.PictureUrl == null && model.Image == null))
             {
-                if (this.imageSharpService.IsValidExtension(model.Image))
+                if (string.IsNullOrWhiteSpace(model.PictureUrl) && model.Image == null)
                 {
-                    var pictureUrl = await this.cloudinary.ImageUploadAsync(model.Image);
-                    model.PictureUrl = pictureUrl;
+                    this.ModelState.AddModelError("PictureUrl", "Picture Url is required.");
                 }
+
+                return this.View();
             }
 
-            if (!this.ModelState.IsValid)
+            if (model.Image != null)
             {
-                if (string.IsNullOrWhiteSpace(model.PictureUrl))
-                {
-                    return this.View();
-                }
+                var pictureUrl = await this.cloudinary.ImageUploadAsync(model.Image);
+                model.PictureUrl = pictureUrl;
             }
 
             var user = await this.userManager.GetUserAsync(this.User);

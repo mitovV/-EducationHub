@@ -2,20 +2,22 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using Infrastructure.ValidationAttributes;
     using Microsoft.AspNetCore.Http;
 
-    using static EducationHub.Data.Common.Validations.DataValidation.Category;
+    using static Data.Common.Validations.DataValidation.Category;
 
     public class CreateCategoryInputModel
     {
         [Required]
+        [MinLength(NameMinLength)]
         [MaxLength(NameMaxLength)]
         public string Name { get; set; }
 
-        [Required]
         [MaxLength(PictureUrlMaxLength)]
         public string PictureUrl { get; set; }
 
+        [ImageSizeInMBValidation(2)]
         public IFormFile Image { get; set; }
     }
 }

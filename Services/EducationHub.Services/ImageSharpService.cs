@@ -5,7 +5,7 @@
 
     public class ImageSharpService : IImageSharpService
     {
-        public bool IsValidExtension(IFormFile file)
+        public bool IsValidImage(IFormFile file)
         {
             var format = Image.DetectFormat(file.OpenReadStream());
 
