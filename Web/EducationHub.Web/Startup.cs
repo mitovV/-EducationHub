@@ -9,7 +9,8 @@
     using Data.Models;
     using Data.Repositories;
     using Data.Seeding;
-    using EducationHub.Services;
+    using Services;
+    using Infrastructure.Extensions;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -19,8 +20,6 @@
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Services.Data;
-    using Services.Data.Categories;
-    using Services.Data.Courses;
     using Services.Mapping;
     using Services.Messaging;
     using ViewModels;
@@ -72,12 +71,10 @@
 
             services.AddSingleton(cloudinary);
 
+            services.AddServices(typeof(IService));
+            services.AddServices(typeof(IDataService));
+
             services.AddTransient<IEmailSender, NullMessageSender>();
-            services.AddTransient<ICategoriesService, CategoriesService>();
-            services.AddTransient<IGetCountsService, GetCountsService>();
-            services.AddTransient<ICoursesService, CoursesService>();
-            services.AddTransient<ICloudinaryService, CloudinaryService>();
-            services.AddTransient<IImageSharpService, ImageSharpService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
