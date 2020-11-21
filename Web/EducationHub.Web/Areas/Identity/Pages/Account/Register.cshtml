@@ -13,8 +13,13 @@
             <div class="center red-text" asp-validation-summary="All"></div>
             <div class="input-field">
                 <label asp-for="Input.Email"></label>
-                <input  asp-for="Input.Email" class="center light-green-text lighten-2"/>
+                <input asp-for="Input.Email" class="center light-green-text lighten-2" />
                 <span asp-validation-for="Input.Email" class="red-text"></span>
+            </div>
+            <div class="input-field">
+                <label asp-for="Input.Username"></label>
+                <input class="center light-green-text lighten-2" asp-for="Input.Username" />
+                <span asp-validation-for="Input.Username" class="red-text"></span>
             </div>
             <div class="input-field">
                 <label asp-for="Input.Password"></label>

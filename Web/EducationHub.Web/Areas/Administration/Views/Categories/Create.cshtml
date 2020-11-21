@@ -42,20 +42,5 @@
 </div>
 
 @section Scripts {
-    <script>
-        $(document).ready(function () {
-            $('input#Name, input#PictureUrl').characterCounter();
-        });
-
-        $('.dropdown-trigger').dropdown();
-
-        $('#PictureURL').click(function () {
-            $('#PictureUrlInput').show();
-            $('#UploadImageInput').hide();
-        });
-        $('#UploadImage').click(function () {
-            $('#PictureUrlInput').hide();
-            $('#UploadImageInput').show();
-        });
-    </script>
+    <script src="~/js/imagePicker.js" asp-append-version="true"></script>
 }

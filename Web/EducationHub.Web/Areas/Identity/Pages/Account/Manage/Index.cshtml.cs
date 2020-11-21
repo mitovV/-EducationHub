@@ -4,9 +4,13 @@
     using System.Threading.Tasks;
 
     using Data.Models;
+    using Web.Infrastructure.ValidationAttributes;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
+
+    using static Data.Common.Validations.DataValidation.User;
 
     public partial class IndexModel : PageModel
     {
@@ -22,6 +26,8 @@
         }
 
         public string Username { get; set; }
+
+        public string PictureUrl { get; set; }
 
         [TempData]
         public string StatusMessage { get; set; }
@@ -55,13 +61,27 @@
                 return this.Page();
             }
 
+            // TODO: Implement uploading
             var phoneNumber = await this.userManager.GetPhoneNumberAsync(user);
-            if (this.Input.PhoneNumber != phoneNumber)
+            var username = user.UserName;
+            var pictureUrl = this.Input.PictureUrl;
+
+            if (this.Input.PhoneNumber != phoneNumber || username != this.Input.Username || pictureUrl != user.PictureUrl)
             {
                 var setPhoneResult = await this.userManager.SetPhoneNumberAsync(user, this.Input.PhoneNumber);
+                var setUsernameResult = await this.userManager.SetUserNameAsync(user, this.Input.Username);
+                user.PictureUrl = pictureUrl;
+
+                await this.userManager.UpdateAsync(user);
                 if (!setPhoneResult.Succeeded)
                 {
                     this.StatusMessage = "Unexpected error when trying to set phone number.";
+                    return this.RedirectToPage();
+                }
+
+                if (!setUsernameResult.Succeeded)
+                {
+                    this.StatusMessage = "Unexpected error when trying to set Username. Try with different one.";
                     return this.RedirectToPage();
                 }
             }
@@ -74,9 +94,11 @@
         private async Task LoadAsync(User user)
         {
             var userName = await this.userManager.GetUserNameAsync(user);
+
             var phoneNumber = await this.userManager.GetPhoneNumberAsync(user);
 
             this.Username = userName;
+            this.PictureUrl = user.PictureUrl;
 
             this.Input = new InputModel
             {
@@ -89,6 +111,16 @@
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            [Required]
+            [StringLength(25, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 4)]
+            public string Username { get; set; }
+
+            [MaxLength(PictureUrlMaxLength)]
+            public string PictureUrl { get; set; }
+
+            [ImageSizeInMBValidation(3)]
+            public IFormFile Image { get; set; }
         }
     }
 }
