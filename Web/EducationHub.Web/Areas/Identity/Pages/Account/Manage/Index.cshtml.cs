@@ -4,11 +4,12 @@
     using System.Threading.Tasks;
 
     using Data.Models;
-    using Web.Infrastructure.ValidationAttributes;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
+    using Services;
+    using Web.Infrastructure.ValidationAttributes;
 
     using static Data.Common.Validations.DataValidation.User;
 
@@ -16,13 +17,16 @@
     {
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
+        private readonly ICloudinaryService cloudinaryService;
 
         public IndexModel(
             UserManager<User> userManager,
-            SignInManager<User> signInManager)
+            SignInManager<User> signInManager,
+            ICloudinaryService cloudinaryService)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.cloudinaryService = cloudinaryService;
         }
 
         public string Username { get; set; }
@@ -61,15 +65,23 @@
                 return this.Page();
             }
 
-            // TODO: Implement uploading
             var phoneNumber = await this.userManager.GetPhoneNumberAsync(user);
             var username = user.UserName;
             var pictureUrl = this.Input.PictureUrl;
 
-            if (this.Input.PhoneNumber != phoneNumber || username != this.Input.Username || pictureUrl != user.PictureUrl)
+            if (this.Input.PhoneNumber != phoneNumber
+                || username != this.Input.Username
+                || pictureUrl != user.PictureUrl
+                || this.Input.Image != null)
             {
                 var setPhoneResult = await this.userManager.SetPhoneNumberAsync(user, this.Input.PhoneNumber);
                 var setUsernameResult = await this.userManager.SetUserNameAsync(user, this.Input.Username);
+
+                if (this.Input.Image != null)
+                {
+                    pictureUrl = await this.cloudinaryService.ImageUploadAsync(this.Input.Image);
+                }
+
                 user.PictureUrl = pictureUrl;
 
                 await this.userManager.UpdateAsync(user);
@@ -113,10 +125,11 @@
             public string PhoneNumber { get; set; }
 
             [Required]
-            [StringLength(25, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 4)]
+            [StringLength(UsernameMaxLenght, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = UsernameMinLenght)]
             public string Username { get; set; }
 
             [MaxLength(PictureUrlMaxLength)]
+            [Display(Name ="Picture URL")]
             public string PictureUrl { get; set; }
 
             [ImageSizeInMBValidation(3)]

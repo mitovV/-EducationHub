@@ -18,6 +18,8 @@
 
         public class User
         {
+            public const int UsernameMinLenght = 4;
+            public const int UsernameMaxLenght = 25;
             public const int PictureUrlMaxLength = 400;
         }
 
