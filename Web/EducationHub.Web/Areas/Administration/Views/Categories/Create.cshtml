@@ -10,12 +10,12 @@
     <form asp-action="Create" method="post" enctype="multipart/form-data">
         <div class="center red-text" asp-validation-summary="All"></div>
         <div class="input-field col s12 l6 offset-l3">
-            <input asp-for="Name" data-length="@NameMaxLength">
+            <input asp-for="Name" class="character-counter" data-length="@NameMaxLength">
             <label asp-for="Name"></label>
             <span asp-validation-for="Name" class="red-text"></span>
         </div>
-        <div id="PictureUrlInput" class="input-field col s12  l6 offset-l3">
-            <input asp-for="PictureUrl" data-length="@PictureUrlMaxLength">
+        <div class="input-field col s12  l6 offset-l3">
+            <input asp-for="PictureUrl" class="character-counter" data-length="@PictureUrlMaxLength">
             <label asp-for="PictureUrl"></label>
             <span asp-validation-for="PictureUrl" class="red-text"></span>
         </div>
