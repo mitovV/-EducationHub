@@ -1,0 +1,14 @@
+﻿@model EducationHub.Web.ViewModels.Courses.CreateCourseInputModel
+@{
+    ViewData["Title"] = "Create course";
+}
+
+<h1 class="center light-green-text lighten-2">@ViewData["Title"]</h1>
+
+<form method="post">
+    <label asp-for="Title"></label>
+    <input asp-for="Title" />
+    <span asp-validation-for="Title" class="red-text"></span>
+
+    <textarea asp-for="Description"  class="materialize-textarea" rows="100"></textarea> 
+</form>
