@@ -2,11 +2,11 @@
     $('.dropdown-trigger').dropdown();
 
     $('#PictureURL').click(function () {
-        $('#PictureUrlInput').show();
-        $('#UploadImageInput').hide();
+        $('.picture-url').show();
+        $('.upload-image').hide();
     });
     $('#UploadImage').click(function () {
-        $('#PictureUrlInput').hide();
-        $('#UploadImageInput').show();
+        $('.picture-url').hide();
+        $('.upload-image').show();
     });
 })();

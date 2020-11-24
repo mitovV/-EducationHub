@@ -14,12 +14,12 @@
             <label asp-for="Name"></label>
             <span asp-validation-for="Name" class="red-text"></span>
         </div>
-        <div class="input-field col s12  l6 offset-l3">
+        <div class="input-field col s12  l6 offset-l3 picture-url">
             <input asp-for="PictureUrl" class="character-counter" data-length="@PictureUrlMaxLength">
             <label asp-for="PictureUrl"></label>
             <span asp-validation-for="PictureUrl" class="red-text"></span>
         </div>
-        <div id="UploadImageInput" class="file-field input-field col s12  l6 offset-l3" hidden>
+        <div class="file-field input-field col s12  l6 offset-l3 upload-image" hidden>
             <div class="btn btn-small">
                 <span>Image<i class="material-icons right">cloud_upload</i></span>
                 <input asp-for="Image" accept="image/*">

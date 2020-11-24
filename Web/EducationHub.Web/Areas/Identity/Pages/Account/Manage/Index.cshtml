@@ -23,12 +23,12 @@
                 <input asp-for="Input.PhoneNumber" class="center light-green-text lighten-2" />
                 <span asp-validation-for="Input.PhoneNumber" class="red-text"></span>
             </div>
-            <div class="input-field">
+            <div class="input-field picture-url">
                 <input asp-for="Input.PictureUrl" data-length="@PictureUrlMaxLength" value="@Model.PictureUrl" class="character-counter">
                 <label asp-for="Input.PictureUrl"></label>
                 <span asp-validation-for="Input.PictureUrl" class="red-text"></span>
             </div>
-            <div id="UploadImageInput" class="file-field input-field col s12  l6 offset-l3" hidden>
+            <div class="file-field input-field col s12  l6 offset-l3 upload-image" hidden>
                 <div class="btn btn-small">
                     <span>Image<i class="material-icons right">cloud_upload</i></span>
                     <input asp-for="Input.Image" accept="image/*">
