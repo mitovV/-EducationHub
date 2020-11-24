@@ -7,6 +7,7 @@
     using System.Text.Encodings.Web;
     using System.Threading.Tasks;
 
+    using Common;
     using Data.Models;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authorization;
@@ -62,7 +63,7 @@
                 }
                 else
                 {
-                    var user = new User { UserName = this.Input.Username, Email = this.Input.Email };
+                    var user = new User { UserName = this.Input.Username, Email = this.Input.Email, PictureUrl = GlobalConstants.DefaultProfilePicrureUrl };
                     var result = await this.userManager.CreateAsync(user, this.Input.Password);
                     if (result.Succeeded)
                     {
