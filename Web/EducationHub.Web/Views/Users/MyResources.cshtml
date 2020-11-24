@@ -1,0 +1,59 @@
+﻿@model EducationHub.Web.ViewModels.Users.ResourcesViewModel
+@{
+    ViewData["Title"] = "My resources";
+
+    var coursesBtn = Model.CoursesCount == 0 ? "disabled" : "";
+    var lessonsBtn = Model.LessonsCount == 0 ? "disabled" : "";
+}
+
+<h1 class="center light-green-text lighten-2">@ViewData["Title"]</h1>
+
+
+<div class="row">
+    <div class="col s12 m5">
+        <div class="card light-green darken-4">
+            <div class="card-content white-text">
+                <span class="card-title center">Courses</span>
+                @if (Model.CoursesCount == 0)
+                {
+                    <p class="center">You have no courses yet.</p>
+                }
+                else if (Model.CoursesCount == 1)
+                {
+                    <p class="center">You have one course.</p>
+                }
+                else
+                {
+                    <p class="center">You have @Model.CoursesCount courses.</p>
+                }
+            </div>
+            <div class="card-action">
+                <a asp-controller="Courses" asp-action="ByUser" class="white-text btn btn-flat  waves-effect waves-light @coursesBtn">View courses</a>
+                <a asp-controller="Courses" asp-action="Create" class="btn btn-floating waves-effect waves-purple green right"><i class="material-icons">add</i></a>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m5 offset-l1 offset-m1">
+        <div class="card light-green darken-4">
+            <div class="card-content white-text">
+                <span class="card-title center">Lessons</span>
+                @if (Model.LessonsCount == 0)
+                {
+                    <p class="center">You have no lessons yet.</p>
+                }
+                else if (Model.LessonsCount == 1)
+                {
+                    <p class="center">You have one lesson.</p>
+                }
+                else
+                {
+                    <p class="center">You have @Model.LessonsCount lessons.</p>
+                }
+            </div>
+            <div class="card-action">
+                <a asp-controller="Lessons" asp-action="ByUser" class="white-text btn btn-flat waves-effect waves-light @lessonsBtn">View lessons</a>
+                <a asp-controller="Lessons" asp-action="Create" class="btn btn-floating waves-effect waves-purple green right"><i class="material-icons">add</i></a>
+            </div>
+        </div>
+    </div>
+</div>

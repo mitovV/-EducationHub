@@ -3,8 +3,8 @@
     using System.Linq;
 
     using AutoMapper;
-    using EducationHub.Data.Models;
-    using EducationHub.Services.Mapping;
+    using Data.Models;
+    using Services.Mapping;
 
     public class CategoryDetailsViewModel : IMapFrom<Category>, IHaveCustomMappings
     {

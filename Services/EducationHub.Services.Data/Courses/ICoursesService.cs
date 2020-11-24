@@ -8,5 +8,7 @@
     public interface ICoursesService
     {
         Task<IEnumerable<CourseAdminViewModel>> AllAsync();
+
+        Task Create(string title, string description, string userId, int categoryId);
     }
 }

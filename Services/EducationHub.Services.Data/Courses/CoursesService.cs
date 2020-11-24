@@ -23,5 +23,19 @@
                 .AllAsNoTracking()
                 .To<CourseAdminViewModel>()
                 .ToListAsync();
+
+        public async Task Create(string title, string description, string userId, int categoryId)
+        {
+            var course = new Course
+            {
+                Title = title,
+                Description = description,
+                UserId = userId,
+                CategoryId = categoryId,
+            };
+
+            await this.courseRepository.AddAsync(course);
+            await this.courseRepository.SaveChangesAsync();
+        }
     }
 }
