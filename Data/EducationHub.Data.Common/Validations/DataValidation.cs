@@ -28,7 +28,7 @@
             public const int TitleMinLength = 4;
             public const int TitleMaxLength = 50;
             public const int DescriptionMinLength = 100;
-            public const int DescriptionMaxLength = 1000;
+            public const int DescriptionMaxLength = 4000;
         }
     }
 }
