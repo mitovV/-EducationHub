@@ -1,6 +1,7 @@
 ﻿namespace EducationHub.Web.Controllers
 {
     using System.Threading.Tasks;
+
     using Microsoft.AspNetCore.Mvc;
     using Services.Data.Categories;
     using ViewModels.Categories;
