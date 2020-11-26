@@ -1,7 +1,9 @@
 ﻿namespace EducationHub.Web.Controllers
 {
+    using System.Security.Claims;
     using System.Threading.Tasks;
 
+    using Services.Data.Courses;
     using Microsoft.AspNetCore.Mvc;
     using Services.Data.Categories;
     using ViewModels.Categories;
@@ -10,21 +12,36 @@
     public class CoursesController : BaseController
     {
         private readonly ICategoriesService categoriesService;
+        private readonly ICoursesService coursesService;
 
-        public CoursesController(ICategoriesService categoriesService)
+        public CoursesController(ICategoriesService categoriesService, ICoursesService coursesService)
         {
             this.categoriesService = categoriesService;
+            this.coursesService = coursesService;
         }
 
-        public IActionResult ByCategory()
+        public async Task<IActionResult> ByCategory(int id)
         {
-            return this.View();
+            var viewModel = await this.coursesService.GetCategoryId<ByCategoryCourseViewModel>(id);
+
+            return this.View(viewModel);
+        }
+
+        public IActionResult ByUser()
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            var viewModel = this.coursesService.GetByUserId<ByUserCourseViewModel>(userId);
+
+            return this.View(viewModel);
         }
 
         public async Task<IActionResult> Create()
         {
-            var viewModel = new CreateCourseInputModel();
-            viewModel.CategoriesItems = await this.categoriesService.AllAsync<CategoriesItemsViewModel>();
+            var viewModel = new CreateCourseInputModel
+            {
+                CategoriesItems = await this.categoriesService.AllAsync<CategoriesItemsViewModel>(),
+            };
 
             return this.View(viewModel);
         }
@@ -39,7 +56,11 @@
                 return this.View(model);
             }
 
-            return this.Redirect("/");
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            await this.coursesService.Create(model.Title, model.Description, userId, model.CategoryId);
+
+            return this.RedirectToAction("MyResources", "Users");
         }
     }
 }

@@ -16,7 +16,6 @@
 
         [Required]
         [MinLength(DescriptionMinLength)]
-        [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; }
 
         [Display(Name = "Category")]

@@ -21,6 +21,10 @@
                 {
                     @Html.Raw(noResurses);
                 }
+                else if (Model.CoursesCount == 1)
+                {
+                    <p class="center grey-text text-lighten-5">This category has @Model.CoursesCount course.</p>
+                }
                 else
                 {
                     <p class="center grey-text text-lighten-5">This category has @Model.CoursesCount courses.</p>
@@ -38,6 +42,10 @@
                 @if (Model.NotRelatedLessons < 1)
                 {
                     @Html.Raw(noResurses);
+                }
+                else if (Model.NotRelatedLessons == 1)
+                {
+                    <p class="center grey-text text-lighten-5">This category has @Model.NotRelatedLessons lesson that are not related to a course.</p>
                 }
                 else
                 {

@@ -12,7 +12,6 @@
         public class Lesson
         {
             public const int TitleMaxLength = 50;
-            public const int DescriptionMaxLength = 1000;
             public const int VideoUrlMaxLength = 500;
         }
 
@@ -28,7 +27,6 @@
             public const int TitleMinLength = 4;
             public const int TitleMaxLength = 50;
             public const int DescriptionMinLength = 100;
-            public const int DescriptionMaxLength = 4000;
         }
     }
 }

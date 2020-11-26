@@ -1,7 +1,8 @@
 ﻿namespace EducationHub.Web.Areas.Administration.Controllers
 {
-    using EducationHub.Services.Data.Courses;
     using Microsoft.AspNetCore.Mvc;
+    using Services.Data.Courses;
+    using ViewModels.Administration;
 
     public class CoursesController : AdministrationController
     {
@@ -13,6 +14,6 @@
         }
 
         public IActionResult All()
-            => this.View(this.coursesService.AllAsync());
+            => this.View(this.coursesService.AllAsync<CategoryAdminViewModel>());
     }
 }

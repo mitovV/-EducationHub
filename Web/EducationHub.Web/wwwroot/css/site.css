@@ -59,6 +59,10 @@ html {
     margin-bottom: 5px;
 }
 
+.btn{
+    margin-top:5px;
+}
+
 .mobile-logout {
     margin-left: 30px;
 }
