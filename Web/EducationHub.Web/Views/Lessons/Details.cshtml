@@ -1,0 +1,11 @@
+﻿@model EducationHub.Web.ViewModels.Lessons.DetailsLessonViewModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 class="center light-green-text lighten-2">@Model.Title</h1>
+
+
+<div class="video-container">
+    <iframe width="853" height="480" src="//www.youtube.com/embed/@Model.ViewModelVideo" frameborder="0" allowfullscreen></iframe>
+</div>

@@ -22,16 +22,21 @@
 
         public async Task<IActionResult> ByCategory(int id)
         {
-            var viewModel = await this.coursesService.GetCategoryId<ByCategoryCourseViewModel>(id);
+            var viewModel = await this.coursesService.GetByCategoryIdAsync<ByCategoryCourseViewModel>(id);
 
             return this.View(viewModel);
+        }
+
+        public IActionResult Details(string id)
+        {
+            return this.View();
         }
 
         public IActionResult ByUser()
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            var viewModel = this.coursesService.GetByUserId<ByUserCourseViewModel>(userId);
+            var viewModel = this.coursesService.GetByUserIdAsync<ByUserCourseViewModel>(userId);
 
             return this.View(viewModel);
         }
@@ -58,7 +63,7 @@
 
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            await this.coursesService.Create(model.Title, model.Description, userId, model.CategoryId);
+            await this.coursesService.CreateAsync(model.Title, model.Description, userId, model.CategoryId);
 
             return this.RedirectToAction("MyResources", "Users");
         }

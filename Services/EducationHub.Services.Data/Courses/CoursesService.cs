@@ -24,7 +24,7 @@
                 .To<T>()
                 .ToListAsync();
 
-        public async Task Create(string title, string description, string userId, int categoryId)
+        public async Task CreateAsync(string title, string description, string userId, int categoryId)
         {
             var course = new Course
             {
@@ -38,18 +38,19 @@
             await this.courseRepository.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<T>> GetByUserId<T>(string userId)
+        public async Task<IEnumerable<T>> GetByUserIdAsync<T>(string userId)
             => await this.courseRepository
                 .AllAsNoTracking()
                 .Where(c => c.UserId == userId)
                 .To<T>()
                 .ToListAsync();
 
-        public async Task<IEnumerable<T>> GetCategoryId<T>(int categoryId)
+        public async Task<IEnumerable<T>> GetByCategoryIdAsync<T>(int categoryId)
             => await this.courseRepository
                 .AllAsNoTracking()
                 .Where(c => c.CategoryId == categoryId)
-                .To<T>().
-                ToListAsync();
+                .OrderByDescending(c => c.CreatedOn)
+                .To<T>()
+                .ToListAsync();
     }
 }

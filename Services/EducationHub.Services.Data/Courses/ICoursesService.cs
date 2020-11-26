@@ -7,10 +7,10 @@
     {
         Task<IEnumerable<T>> AllAsync<T>();
 
-        Task<IEnumerable<T>> GetByUserId<T>(string userId);
+        Task<IEnumerable<T>> GetByUserIdAsync<T>(string userId);
 
-        Task<IEnumerable<T>> GetCategoryId<T>(int categoryId);
+        Task<IEnumerable<T>> GetByCategoryIdAsync<T>(int categoryId);
 
-        Task Create(string title, string description, string userId, int categoryId);
+        Task CreateAsync(string title, string description, string userId, int categoryId);
     }
 }
