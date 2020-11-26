@@ -3,6 +3,7 @@
     using System;
 
     using Data.Models;
+    using Ganss.XSS;
     using Services.Mapping;
 
     public class ByCategoryCourseViewModel : IMapFrom<Course>
@@ -10,6 +11,8 @@
         public string Title { get; set; }
 
         public string Description { get; set; }
+
+        public string SanitizedContent => new HtmlSanitizer().Sanitize(this.Description);
 
         public string UserUsername { get; set; }
 
