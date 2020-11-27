@@ -5,7 +5,18 @@
 
 <h1 class="center light-green-text lighten-2">@Model.Title</h1>
 
-
-<div class="video-container">
-    <iframe width="853" height="480" src="//www.youtube.com/embed/@Model.ViewModelVideoUrl" frameborder="0" allowfullscreen></iframe>
+<div class="row">
+    <div class="col s12 l7 m7">
+        <div class="video-container responsive-video">
+            <iframe width="800" height="480" src="//www.youtube.com/embed/@Model.ViewModelVideoUrl" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+    <div class="col s12 l4 m4 offset-l1 offset-m1">
+        <div class="background">
+            <a href="#user"><img class="circle" src="@Model.UserPictureUrl" width="100"></a>
+            <p>Created by: @Model.UserUsername</p>
+        </div>
+        <p>Created on: @Model.CreatedOn.ToShortDateString()</p>
+        <p>Description: @Html.Raw(Model.SanitiedDescription)</p>
+    </div>
 </div>
