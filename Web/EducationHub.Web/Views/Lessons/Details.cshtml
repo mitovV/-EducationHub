@@ -5,6 +5,7 @@
 
 <h1 class="center light-green-text lighten-2">@Model.Title</h1>
 
+<form method="post" id="anti-forgery-form"></form>
 <div class="row">
     <div class="col s12 l7 m7">
         <div class="video-container responsive-video">
@@ -12,11 +13,63 @@
         </div>
     </div>
     <div class="col s12 l4 m4 offset-l1 offset-m1">
-        <div class="background">
-            <a href="#user"><img class="circle" src="@Model.UserPictureUrl" width="100"></a>
-            <p>Created by: @Model.UserUsername</p>
+        <div class="card-panel grey lighten-5 z-depth-1">
+            <div class="row valign-wrapper">
+                <div class="col s2">
+                    <a asp-controller="Users" asp-action="Details" asp-route-id="@Model.UserId"><img src="@Model.UserPictureUrl" alt="" class="circle responsive-img"></a>
+                </div>
+                <div class="col s10">
+                    <div>
+                        <span class="black-text">
+                            Created by: @Model.UserUsername
+                        </span>
+                    </div>
+                    <div>
+                        <span class="black-text">
+                            Created on: @Model.CreatedOn.ToShortDateString()
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <span class="text-warning">
+                            <i class="ratingStar fas fa-star" data-vote="1"></i>
+                            <i class="ratingStar far fa-star" data-vote="2"></i>
+                            <i class="ratingStar far fa-star" data-vote="3"></i>
+                            <i class="ratingStar far fa-star" data-vote="4"></i>
+                            <i class="ratingStar far fa-star" data-vote="5"></i>
+                        </span>
+                        <span id="average-vote-value">@Model.AvarageVoteAsString</span><span>/5</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <p>Created on: @Model.CreatedOn.ToShortDateString()</p>
+    </div>
+    <div class="col s12 m12 l12">
         <p>Description: @Html.Raw(Model.SanitiedDescription)</p>
     </div>
 </div>
+
+@section Scripts{
+    <script src="~/js/ratingStar.js"></script>
+    <script>
+        $("i[data-vote]").each(function (el) {
+            $(this).click(function () {
+                let value = $(this).attr("data-vote");
+                let votedForId = '@Model.UserId';
+                let antiForgeryToken = $('#anti-forgery-form input[name=__RequestVerificationToken]').val();
+                let data = { votedForId: votedForId, value: value };
+                $.ajax({
+                    type: "POST",
+                    url: "/api/Votes",
+                    data: JSON.stringify(data),
+                    headers: {
+                        'X-CSRF-TOKEN': antiForgeryToken
+                    },
+                    success: function (data) {
+                        $('#average-vote-value').html(data.averageVote.toFixed(1));
+                    },
+                    contentType: 'application/json',
+                });
+            })
+        });
+    </script>>
+}

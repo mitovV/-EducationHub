@@ -29,5 +29,11 @@
             public const int TitleMaxLength = 50;
             public const int DescriptionMinLength = 100;
         }
+
+        public class Vote
+        {
+            public const int MinValue = 1;
+            public const int MaxValue = 5;
+        }
     }
 }

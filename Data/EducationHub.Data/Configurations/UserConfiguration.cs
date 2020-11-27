@@ -33,6 +33,16 @@
                 .HasForeignKey(e => e.UserId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
+
+            appUser
+                .HasMany(e => e.VotedFor)
+                .WithOne(v => v.Voted)
+                .HasForeignKey(v => v.VotedId);
+
+            appUser
+               .HasMany(e => e.TheyVoted)
+               .WithOne(v => v.VotedFor)
+               .HasForeignKey(v => v.VotedForId);
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿// ReSharper disable VirtualMemberCallInConstructor
-namespace EducationHub.Data.Models
+﻿namespace EducationHub.Data.Models
 {
     using System;
     using System.Collections.Generic;
@@ -19,16 +18,16 @@ namespace EducationHub.Data.Models
             this.Categories = new HashSet<Category>();
             this.Courses = new HashSet<Course>();
             this.Lessons = new HashSet<Lesson>();
+            this.VotedFor = new HashSet<Vote>();
+            this.TheyVoted = new HashSet<Vote>();
         }
 
         public string PictureUrl { get; set; }
 
-        // Audit info
         public DateTime CreatedOn { get; set; }
 
         public DateTime? ModifiedOn { get; set; }
 
-        // Deletable entity
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
@@ -44,5 +43,9 @@ namespace EducationHub.Data.Models
         public virtual ICollection<Course> Courses { get; set; }
 
         public virtual ICollection<Lesson> Lessons { get; set; }
+
+        public virtual ICollection<Vote> VotedFor { get; set; }
+
+        public virtual ICollection<Vote> TheyVoted { get; set; }
     }
 }
