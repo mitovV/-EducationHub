@@ -17,7 +17,7 @@ Knowledge sharing platform
 
 <img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/100426802-2479f000-309a-11eb-8bca-8b06b35efe97.png">
 
-### Course Details
+### Courses in Categories
 
 <img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/100426909-4a06f980-309a-11eb-9299-2db3e6d839b0.png">
 
