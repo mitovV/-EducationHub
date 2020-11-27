@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using System.Text.RegularExpressions;
+
     using Data.Models;
     using Ganss.XSS;
     using Services.Mapping;
@@ -23,6 +24,19 @@
 
         public string SanitiedDescription => new HtmlSanitizer().Sanitize(this.Description);
 
-        public string ViewModelVideoUrl => new Regex("v=[^&]+&").Match(this.VideoUrl).Value.TrimStart('v', '=').TrimEnd('&') == string.Empty ? this.VideoUrl.Split("/").Reverse().ToArray()[0] : new Regex("v=[^&]+&").Match(this.VideoUrl).Value.TrimStart('v', '=').TrimEnd('&');
+        public string ViewModelVideoUrl
+        {
+            get
+            {
+                if (this.VideoUrl.Contains("v="))
+                {
+                    return new Regex("v=[^&]+&").Match(this.VideoUrl).Value.TrimStart('v', '=').TrimEnd('&');
+                }
+                else
+                {
+                    return this.VideoUrl.Split("/").Reverse().ToArray()[0];
+                }
+            }
+        }
     }
 }
