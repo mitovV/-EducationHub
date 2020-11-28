@@ -22,11 +22,11 @@
                 .Where(v => v.VotedForId == userId)
                 .Average(x => x.Value);
 
-        public async Task SetVoteAsync(string votedId, string votedForId, byte value)
+        public async Task<bool> SetVoteAsync(string votedId, string votedForId, byte value)
         {
             if (votedId == votedForId)
             {
-                return;
+                return false;
             }
 
             var vote = await this.votesRepository
@@ -46,6 +46,8 @@
             vote.Value = value;
 
             await this.votesRepository.SaveChangesAsync();
+
+            return true;
         }
     }
 }

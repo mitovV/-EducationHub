@@ -4,7 +4,7 @@
 
     public interface IVotesService
     {
-        Task SetVoteAsync(string votedId, string votedForId, byte value);
+        Task<bool> SetVoteAsync(string votedId, string votedForId, byte value);
 
         double GetAverageVotes(string userId);
     }

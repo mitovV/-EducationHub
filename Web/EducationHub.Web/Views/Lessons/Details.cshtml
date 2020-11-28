@@ -66,10 +66,14 @@
                     },
                     success: function (data) {
                         $('#average-vote-value').html(data.averageVote.toFixed(1));
+                        M.toast({ html: 'You voted successfully!', classes: "green" });
+                    },
+                    error: function () {
+                        M.toast({ html: 'Vote fail!', classes: "red" });
                     },
                     contentType: 'application/json',
                 });
             })
         });
-    </script>>
+    </script>
 }

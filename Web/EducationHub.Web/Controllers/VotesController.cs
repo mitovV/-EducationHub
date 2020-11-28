@@ -22,14 +22,19 @@
         public async Task<ActionResult<PostVoteResponseModel>> Post(PostVoteInputModel model)
         {
             var votedId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            await this.votesService.SetVoteAsync(votedId, model.VotedForId, model.Value);
+            var isValidVote = await this.votesService.SetVoteAsync(votedId, model.VotedForId, model.Value);
 
             var averageVote = this.votesService.GetAverageVotes(model.VotedForId);
 
-            return new PostVoteResponseModel
+            if (isValidVote)
             {
-                AverageVote = averageVote,
-            };
+                return new PostVoteResponseModel
+                {
+                    AverageVote = averageVote,
+                };
+            }
+
+            return this.NotFound();
         }
     }
 }
