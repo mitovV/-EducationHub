@@ -45,7 +45,15 @@
             => await this.lessonsRepository
                 .AllAsNoTracking()
                 .Where(l => l.CategoryId == categoryId)
-                .OrderByDescending(c => c.CreatedOn)
+                .OrderByDescending(l => l.CreatedOn)
+                .To<T>()
+                .ToListAsync();
+
+        public async Task<IEnumerable<T>> GetByUserIdAsync<T>(string userId)
+            => await this.lessonsRepository
+                .AllAsNoTracking()
+                .Where(l => l.UserId == userId)
+                .OrderByDescending(l => l.CreatedOn)
                 .To<T>()
                 .ToListAsync();
     }

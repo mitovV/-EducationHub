@@ -3,11 +3,11 @@
     using System.Security.Claims;
     using System.Threading.Tasks;
 
-    using Services.Data.Categories;
     using Microsoft.AspNetCore.Mvc;
+    using Services.Data.Categories;
+    using Services.Data.Lessons;
     using ViewModels.Categories;
     using ViewModels.Lessons;
-    using EducationHub.Services.Data.Lessons;
 
     public class LessonsController : BaseController
     {
@@ -57,6 +57,15 @@
         public async Task<IActionResult> Details(string id)
         {
             var viewModel = await this.lessonsService.ByIdAsync<DetailsLessonViewModel>(id);
+
+            return this.View(viewModel);
+        }
+
+        public async Task<IActionResult> ByUser()
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            var viewModel = await this.lessonsService.GetByUserIdAsync<ListingLessonViewModel>(userId);
 
             return this.View(viewModel);
         }

@@ -25,16 +25,18 @@
             var isValidVote = await this.votesService.SetVoteAsync(votedId, model.VotedForId, model.Value);
 
             var averageVote = this.votesService.GetAverageVotes(model.VotedForId);
+            var votes = this.votesService.GetVotesCount(model.VotedForId);
 
             if (isValidVote)
             {
                 return new PostVoteResponseModel
                 {
                     AverageVote = averageVote,
+                    Votes = votes,
                 };
             }
 
-            return this.NotFound();
+            return this.Unauthorized();
         }
     }
 }

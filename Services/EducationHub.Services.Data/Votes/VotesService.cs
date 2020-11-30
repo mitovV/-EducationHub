@@ -22,6 +22,12 @@
                 .Where(v => v.VotedForId == userId)
                 .Average(x => x.Value);
 
+        public int GetVotesCount(string votedForId)
+            => this.votesRepository
+                .AllAsNoTracking()
+                .Where(v => v.VotedForId == votedForId)
+                .Count();
+
         public async Task<bool> SetVoteAsync(string votedId, string votedForId, byte value)
         {
             if (votedId == votedForId)

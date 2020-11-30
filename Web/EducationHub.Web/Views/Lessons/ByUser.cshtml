@@ -1,0 +1,46 @@
+﻿@using EducationHub.Web.ViewModels.Lessons
+@model IEnumerable<ListingLessonViewModel>
+@{
+    ViewData["Title"] = "My lessons";
+}
+
+<h1 class="center light-green-text lighten-2">@ViewData["Title"]</h1>
+
+<table class="responsive-table centered highlight grey lighten-2">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Created on
+            </th>
+            <th>
+                Modified on
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var lesson in Model)
+        {
+            <tr>
+                <td>
+                    @lesson.Title
+                </td>
+                <td>
+                    <time datetime="@lesson.CreatedOn.ToStringLocal()"></time>
+                </td>
+                <td>
+                    @if (lesson.ModifiedOn == null)
+                    {
+                        @:No record
+                    }
+                    else
+                    {
+                        <time datetime="@lesson.ModifiedOn.ToStringLocal()"></time>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

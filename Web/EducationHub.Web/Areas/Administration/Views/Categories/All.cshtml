@@ -66,7 +66,7 @@
                     }
                     else
                     {
-                        <span>@category.DeletedOn</span>
+                        <span>@category.DeletedOn.ToStringLocal()</span>
                     }
                 </td>
                 <td>
@@ -79,7 +79,7 @@
                     }
                     else
                     {
-                        @category.ModifiedOn
+                        @category.ModifiedOn.ToStringLocal()
                     }
                 </td>
                 <td>

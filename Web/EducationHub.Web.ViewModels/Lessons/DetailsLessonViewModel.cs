@@ -1,7 +1,6 @@
 ﻿namespace EducationHub.Web.ViewModels.Lessons
 {
     using System;
-    using System.Globalization;
     using System.Linq;
     using System.Text.RegularExpressions;
 
@@ -9,26 +8,15 @@
     using Data.Models;
     using Ganss.XSS;
     using Services.Mapping;
+    using Users;
 
-    public class DetailsLessonViewModel : IMapFrom<Lesson>, IHaveCustomMappings
+    public class DetailsLessonViewModel : UserBadgeViewModel, IMapFrom<Lesson>, IHaveCustomMappings
     {
         public string Title { get; set; }
 
         public string VideoUrl { get; set; }
 
-        public string UserUsername { get; set; }
-
-        public DateTime CreatedOn { get; set; }
-
-        public string UserPictureUrl { get; set; }
-
-        public string UserId { get; set; }
-
         public string Description { get; set; }
-
-        public double AverageVote { get; set; }
-
-        public string AvarageVoteAsString => this.AverageVote.ToString("0.0", CultureInfo.InvariantCulture);
 
         public string SanitiedDescription => new HtmlSanitizer().Sanitize(this.Description);
 
@@ -50,7 +38,11 @@
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Lesson, DetailsLessonViewModel>()
-                .ForMember(x => x.AverageVote, y => y.MapFrom(u => u.User.TheyVoted.Count() == 0 ? 0 : u.User.TheyVoted.Average(v => v.Value)));
+                .ForMember(x => x.Username, y => y.MapFrom(l => l.User.UserName))
+                .ForMember(x => x.PictureUrl, y => y.MapFrom(l => l.User.PictureUrl))
+                .ForMember(x => x.Id, y => y.MapFrom(l => l.User.Id))
+                .ForMember(x => x.Votes, y => y.MapFrom(l => l.User.TheyVoted.Count()))
+                .ForMember(x => x.AverageVote, y => y.MapFrom(l => l.User.TheyVoted.Count() == 0 ? 0 : l.User.TheyVoted.Average(v => v.Value)));
         }
     }
 }
