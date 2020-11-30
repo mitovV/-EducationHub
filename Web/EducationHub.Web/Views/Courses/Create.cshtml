@@ -9,7 +9,7 @@
 <partial  name="_TinyMCEPartial" />
 
 <div class="row">
-    <div class="col s6 center offset-s3">
+    <div class="col center offset-l3">
         <form method="post">
             <div class="center red-text" asp-validation-summary="All"></div>
             <div class="input-field">
@@ -40,9 +40,5 @@
 
 @section Scripts {
     <script src="~/js/charactersCounter.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('select').formSelect();
-        });
-    </script>
+    <script src="~/js/categoryDropDawn.js"></script>
 }

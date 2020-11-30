@@ -66,12 +66,11 @@
                     }
                     else
                     {
-                        <span>@category.DeletedOn.ToStringLocal()</span>
+                        <time datetime="@category.DeletedOn.ToStringLocal()"></time>
                     }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => category.CreatedOn)
-                </td>
+                    <time datetime=" @category.CreatedOn.ToStringLocal()"></time>
                 <td>
                     @if (category.ModifiedOn == null)
                     {
@@ -79,7 +78,7 @@
                     }
                     else
                     {
-                        @category.ModifiedOn.ToStringLocal()
+                    <time datetime="@category.ModifiedOn.ToStringLocal()"></time>
                     }
                 </td>
                 <td>

@@ -11,7 +11,9 @@
 
         public class Lesson
         {
+            public const int TitleMinLenth = 5;
             public const int TitleMaxLength = 50;
+
             public const int VideoUrlMinlength = 20;
             public const int VideoUrlMaxLength = 500;
         }

@@ -41,6 +41,19 @@
             await this.lessonsRepository.SaveChangesAsync();
         }
 
+        public async Task EditAsync(string id ,string title, string description, string videoUrl, int categoryId)
+        {
+            var lesson = await this.lessonsRepository.GetByIdWithDeletedAsync(id);
+
+            lesson.Title = title;
+            lesson.Description = description;
+            lesson.VideoUrl = videoUrl;
+            lesson.CategoryId = categoryId;
+
+            this.lessonsRepository.Update(lesson);
+            await this.lessonsRepository.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<T>> GetByCategoryIdAsync<T>(int categoryId)
             => await this.lessonsRepository
                 .AllAsNoTracking()
