@@ -4,14 +4,16 @@ using EducationHub.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EducationHub.Data.Migrations
 {
     [DbContext(typeof(EducationHubDbContext))]
-    partial class EducationHubDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201201093852_ChangeConstraints")]
+    partial class ChangeConstraints
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

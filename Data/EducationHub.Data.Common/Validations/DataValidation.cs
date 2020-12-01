@@ -12,7 +12,7 @@
         public class Lesson
         {
             public const int TitleMinLenth = 5;
-            public const int TitleMaxLength = 50;
+            public const int TitleMaxLength = 70;
 
             public const int VideoUrlMinlength = 20;
             public const int VideoUrlMaxLength = 500;
@@ -28,7 +28,7 @@
         public class Course
         {
             public const int TitleMinLength = 4;
-            public const int TitleMaxLength = 50;
+            public const int TitleMaxLength = 70;
             public const int DescriptionMinLength = 100;
         }
 

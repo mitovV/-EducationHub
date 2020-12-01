@@ -16,6 +16,8 @@
 
         public string SanitizedContent => new HtmlSanitizer().Sanitize(this.Description);
 
+        public string ShortTitle => this.Title.Length > 18 ? this.Title.Substring(0, 18) + "..." : this.Title;
+
         public string UserUsername { get; set; }
 
         public DateTime CreatedOn { get; set; }
