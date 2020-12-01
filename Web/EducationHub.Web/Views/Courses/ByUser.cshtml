@@ -1,0 +1,10 @@
+﻿@using EducationHub.Web.ViewModels.Courses
+@model IEnumerable<ListingCoursesViewModel>
+@{
+    ViewData["Title"] = "My Courses";
+}
+
+<h1 class="center light-green-text lighten-2">@ViewData["Title"]</h1>
+
+<partial name="_ListingResoursesPartial" model="@Model" />
+

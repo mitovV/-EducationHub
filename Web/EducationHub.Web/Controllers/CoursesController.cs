@@ -32,11 +32,11 @@
             return this.View();
         }
 
-        public IActionResult ByUser()
+        public async Task<IActionResult> ByUser()
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            var viewModel = this.coursesService.GetByUserIdAsync<ByUserCourseViewModel>(userId);
+            var viewModel = await this.coursesService.GetByUserIdAsync<ListingCoursesViewModel>(userId);
 
             return this.View(viewModel);
         }
@@ -66,6 +66,13 @@
             await this.coursesService.CreateAsync(model.Title, model.Description, userId, model.CategoryId);
 
             return this.RedirectToAction("MyResources", "Users");
+        }
+
+        public async Task<IActionResult> Edit(string id)
+        {
+            var viewModel = await this.coursesService.GetByIdAsync<EditCourseViewModel>(id);
+
+            return this.View(viewModel);
         }
     }
 }

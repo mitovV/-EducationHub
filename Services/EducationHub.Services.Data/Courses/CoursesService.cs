@@ -52,5 +52,12 @@
                 .OrderByDescending(c => c.CreatedOn)
                 .To<T>()
                 .ToListAsync();
+
+        public async Task<T> GetByIdAsync<T>(string id)
+            => await this.courseRepository
+                .AllAsNoTracking()
+                .Where(c => c.Id == id)
+                .To<T>()
+                .FirstOrDefaultAsync();
     }
 }

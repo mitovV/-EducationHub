@@ -1,0 +1,45 @@
+﻿@using EducationHub.Web.ViewModels
+@model IEnumerable<BaseListingResoursesViewModel>
+
+<table class="responsive-table centered highlight grey lighten-2">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Created on
+            </th>
+            <th>
+                Modified on
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Title
+                </td>
+                <td>
+                    <time datetime="@item.CreatedOn.ToStringLocal()"></time>
+                </td>
+                <td>
+                    @if (item.ModifiedOn == null)
+                    {
+                        @:No record
+                    }
+                    else
+                    {
+                        <time datetime="@item.ModifiedOn.ToStringLocal()"></time>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn-small btn-floating green waves-effect waves-light"><i class="material-icons">create</i>Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
