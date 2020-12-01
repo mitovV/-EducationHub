@@ -21,3 +21,10 @@ Knowledge sharing platform
 
 <img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/100426909-4a06f980-309a-11eb-9299-2db3e6d839b0.png">
 
+### Lesson Details
+
+<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/100726751-05e36400-33ce-11eb-8c57-e2c160405239.png">
+
+### User lessons
+
+<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/100726925-42af5b00-33ce-11eb-8019-e9c806bdbacc.png">
