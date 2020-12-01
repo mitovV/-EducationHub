@@ -6,4 +6,9 @@
 
 <h1 class="center light-green-text lighten-2">@ViewData["Title"]</h1>
 
+@if (this.TempData.ContainsKey("Error"))
+{
+    <div class="col s6 l6 center red white-text"><strong>@TempData["Error"]</strong></div>
+}
+
 <partial name="_ListingResoursesPartial" model="@Model"/>

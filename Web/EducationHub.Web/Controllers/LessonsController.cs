@@ -77,6 +77,7 @@
 
             if (userId != viewModel.User.Id)
             {
+                this.TempData["Error"] = "You are not authorized for this operation!";
                 return this.RedirectToAction(nameof(this.ByUser));
             }
 
@@ -93,6 +94,7 @@
 
             if (userId != viewModel.User.Id)
             {
+                this.TempData["Error"] = "You are not authorized for this operation!";
                 return this.RedirectToAction(nameof(this.ByUser));
             }
 
@@ -115,6 +117,7 @@
 
             if (userId != viewModel.User.Id)
             {
+                this.TempData["Error"] = "You are not authorized for this operation!";
                 return this.RedirectToAction(nameof(this.ByUser));
             }
 

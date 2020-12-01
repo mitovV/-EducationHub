@@ -71,7 +71,7 @@
         public async Task<IActionResult> Edit(string id)
         {
             var viewModel = await this.coursesService.GetByIdAsync<EditCourseViewModel>(id);
-
+            // TODO: Validate this!!!
             return this.View(viewModel);
         }
     }
