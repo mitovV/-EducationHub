@@ -28,3 +28,7 @@ Knowledge sharing platform
 ### User lessons
 
 <img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/100726925-42af5b00-33ce-11eb-8019-e9c806bdbacc.png">
+
+### Edit lesson
+
+<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/100728180-e64d3b00-33cf-11eb-885c-1e4fa1a7369d.png">
