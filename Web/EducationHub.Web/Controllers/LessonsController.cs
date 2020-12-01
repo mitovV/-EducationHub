@@ -70,7 +70,6 @@
             return this.View(viewModel);
         }
 
-
         public async Task<IActionResult> Edit(string id)
         {
             var viewModel = await this.lessonsService.ByIdAsync<EditLessonViewModel>(id);
@@ -105,6 +104,21 @@
             }
 
             await this.lessonsService.EditAsync(model.Id, model.Title, model.Description, model.VideoUrl, model.CategoryId);
+
+            return this.RedirectToAction(nameof(this.ByUser));
+        }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            var viewModel = await this.lessonsService.ByIdAsync<EditLessonViewModel>(id);
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            if (userId != viewModel.User.Id)
+            {
+                return this.RedirectToAction(nameof(this.ByUser));
+            }
+
+            await this.lessonsService.DeleteAsync(id);
 
             return this.RedirectToAction(nameof(this.ByUser));
         }

@@ -6,7 +6,7 @@
 
     using EducationHub.Data.Common.Repositories;
     using EducationHub.Data.Models;
-    using EducationHub.Services.Mapping;
+    using Mapping;
     using Microsoft.EntityFrameworkCore;
 
     public class LessonsService : ILessonsService
@@ -69,5 +69,13 @@
                 .OrderByDescending(l => l.CreatedOn)
                 .To<T>()
                 .ToListAsync();
+
+        public async Task DeleteAsync(string id)
+        {
+            var category = await this.lessonsRepository.GetByIdWithDeletedAsync(id);
+
+            this.lessonsRepository.Delete(category);
+            await this.lessonsRepository.SaveChangesAsync();
+        }
     }
 }

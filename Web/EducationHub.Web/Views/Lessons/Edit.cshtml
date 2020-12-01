@@ -39,10 +39,10 @@
                 <label asp-for="CategoryId"></label>
             </div>
             <div class="input-field col s12 l6 offset-l3">
-                <button type="submit"  class="btn green">Save</button>
-                <a  asp-action="Delete" asp-route-id="@Model.Id" class="btn red">Delete</a>
+                <button type="submit"  class="btn green waves-effect waves-light">Save</button>
+                <a  asp-action="Delete" asp-route-id="@Model.Id" class="btn red darken-2 waves-effect waves-red">Delete</a>
                 <div>
-                    <a asp-action="ByUser" class="btn btn-flat">Back to List</a>
+                    <a asp-action="ByUser" class="btn btn-flat waves-effect waves-light">Back to List</a>
                 </div>
             </div>
         </form>
