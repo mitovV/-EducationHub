@@ -8,7 +8,7 @@
 
 @if (this.TempData.ContainsKey("Error"))
 {
-    <div class="col s6 l6 center red white-text"><strong>@TempData["Error"]</strong></div>
+    <div class="col s6 l6 center red-text"><strong>@TempData["Error"]</strong></div>
 }
 
 <partial name="_ListingResoursesPartial" model="@Model"/>
