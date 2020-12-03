@@ -41,7 +41,7 @@
             await this.lessonsRepository.SaveChangesAsync();
         }
 
-        public async Task EditAsync(string id ,string title, string description, string videoUrl, int categoryId)
+        public async Task EditAsync(string id, string title, string description, string videoUrl, int categoryId, string courseId = null)
         {
             var lesson = await this.lessonsRepository.GetByIdWithDeletedAsync(id);
 
@@ -50,6 +50,11 @@
             lesson.VideoUrl = videoUrl;
             lesson.CategoryId = categoryId;
 
+            if (courseId != null)
+            {
+                lesson.CourseId = courseId;
+            }
+
             this.lessonsRepository.Update(lesson);
             await this.lessonsRepository.SaveChangesAsync();
         }
@@ -57,7 +62,7 @@
         public async Task<IEnumerable<T>> GetByCategoryIdAsync<T>(int categoryId)
             => await this.lessonsRepository
                 .AllAsNoTracking()
-                .Where(l => l.CategoryId == categoryId)
+                .Where(l => l.CategoryId == categoryId && l.CourseId == null)
                 .OrderByDescending(l => l.CreatedOn)
                 .To<T>()
                 .ToListAsync();
@@ -65,7 +70,7 @@
         public async Task<IEnumerable<T>> GetByUserIdAsync<T>(string userId)
             => await this.lessonsRepository
                 .AllAsNoTracking()
-                .Where(l => l.UserId == userId)
+                .Where(l => l.UserId == userId && l.CourseId == null)
                 .OrderByDescending(l => l.CreatedOn)
                 .To<T>()
                 .ToListAsync();

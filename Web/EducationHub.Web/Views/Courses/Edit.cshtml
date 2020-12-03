@@ -5,23 +5,32 @@
 
 <h1 class="center light-green-text lighten-2">@ViewData["Title"]</h1>
 <h3 class="center light-green-text lighten-2">@Model.Title</h3>
+
+@if (this.TempData.ContainsKey("Message"))
+{
+    <div class="col s6 l6 center green-text"><strong>@TempData["Message"]</strong></div>
+}
+
 <ul class="collection green-text">
     <li class="collection-item">
         Add new lesson
-        <a class="btn btn-small btn-floating right li-btn light-green accent-4 waves-effect waves-light" href="#">
+        <a asp-action="CreateLesson" asp-route-id="@Model.Id" class="btn btn-small btn-floating right li-btn light-green accent-4 waves-effect waves-light">
             <i class="material-icons">
                 add
             </i>
         </a>
     </li>
-    <li class="collection-item">
-        Alvin
-        <a class="btn btn-small btn-floating right li-btn red darken-2 waves-effect waves-red" href="#">
-            <i class="material-icons">clear</i>
-        </a>
-        <a class="btn btn-small btn-floating right li-btn waves-effect waves-light" href="#">
-            <i class="material-icons accent-4">edit</i>
-        </a>
-    </li>
+    @foreach (var lesson in Model.Lessons)
+    {
+        <li class="collection-item">
+            @lesson.Title
+            <a asp-area="" asp-action="DeleteLesson" asp-route-id="@lesson.Id" class="btn btn-small btn-floating right li-btn red darken-3 waves-effect waves-red">
+                <i class="material-icons">clear</i>
+            </a>
+            <a asp-area="" asp-action="EditLesson" asp-route-id="@lesson.Id" class="btn btn-small btn-floating right li-btn waves-effect waves-light">
+                <i class="material-icons accent-4">edit</i>
+            </a>
+        </li>
+    }
 </ul>
 

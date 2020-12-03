@@ -16,6 +16,8 @@
 
             public const int VideoUrlMinlength = 20;
             public const int VideoUrlMaxLength = 500;
+
+            public const int DescriptionMinlength = 50;
         }
 
         public class User
