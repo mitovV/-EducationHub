@@ -17,8 +17,8 @@
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Category, CategoryDetailsViewModel>()
-                  .ForMember(x => x.CoursesCount, y => y.MapFrom(c => c.Courses.Count))
-                  .ForMember(x => x.NotRelatedLessons, y => y.MapFrom(c => c.Lessons.Where(l => l.CourseId == null).Count()));
+                  .ForMember(x => x.CoursesCount, y => y.MapFrom(c => c.Courses.Where(c => c.IsDeleted == false).Count()))
+                  .ForMember(x => x.NotRelatedLessons, y => y.MapFrom(c => c.Lessons.Where(l => l.CourseId == null && l.IsDeleted == false).Count()));
         }
     }
 }

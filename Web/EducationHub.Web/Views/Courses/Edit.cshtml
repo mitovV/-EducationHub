@@ -11,6 +11,10 @@
     <div class="col s6 l6 center green-text"><strong>@TempData["Message"]</strong></div>
 }
 
+
+<div class="center">
+    <a id="delete-course" href="#modal" data-value="@Model.Id" class="btn btn-small btn-small red darken-3 accent-4 waves-effect waves-red modal-trigger">Delete course</a>
+</div>
 <ul class="collection green-text">
     <li class="collection-item">
         Add new lesson
@@ -41,7 +45,7 @@
         <h6 class="center red-text">Do you want to delete this resource?</h6>
     </div>
     <div class="modal-footer grey lighten-2">
-        <a id="delete" class="modal-close waves-effect waves-green btn-flat red-text">Delete</a>
+        <a id="delete" asp-action="Delete" asp-route-id="@Model.Id" class="modal-close waves-effect waves-green btn-flat red-text">Delete</a>
     </div>
 </div>
 

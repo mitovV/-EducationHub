@@ -59,5 +59,13 @@
                 .Where(c => c.Id == id)
                 .To<T>()
                 .FirstOrDefaultAsync();
+
+        public async Task DeleteAsync(string id)
+        {
+            var course = this.courseRepository.All().FirstOrDefault(c => c.Id == id);
+
+            this.courseRepository.Delete(course);
+            await this.courseRepository.SaveChangesAsync();
+        }
     }
 }

@@ -86,20 +86,57 @@
             return this.View(viewModel);
         }
 
-        public async Task<IActionResult> DeleteLesson(string id)
+        public async Task<IActionResult> Delete(string id)
         {
-            var viewModel = await this.lessonsService.ByIdAsync<EditLessonViewModel>(id);
+            var viewModel = await this.coursesService.GetByIdAsync<CourseViewModel>(id);
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            if (userId != viewModel.User.Id)
+            if (userId != viewModel.UserId)
             {
                 this.TempData["Error"] = "You are not authorized for this operation!";
                 return this.RedirectToAction(nameof(this.ByUser));
             }
 
-            await this.lessonsService.DeleteAsync(id);
+            await this.coursesService.DeleteAsync(id);
             this.TempData["Message"] = "Successfully deleted resource.";
-            return this.RedirectToAction(nameof(this.Edit), new { id = viewModel.CourseId });
+
+            return this.RedirectToAction(nameof(this.ByUser));
+        }
+
+        public async Task<IActionResult> CreateLesson(string id)
+        {
+            var course = await this.coursesService.GetByIdAsync<CourseViewModel>(id);
+
+            var viewModel = new CreateLessonInCourseInputModel()
+            {
+                CourseId = id,
+                CourseTitle = course.Title,
+                CategoryName = course.CategoryName,
+                CategoryId = course.CategoryId,
+            };
+
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateLesson(CreateLessonInCourseInputModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                var course = await this.coursesService.GetByIdAsync<CourseViewModel>(model.CourseId);
+                model.CourseId = model.CourseId;
+                model.CourseTitle = course.Title;
+                model.CategoryName = course.CategoryName;
+                model.CategoryId = course.CategoryId;
+
+                return this.View(model);
+            }
+
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            await this.lessonsService.CreateAsync(model.Title, model.Description, model.VideoUrl, userId, model.CategoryId, model.CourseId);
+
+            return this.RedirectToAction(nameof(this.Edit), new { id = model.CourseId });
         }
 
         public async Task<IActionResult> EditLesson(string id)
@@ -137,40 +174,20 @@
             return this.RedirectToAction(nameof(this.Edit), new { id = model.CourseId });
         }
 
-        public async Task<IActionResult> CreateLesson(string id)
+        public async Task<IActionResult> DeleteLesson(string id)
         {
-            var course = await this.coursesService.GetByIdAsync<CourseViewModel>(id);
-
-            var viewModel = new CreateLessonInCourseInputModel()
-            {
-                CourseId = id,
-                CourseTitle = course.Title,
-                CategoryName = course.CategoryName,
-                CategoryId = course.CategoryId,
-            };
-
-            return this.View(viewModel);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> CreateLesson(CreateLessonInCourseInputModel model)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                var course = await this.coursesService.GetByIdAsync<CourseViewModel>(model.CourseId);
-                model.CourseId = model.CourseId;
-                model.CourseTitle = course.Title;
-                model.CategoryName = course.CategoryName;
-                model.CategoryId = course.CategoryId;
-
-                return this.View(model);
-            }
-
+            var viewModel = await this.lessonsService.ByIdAsync<EditLessonViewModel>(id);
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            await this.lessonsService.CreateAsync(model.Title, model.Description, model.VideoUrl, userId, model.CategoryId, model.CourseId);
+            if (userId != viewModel.User.Id)
+            {
+                this.TempData["Error"] = "You are not authorized for this operation!";
+                return this.RedirectToAction(nameof(this.ByUser));
+            }
 
-            return this.RedirectToAction(nameof(this.Edit), new { id = model.CourseId });
+            await this.lessonsService.DeleteAsync(id);
+            this.TempData["Message"] = "Successfully deleted resource.";
+            return this.RedirectToAction(nameof(this.Edit), new { id = viewModel.CourseId });
         }
     }
 }
