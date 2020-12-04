@@ -107,6 +107,7 @@
 
             await this.lessonsService.EditAsync(model.Id, model.Title, model.Description, model.VideoUrl, model.CategoryId);
 
+            this.TempData["Message"] = "Successfully changed.";
             return this.RedirectToAction(nameof(this.ByUser));
         }
 
@@ -121,6 +122,7 @@
                 return this.RedirectToAction(nameof(this.ByUser));
             }
 
+            this.TempData["Message"] = "Successfully deleted resource.";
             await this.lessonsService.DeleteAsync(id);
 
             return this.RedirectToAction(nameof(this.ByUser));

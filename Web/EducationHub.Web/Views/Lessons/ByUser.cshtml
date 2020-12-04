@@ -10,5 +10,9 @@
 {
     <div class="col s6 l6 center red-text"><strong>@TempData["Error"]</strong></div>
 }
+@if (this.TempData.ContainsKey("Message"))
+{
+    <div class="col s6 l6 center green-text"><strong>@TempData["Message"]</strong></div>
+}
 
-<partial name="_ListingResoursesPartial" model="@Model"/>
+<partial name="_ListingResoursesPartial" model="@Model" />
