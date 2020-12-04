@@ -25,10 +25,46 @@ Knowledge sharing platform
 
 <img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/100726751-05e36400-33ce-11eb-8c57-e2c160405239.png">
 
-### User lessons
+### Users lessons
 
 <img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/100726925-42af5b00-33ce-11eb-8019-e9c806bdbacc.png">
+
+### Create lesson
+
+<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/101183408-27f01700-3658-11eb-89a3-655810e5e801.png">
+
+<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/101183468-3cccaa80-3658-11eb-8ef0-a46ac2b1082f.png">
 
 ### Edit lesson
 
 <img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/100728180-e64d3b00-33cf-11eb-885c-1e4fa1a7369d.png">
+
+### Users courses
+
+<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/101183643-73a2c080-3658-11eb-9b70-b608675e2ccf.png">
+
+### Edit course
+
+<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/101183806-a64cb900-3658-11eb-953e-3522d7de46ae.png">
+
+### Create lesson in course
+
+<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/101183932-c4b2b480-3658-11eb-9426-89f2c3cc3705.png">
+
+### Edit lesson in course
+
+<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/101183994-dc8a3880-3658-11eb-9828-02d1b8b02b40.png">
+
+### Delete resources
+
+<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/101184084-f6c41680-3658-11eb-890d-f5f608ba1b9d.png">
+
+## Administration
+
+### Dashboard
+
+<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/101184620-9b465880-3659-11eb-9989-e992c4317cec.png">
+
+### Categories
+
+<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/101184726-b749fa00-3659-11eb-97d3-9eabb94a9705.png">
