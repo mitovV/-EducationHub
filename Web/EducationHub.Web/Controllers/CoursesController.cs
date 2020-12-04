@@ -31,9 +31,11 @@
             return this.View(viewModel);
         }
 
-        public IActionResult Details(string id)
+        public async Task<IActionResult> Details(string id)
         {
-            return this.View();
+            var viewModel = await this.coursesService.GetByIdAsync<DetailsCourseViewModel>(id);
+
+            return this.View(viewModel);
         }
 
         public async Task<IActionResult> ByUser()

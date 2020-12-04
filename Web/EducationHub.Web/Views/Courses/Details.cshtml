@@ -1,8 +1,18 @@
-﻿
+﻿@model EducationHub.Web.ViewModels.Courses.DetailsCourseViewModel
+@{
+    ViewData["Title"] = "Course details";
+}
+
 <ul class="collection with-header">
-    <li class="collection-header"><h4>First Names</h4></li>
-    <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
-    <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
-    <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
-    <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+    <li class="collection-header teal lighten-4"><h4 class="center light-green-text lighten-2">@Model.Title</h4></li>
+    @foreach (var lesson in Model.Lessons.OrderByDescending(l => l.CreatedOn))
+    {
+        <li class="collection-item teal lighten-5"><div>@lesson.Title<a asp-controller="Lessons" asp-action="Details" asp-route-id="@lesson.Id" class="secondary-content"><i class="material-icons purple-text lighten-1 left">send</i></a></div></li>
+    }
 </ul>
+@if (!Model.Lessons.Any())
+{
+    <div class="center">
+        <h5 class="blue-text lighten-2">This course has no resources yet.</h5>
+    </div>
+}
