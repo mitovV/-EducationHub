@@ -15,6 +15,8 @@
 
         public int CategoryId { get; set; }
 
+        [Required]
+        [Display(Name = "Category")]
         public string CategoryName { get; set; }
 
         [Display(Name = "Video URL")]

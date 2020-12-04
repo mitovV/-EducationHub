@@ -98,7 +98,7 @@
             }
 
             await this.lessonsService.DeleteAsync(id);
-
+            this.TempData["Message"] = "Successfully deleted resource.";
             return this.RedirectToAction(nameof(this.Edit), new { id = viewModel.CourseId });
         }
 
@@ -157,6 +157,12 @@
         {
             if (!this.ModelState.IsValid)
             {
+                var course = await this.coursesService.GetByIdAsync<CourseViewModel>(model.CourseId);
+                model.CourseId = model.CourseId;
+                model.CourseTitle = course.Title;
+                model.CategoryName = course.CategoryName;
+                model.CategoryId = course.CategoryId;
+
                 return this.View(model);
             }
 

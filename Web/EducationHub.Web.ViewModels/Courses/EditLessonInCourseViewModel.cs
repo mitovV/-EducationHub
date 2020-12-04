@@ -31,6 +31,7 @@
         [MaxLength(DataValidation.Lesson.VideoUrlMaxLength)]
         public string VideoUrl { get; set; }
 
+        [Required]
         [Display(Name = "Category")]
         public string CategoryName { get; set; }
 

@@ -12,14 +12,14 @@
 <div class="row">
     <div class="col s6 center offset-s3">
         <form method="post">
-            <input asp-for="UserId" hidden />
-            <input asp-for="Id" hidden />
-            <input asp-for="CategoryId" hidden />
-            <input asp-for="CourseId" hidden />
+            <input asp-for="UserId" type="hidden" />
+            <input asp-for="Id" type="hidden" />
+            <input asp-for="CategoryId" type="hidden" />
+            <input asp-for="CourseId" type="hidden" />
             <div class="center red-text" asp-validation-summary="All"></div>
             <div class="input-field">
                 <label asp-for="@Model.CategoryName"></label>
-                <input asp-for="@Model.CategoryName" disabled />
+                <input asp-for="@Model.CategoryName" readonly />
             </div>
             <div class="input-field">
                 <input asp-for="Title" class="validate character-counter" data-length="@TitleMaxLength">

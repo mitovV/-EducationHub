@@ -15,7 +15,7 @@
             <input asp-for="CourseId" hidden />
             <div class="input-field">
                 <label asp-for="@Model.CategoryName"></label>
-                <input asp-for="@Model.CategoryName" disabled />
+                <input asp-for="@Model.CategoryName" readonly/>
             </div>
             <div class="input-field">
                 <input asp-for="Title" class="validate character-counter" data-length="@TitleMaxLength">
