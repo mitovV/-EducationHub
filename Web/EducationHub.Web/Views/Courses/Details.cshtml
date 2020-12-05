@@ -7,7 +7,7 @@
     <li class="collection-header teal lighten-4"><h4 class="center light-green-text lighten-2">@Model.Title</h4></li>
     @foreach (var lesson in Model.Lessons.OrderByDescending(l => l.CreatedOn))
     {
-        <li class="collection-item teal lighten-5"><div>@lesson.Title<a asp-controller="Lessons" asp-action="Details" asp-route-id="@lesson.Id" class="secondary-content"><i class="material-icons purple-text lighten-1 left">send</i></a></div></li>
+        <li class="collection-item teal lighten-5 purple-text"><div>@lesson.Title<a asp-controller="Lessons" asp-action="Details" asp-route-id="@lesson.Id" class="secondary-content"><i class="material-icons purple-text lighten-1 left">send</i></a></div></li>
     }
 </ul>
 @if (!Model.Lessons.Any())
