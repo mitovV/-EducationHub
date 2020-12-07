@@ -85,6 +85,6 @@ Knowledge sharing platform
 
 <img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/101184726-b749fa00-3659-11eb-97d3-9eabb94a9705.png">
 
- Using ASP.NET-MVC-Template originally developed by:
+ Using ASP.NET Core Template originally developed by:
 - [Nikolay Kostov](https://github.com/NikolayIT)
 - [Vladislav Karamfilov](https://github.com/vladislav-karamfilov)
