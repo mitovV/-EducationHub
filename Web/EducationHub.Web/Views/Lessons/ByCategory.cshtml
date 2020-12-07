@@ -1,5 +1,5 @@
 ﻿@using EducationHub.Web.ViewModels.Lessons
-@model IEnumerable<ByCategoryLessonViewModel>
+@model ListingLessonViewModel
 @{
     ViewData["Title"] = "Lessons";
 }
@@ -7,26 +7,57 @@
 <h1 class="center light-green-text lighten-2">@ViewData["Title"]</h1>
 
 <div class="row">
-    @foreach (var course in Model)
+    @foreach (var lesson in Model.Lessons)
     {
         <div class="card col l4 s12 m12 offset-l1">
             <div class="card-image waves-effect waves-block waves-light">
                 <img class="activator responsive-img" src="~/Images/office.jpg">
             </div>
             <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">@course.ShortTitle<i class="material-icons right">more_vert</i></span>
+                <span class="card-title activator grey-text text-darken-4">@lesson.ShortTitle<i class="material-icons right">more_vert</i></span>
                 <div>
-                    <span><i class="material-icons left green-text">event_note</i> Created on: <time datetime="@course.CreatedOn.ToStringLocal()"></time></span>
+                    <span><i class="material-icons left green-text">event_note</i> Created on: <time datetime="@lesson.CreatedOn.ToStringLocal()"></time></span>
                 </div>
                 <div>
-                    <span><i class="material-icons left green-text">person</i>Crated by: @course.UserUsername</span>
+                    <span><i class="material-icons left green-text">person</i>Crated by: @lesson.UserUsername</span>
                 </div>
-                <p><a asp-action="Details" asp-route-id="@course.Id">Details</a></p>
+                <p><a asp-action="Details" asp-route-id="@lesson.Id">Details</a></p>
             </div>
             <div class="card-reveal flow-text">
-                <span class="card-title grey-text text-darken-4">@course.Title<i class="material-icons right">close</i></span>
-                <p class="flow-text">@Html.Raw(course.SanitizedContent)</p>
+                <span class="card-title grey-text text-darken-4">@lesson.Title<i class="material-icons right">close</i></span>
+                <p class="flow-text">@Html.Raw(lesson.SanitizedContent)</p>
             </div>
         </div>
     }
 </div>
+
+@if (this.Model.ItemsCount > this.Model.ItemsPerPage)
+{
+    <ul class="pagination center">
+        <li class="@if (!Model.HasPreviousPage) { <text>disabled</text> }">
+            <a asp-action="ByCategory" asp-route-id="@Model.CategoryId" asp-route-page="@Model.PreviousPageNumber"><i class="material-icons">chevron_left</i></a>
+        </li>
+        @for (int i = Model.PageNumber - 3; i < Model.PageNumber; i++)
+        {
+            if (i > 0)
+            {
+                <li class="waves-effect"><a asp-action="ByCategory" asp-route-id="@Model.CategoryId" asp-route-page="@i">@i</a></li>
+            }
+        }
+        <li class="waves-effect green lighten-2 active">
+            <a>
+                @Model.PageNumber
+            </a>
+        </li>
+        @for (int i = Model.PageNumber + 1; i <= Model.PageNumber + 3; i++)
+        {
+            if (i <= Model.PagesCount)
+            {
+                <li class="waves-effect"><a asp-action="ByCategory" asp-route-id="@Model.CategoryId" asp-route-page="@i">@i</a></li>
+            }
+        }
+        <li class="waves-effect @if (!Model.HasNextPage) { <text>disabled</text> }">
+            <a asp-action="ByCategory" asp-route-id="@Model.CategoryId" asp-route-page="@Model.NextPageNumber"><i class="material-icons">chevron_right</i></a>
+        </li>
+    </ul>
+}

@@ -1,9 +1,11 @@
 ﻿namespace EducationHub.Web.ViewModels.Lessons
 {
-    using Data.Models;
-    using Services.Mapping;
+    using System.Collections.Generic;
 
-    public class ListingLessonViewModel : BaseListingResoursesViewModel, IMapFrom<Lesson>
+    public class ListingLessonViewModel : PagingViewModel
     {
+        public int CategoryId { get; set; }
+
+        public IEnumerable<ByCategoryLessonViewModel> Lessons { get; set; }
     }
 }

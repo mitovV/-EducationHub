@@ -47,9 +47,23 @@
             return this.RedirectToAction("MyResources", "Users");
         }
 
-        public async Task<IActionResult> ByCategory(int id)
+        public async Task<IActionResult> ByCategory(int id, int page = 1)
         {
-            var viewModel = await this.lessonsService.GetByCategoryIdAsync<ByCategoryLessonViewModel>(id);
+            const int ItemsPerPage = 4;
+
+            if (page < 1)
+            {
+                page = 1;
+            }
+
+            var viewModel = new ListingLessonViewModel
+            {
+                CategoryId = id,
+                ItemsPerPage = ItemsPerPage,
+                PageNumber = page,
+                ItemsCount = this.lessonsService.GetCountByCategory(id),
+                Lessons = await this.lessonsService.GetByCategoryIdAsync<ByCategoryLessonViewModel>(id, page, ItemsPerPage),
+            };
 
             return this.View(viewModel);
         }

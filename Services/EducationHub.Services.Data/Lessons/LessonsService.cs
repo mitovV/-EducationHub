@@ -59,11 +59,13 @@
             await this.lessonsRepository.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<T>> GetByCategoryIdAsync<T>(int categoryId)
+        public async Task<IEnumerable<T>> GetByCategoryIdAsync<T>(int categoryId, int page, int itemsPerPage = 4)
             => await this.lessonsRepository
                 .AllAsNoTracking()
                 .Where(l => l.CategoryId == categoryId && l.CourseId == null)
                 .OrderByDescending(l => l.CreatedOn)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
                 .To<T>()
                 .ToListAsync();
 
@@ -82,5 +84,11 @@
             this.lessonsRepository.Delete(category);
             await this.lessonsRepository.SaveChangesAsync();
         }
+
+        public int GetCountByCategory(int id)
+            => this.lessonsRepository
+                .All()
+                .Where(l => l.Course == null && l.CategoryId == id)
+                .Count();
     }
 }
