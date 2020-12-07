@@ -24,9 +24,23 @@
             this.lessonsService = lessonsService;
         }
 
-        public async Task<IActionResult> ByCategory(int id)
+        public async Task<IActionResult> ByCategory(int id, int page)
         {
-            var viewModel = await this.coursesService.GetByCategoryIdAsync<ByCategoryCourseViewModel>(id);
+            const int ItemsPerPage = 4;
+
+            if (page < 1)
+            {
+                page = 1;
+            }
+
+            var viewModel = new PagingCoursesViewModel
+            {
+                CategoryId = id,
+                ItemsPerPage = ItemsPerPage,
+                PageNumber = page,
+                ItemsCount = this.coursesService.GetCountByCategory(id),
+                Courses = await this.coursesService.GetByCategoryIdAsync<ByCategoryCourseViewModel>(id, page, ItemsPerPage),
+            };
 
             return this.View(viewModel);
         }

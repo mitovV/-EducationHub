@@ -56,7 +56,7 @@
                 page = 1;
             }
 
-            var viewModel = new ListingLessonViewModel
+            var viewModel = new PagingLessonsViewModel
             {
                 CategoryId = id,
                 ItemsPerPage = ItemsPerPage,
@@ -79,7 +79,7 @@
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            var viewModel = await this.lessonsService.GetByUserIdAsync<ListingLessonViewModel>(userId);
+            var viewModel = await this.lessonsService.GetByUserIdAsync<ListingLessonsViewModel>(userId);
 
             return this.View(viewModel);
         }

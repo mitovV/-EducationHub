@@ -1,5 +1,5 @@
 ﻿@using EducationHub.Web.ViewModels.Courses
-@model IEnumerable<ByCategoryCourseViewModel>
+@model PagingCoursesViewModel
 @{
     ViewData["Title"] = "Courses";
 }
@@ -7,7 +7,7 @@
 <h1 class="center light-green-text lighten-2">@ViewData["Title"]</h1>
 
 <div class="row">
-    @foreach (var course in Model)
+    @foreach (var course in Model.Courses)
     {
         <div class="card col l4 s12 m12 offset-l1">
             <div class="card-image waves-effect waves-block waves-light">
@@ -30,3 +30,34 @@
         </div>
     }
 </div>
+
+@if (this.Model.ItemsCount > this.Model.ItemsPerPage)
+{
+    <ul class="pagination center">
+        <li class="@if (!Model.HasPreviousPage) { <text>disabled</text> }">
+            <a asp-action="ByCategory" asp-route-id="@Model.CategoryId" asp-route-page="@Model.PreviousPageNumber"><i class="material-icons">chevron_left</i></a>
+        </li>
+        @for (int i = Model.PageNumber - 3; i < Model.PageNumber; i++)
+        {
+            if (i > 0)
+            {
+                <li class="waves-effect"><a asp-action="ByCategory" asp-route-id="@Model.CategoryId" asp-route-page="@i">@i</a></li>
+            }
+        }
+        <li class="waves-effect green lighten-2 active">
+            <a>
+                @Model.PageNumber
+            </a>
+        </li>
+        @for (int i = Model.PageNumber + 1; i <= Model.PageNumber + 3; i++)
+        {
+            if (i <= Model.PagesCount)
+            {
+                <li class="waves-effect"><a asp-action="ByCategory" asp-route-id="@Model.CategoryId" asp-route-page="@i">@i</a></li>
+            }
+        }
+        <li class="waves-effect @if (!Model.HasNextPage) { <text>disabled</text> }">
+            <a asp-action="ByCategory" asp-route-id="@Model.CategoryId" asp-route-page="@Model.NextPageNumber"><i class="material-icons">chevron_right</i></a>
+        </li>
+    </ul>
+}

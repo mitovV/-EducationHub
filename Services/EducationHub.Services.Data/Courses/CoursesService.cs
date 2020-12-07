@@ -45,13 +45,15 @@
                 .To<T>()
                 .ToListAsync();
 
-        public async Task<IEnumerable<T>> GetByCategoryIdAsync<T>(int categoryId)
-            => await this.courseRepository
-                .AllAsNoTracking()
-                .Where(c => c.CategoryId == categoryId)
-                .OrderByDescending(c => c.CreatedOn)
-                .To<T>()
-                .ToListAsync();
+        public async Task<IEnumerable<T>> GetByCategoryIdAsync<T>(int categoryId, int page, int itemsPerPage = 4)
+             => await this.courseRepository
+                 .AllAsNoTracking()
+                 .Where(c => c.CategoryId == categoryId)
+                 .OrderByDescending(c => c.CreatedOn)
+                 .Skip((page - 1) * itemsPerPage)
+                 .Take(itemsPerPage)
+                 .To<T>()
+                 .ToListAsync();
 
         public async Task<T> GetByIdAsync<T>(string id)
             => await this.courseRepository
@@ -67,5 +69,11 @@
             this.courseRepository.Delete(course);
             await this.courseRepository.SaveChangesAsync();
         }
+
+        public int GetCountByCategory(int id)
+            => this.courseRepository
+                .All()
+                .Where(c => c.CategoryId == id)
+                .Count();
     }
 }
