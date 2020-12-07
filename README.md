@@ -1,6 +1,22 @@
 # EducationHub
 Knowledge sharing platform
 
+## Technology stack:
+
+- ASP.NET Core 5.0
+
+- Entity Framework Core 5.0
+
+- SQL Server
+
+- Cloudinary
+
+- jQuery
+
+- Materialize for UI
+
+## Screenshots:
+
 ### Index page
 
 <img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/100426383-6fdfce80-3099-11eb-9874-0578c0300a76.png">
@@ -68,3 +84,7 @@ Knowledge sharing platform
 ### Categories
 
 <img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/101184726-b749fa00-3659-11eb-97d3-9eabb94a9705.png">
+
+ Using ASP.NET-MVC-Template originally developed by:
+- [Nikolay Kostov](https://github.com/NikolayIT)
+- [Vladislav Karamfilov](https://github.com/vladislav-karamfilov)
