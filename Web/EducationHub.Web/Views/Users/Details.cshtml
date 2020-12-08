@@ -1,0 +1,70 @@
+﻿@model EducationHub.Web.ViewModels.Users.UserProfileViewModel
+@{
+    ViewData["Title"] = Model.UserName;
+}
+
+<h3 class="center light-green-text lighten-2">@ViewData["Title"]</h3>
+
+<div class="row">
+    <div class="col s12 m6 l6 offset-l1 green-text">
+        <img class="materialboxed responsive-img center-align z-depth-5" width="350" src="@Model.PictureUrl" alt="user profile picture">
+        Rating:
+        <span class="text-warning">
+            @for (int i = 1; i <= 5; i++)
+            {
+                if (Model.Rating - i >= 0)
+                {
+
+                    <i class="fas fa-star"></i>
+                }
+                else
+                {
+                    if (Math.Abs(Model.Rating - i) >= 0.0 && Math.Abs(Model.Rating - i) < 1.0)
+                    {
+                        <i class="fas fa-star-half-alt"></i>
+                    }
+                    else
+                    {
+                        <i class="far fa-star"></i>
+                    }
+                }
+            }
+        </span>
+        <span>@Model.RatingAsString</span><span>/5</span>
+        <span>With: @Model.VotesCount votes </span>
+    </div>
+    <div class="col s12 l3 m3 light-green-text lighten-1">
+        <h6>Latest resources</h6>
+        <ul>
+            Courses:
+            @if (!Model.Courses.Any())
+            {
+                @:No courses yet
+            }
+            @foreach (var course in Model.Courses)
+            {
+                <li><a asp-controller="Courses" asp-action="Details" asp-route-id="@course.Id" class="deep-orange-text text-darken-2">@course.Title</a></li>
+            }
+        </ul>
+        <ul>
+            Not related lessons:
+            @if (!Model.Lessons.Any())
+            {
+                @:No lessons yet
+            }
+            @foreach (var lesson in Model.Lessons)
+            {
+                <li><a asp-controller="Lessons" asp-action="Details" asp-route-id="@lesson.Id" class="deep-orange-text text-darken-2">@lesson.Title</a></li>
+            }
+        </ul>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('.materialboxed').materialbox();
+        });
+    </script>
+}

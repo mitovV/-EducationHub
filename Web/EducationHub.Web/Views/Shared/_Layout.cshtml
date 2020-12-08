@@ -54,22 +54,22 @@
                     }
                 </ul>
                 <ul class="sidenav transparent with-header" id="mobile-demo">
-                    <li>
-                        <a class="waves-effect waves-light light-green-text accent-4" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </li>
                     @if (this.SignInManager.IsSignedIn(this.User))
                     {
                         <li class="nav-item">
-                            <a class="nav-link text-dark light-green-text lighten-2" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @(this.User.Identity.Name)!</a>
+                            <a class="nav-link text-dark light-green-text lighten-2 waves-effect waves-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @(this.User.Identity.Name)!</a>
                         </li>
                         if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark light-green-text lighten-2" asp-area="Administration" asp-controller="Dashboard" asp-action="Index" title="Admin">Admin</a>
+                                <a class="nav-link text-dark light-green-text lighten-2 waves-effect waves-light" asp-area="Administration" asp-controller="Dashboard" asp-action="Index" title="Admin">Admin</a>
                             </li>
                         }
                         <li class="nav-item">
-                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@(this.Url.Action("Index", "Home", new { area = string.Empty }))">
+                            <a class="nav-link text-dark light-green-text lighten-2 waves-effect waves-light" asp-area="" asp-controller="Users" asp-action="MyResources">My resources</a>
+                        </li>
+                        <li class="nav-item">
+                            <form class="form-inline waves-effect waves-light" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@(this.Url.Action("Index", "Home", new { area = string.Empty }))">
                                 <button type="submit" class="nav-link btn mobile-logout waves-effect waves-green">Logout</button>
                             </form>
                         </li>

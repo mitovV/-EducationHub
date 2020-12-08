@@ -24,7 +24,7 @@
             this.lessonsService = lessonsService;
         }
 
-        public async Task<IActionResult> ByCategory(int id, int page)
+        public async Task<IActionResult> ByCategory(int id, int page = 1)
         {
             const int ItemsPerPage = 4;
 

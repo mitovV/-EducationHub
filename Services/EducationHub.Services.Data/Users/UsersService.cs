@@ -23,5 +23,12 @@
                 .Where(u => u.Id == id)
                 .To<T>()
                 .FirstOrDefaultAsync();
+
+        public async Task<T> GetUserAsync<T>(string id)
+            => await this.userRepository
+                .AllAsNoTracking()
+                .Where(u => u.Id == id)
+                .To<T>()
+                .FirstOrDefaultAsync();
     }
 }

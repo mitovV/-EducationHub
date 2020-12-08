@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class BaseListingResoursesViewModel
+    public abstract class BaseListingResoursesViewModel
     {
         public string Id { get; set; }
 

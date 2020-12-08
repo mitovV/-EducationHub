@@ -5,5 +5,7 @@
     public interface IUsersService
     {
         Task<T> GetResourcesInfoAsync<T>(string id);
+
+        Task<T> GetUserAsync<T>(string id);
     }
 }

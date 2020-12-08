@@ -15,10 +15,11 @@
     <div class="col s12 l4 m4 offset-l1 offset-m1">
         <partial name="_UserBadgePartial" model="@Model" />
     </div>
-    <div class="col s12 m12 l12">
-        <p>Description: @Html.Raw(Model.SanitiedDescription)</p>
-    </div>
 </div>
+<div>
+    <p>Description:</p>
+</div>
+@Html.Raw(Model.SanitiedDescription)
 
 @section Scripts{
     <script src="~/js/ratingStar.js"></script>

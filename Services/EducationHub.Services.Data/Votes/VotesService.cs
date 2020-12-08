@@ -17,10 +17,17 @@
         }
 
         public double GetAverageVotes(string userId)
-            => this.votesRepository
-                .AllAsNoTracking()
-                .Where(v => v.VotedForId == userId)
-                .Average(x => x.Value);
+        {
+            if (!this.votesRepository.AllAsNoTracking().Any(v => v.VotedForId == userId))
+            {
+                return 0;
+            }
+
+            return this.votesRepository
+                 .AllAsNoTracking()
+                 .Where(v => v.VotedForId == userId)
+                 .Average(x => x.Value);
+        }
 
         public int GetVotesCount(string votedForId)
             => this.votesRepository
