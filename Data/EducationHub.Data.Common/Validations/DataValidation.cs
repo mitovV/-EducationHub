@@ -39,5 +39,10 @@
             public const int MinValue = 1;
             public const int MaxValue = 5;
         }
+
+        public class Post
+        {
+            public const int TitleMaxLength = 50;
+        }
     }
 }

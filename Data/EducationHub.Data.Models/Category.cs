@@ -27,5 +27,8 @@
 
         public virtual ICollection<Lesson> Lessons { get; set; }
             = new HashSet<Lesson>();
+
+        public virtual ICollection<Post> Posts { get; set; }
+            = new HashSet<Post>();
     }
 }

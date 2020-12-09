@@ -1,0 +1,11 @@
+﻿@model EducationHub.Web.ViewModels.Forum.HomePageViewModel
+@{
+    ViewData["Title"] = "EducationHub Forum";
+}
+
+<h1 class="center light-green-text lighten-2">@ViewData["Title"]</h1>
+
+@foreach (var category in Model.Categories)
+{
+    <p>@category.Name - @category.PostsCount</p>
+}
