@@ -5,7 +5,39 @@
 
 <h1 class="center light-green-text lighten-2">@ViewData["Title"]</h1>
 
-@foreach (var category in Model.Categories)
-{
-    <p>@category.Name - @category.PostsCount</p>
-}
+<div class="row">
+    <div class="center">
+        <a asp-controller="Posts" asp-action="Create" class="btn">New post</a>
+    </div>
+    <div class="col s12 l4 offset-l1">
+        <h4 class="center light-green-text lighten-2">Categories</h4>
+        <ul class="collection">
+            @foreach (var category in Model.Categories)
+            {
+                <li class="collection-item avatar">
+                    <img src="@category.PictureUrl" class="circle">
+                    <a asp-controller="Posts" asp-action="ByCategory" asp-route-id="@category.Id"><span class="title orange-text lighten-1">@category.Name</span></a>
+                    <span class="right">(@category.PostsCount)</span>
+                </li>
+            }
+        </ul>
+    </div>
+    <section class="col s12 l4 offset-l1">
+        <h4 class="center light-green-text lighten-2">Latest posts</h4>
+        @foreach (var post in Model.Posts)
+        {
+            <article class="collection-item forum-post">
+                <div class="head-post">
+                    <a asp-controller="Posts" asp-action="Details" asp-route-id="@post.Id"><h6 class="center light-green-text lighten-2">@post.Title</h6></a>
+                    <img src="@post.UserPictureUrl" class="circle" height="50">
+                    <div class="col margin center">
+                        <a asp-area="" asp-controller="Users" asp-action="Details" asp-route-id="@post.UserId" class="orange-text lighten-1">@post.UserUserName</a>
+                    </div>
+                    <p class="right">
+                        <i class="material-icons left orange-text lighten-1">event_note</i><time datetime="@post.CreatedOn.ToStringLocal()" class="orange-text lighten-1"></time>
+                    </p>
+                </div>
+            </article>
+        }
+    </section>
+</div>

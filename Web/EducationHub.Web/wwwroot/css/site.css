@@ -55,7 +55,7 @@ html {
     margin-right: 10px;
 }
 
-.dbrd-btn{
+.dbrd-btn {
     margin-top: 2px;
 }
 
@@ -63,8 +63,8 @@ html {
     margin-bottom: 5px;
 }
 
-.btn{
-    margin-top:5px;
+.btn {
+    margin-top: 5px;
 }
 
 .li-btn {
@@ -74,6 +74,26 @@ html {
 
 .mobile-logout {
     margin-left: 30px;
+}
+
+.forum-post {
+    border: 1px solid #ccc;
+    margin: 20px;
+}
+
+.forum-title {
+    border: 1px solid #ccc;
+}
+
+.margin {
+    margin-top: 10px;
+}
+
+.head-post {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 16px;
+    padding-right: 16px;
 }
 
 body {

@@ -1,0 +1,25 @@
+﻿@model EducationHub.Web.ViewModels.Forum.PostDetailsViewModel
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<article class="forum-post">
+    <div class="forum-title row">
+        <h2 class="center light-green-text lighten-2">@ViewData["Title"]</h2>
+        <div class="col s4 m4 l4">
+            <div class="right">
+                <img src="@Model.UserPictureUrl" alt="User picture" class="circle" height="50" />
+            </div>
+        </div>
+        <div class="col s4 l4 m4 margin left">
+            <a asp-area="" asp-controller="Users" asp-action="Details" asp-route-id="@Model.UserId" class="orange-text lighten-1">@Model.UserUserName</a>
+        </div>
+        <div class="col s12 l4 m4 margin">
+            <i class="material-icons left orange-text lighten-1">event_note</i><time datetime="@Model.CreatedOn.ToStringLocal()" class="orange-text lighten-1"></time>
+        </div>
+    </div>
+    <div>
+        @Html.Raw(Model.SanitizedContent)
+    </div>
+</article>

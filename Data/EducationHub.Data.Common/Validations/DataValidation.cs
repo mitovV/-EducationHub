@@ -42,7 +42,10 @@
 
         public class Post
         {
+            public const int TitleMinLength = 5;
             public const int TitleMaxLength = 50;
+
+            public const int ContentMinLength = 30;
         }
     }
 }

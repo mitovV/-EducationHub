@@ -5,5 +5,7 @@
     public class HomePageViewModel
     {
         public IEnumerable<HomePageCategoryViewModel> Categories { get; set; }
+
+        public IEnumerable<HomePagePostViewModel> Posts { get; set; }
     }
 }
