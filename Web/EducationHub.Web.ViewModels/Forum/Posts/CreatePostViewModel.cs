@@ -1,4 +1,4 @@
-﻿namespace EducationHub.Web.ViewModels.Forum
+﻿namespace EducationHub.Web.ViewModels.Forum.Posts
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;

@@ -2,11 +2,12 @@
 {
     using System.Linq;
     using System.Threading.Tasks;
+
     using EducationHub.Data.Common.Repositories;
     using EducationHub.Data.Models;
-    using EducationHub.Services.Mapping;
-    using EducationHub.Web.ViewModels.Forum;
+    using Mapping;
     using Microsoft.EntityFrameworkCore;
+    using Web.ViewModels.Forum.Home;
     using Web.ViewModels.Home;
 
     public class GetCountsService : IGetCountsService

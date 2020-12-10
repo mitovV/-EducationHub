@@ -7,7 +7,8 @@
     using Services.Data.Categories;
     using Services.Data.Posts;
     using ViewModels.Categories;
-    using ViewModels.Forum;
+    using ViewModels.Forum.Home;
+    using ViewModels.Forum.Posts;
 
     public class PostsController : ForumController
     {
@@ -18,6 +19,13 @@
         {
             this.postsService = postsService;
             this.categoriesService = categoriesService;
+        }
+
+        public async Task<IActionResult> ByCategory(int id)
+        {
+            var viewModel = await this.postsService.GetPostsByCategoryAsync<HomePagePostViewModel>(id);
+
+            return this.View(viewModel);
         }
 
         public async Task<IActionResult> Details(int id)

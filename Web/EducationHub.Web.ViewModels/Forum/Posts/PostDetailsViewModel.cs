@@ -1,8 +1,9 @@
-﻿namespace EducationHub.Web.ViewModels.Forum
+﻿namespace EducationHub.Web.ViewModels.Forum.Posts
 {
     using System;
     using System.Collections.Generic;
 
+    using Comments;
     using Data.Models;
     using Ganss.XSS;
     using Services.Mapping;

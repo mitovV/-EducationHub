@@ -1,4 +1,4 @@
-﻿namespace EducationHub.Web.ViewModels.Forum
+﻿namespace EducationHub.Web.ViewModels.Forum.Home
 {
     using System.Collections.Generic;
 

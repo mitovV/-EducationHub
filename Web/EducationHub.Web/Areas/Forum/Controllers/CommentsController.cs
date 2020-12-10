@@ -5,7 +5,7 @@
 
     using Microsoft.AspNetCore.Mvc;
     using Services.Data.Comments;
-    using ViewModels.Forum;
+    using ViewModels.Forum.Comments;
 
     public class CommentsController : ForumController
     {

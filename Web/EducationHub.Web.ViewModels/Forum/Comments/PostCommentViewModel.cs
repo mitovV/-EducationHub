@@ -1,4 +1,4 @@
-﻿namespace EducationHub.Web.ViewModels.Forum
+﻿namespace EducationHub.Web.ViewModels.Forum.Comments
 {
     using System;
 

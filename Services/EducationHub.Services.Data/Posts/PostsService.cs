@@ -6,7 +6,7 @@
 
     using EducationHub.Data.Common.Repositories;
     using EducationHub.Data.Models;
-    using EducationHub.Services.Mapping;
+    using Mapping;
     using Microsoft.EntityFrameworkCore;
 
     public class PostsService : IPostsService
@@ -47,6 +47,13 @@
                 .OrderByDescending(p => p.CreatedOn)
                 .To<T>()
                 .Take(count)
+                .ToListAsync();
+
+        public async Task<IEnumerable<T>> GetPostsByCategoryAsync<T>(int categoryId)
+            => await this.postsRepository
+                .AllAsNoTracking()
+                .Where(p => p.CategoryId == categoryId)
+                .To<T>()
                 .ToListAsync();
     }
 }

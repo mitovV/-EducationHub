@@ -2,10 +2,10 @@
 {
     using System.Threading.Tasks;
 
-    using Services.Data;
     using Microsoft.AspNetCore.Mvc;
-    using EducationHub.Services.Data.Posts;
-    using EducationHub.Web.ViewModels.Forum;
+    using Services.Data;
+    using Services.Data.Posts;
+    using ViewModels.Forum.Home;
 
     public class HomeController : ForumController
     {
