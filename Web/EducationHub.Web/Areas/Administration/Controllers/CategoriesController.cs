@@ -7,7 +7,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Services;
     using Services.Data.Categories;
-    using Web.ViewModels.Administration;
+    using ViewModels.Administration.Categories;
 
     public class CategoriesController : AdministrationController
     {

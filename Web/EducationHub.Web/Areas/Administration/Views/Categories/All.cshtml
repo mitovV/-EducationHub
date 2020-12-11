@@ -1,4 +1,5 @@
-﻿@model IEnumerable<EducationHub.Web.ViewModels.Administration.CategoryAdminViewModel>
+﻿@using EducationHub.Web.ViewModels.Administration.Categories
+@model IEnumerable<CategoryAdminViewModel>
 
 @{
     ViewData["Title"] = "Categories";
@@ -7,7 +8,7 @@
 <h1 class="center light-green-text lighten-2">@ViewData["Title"]</h1>
 
 <p class="center">
-    <a class="center light-green-text lighten-2" asp-action="Create">Create New</a>
+    <a class="btn btn-small" asp-action="Create">Create New</a>
 </p>
 <table class="responsive-table centered highlight grey lighten-2">
     <thead>
@@ -47,7 +48,7 @@
                     <img class="responsive-img" src="@category.PictureUrl" width="100" asp-append-version="true">
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => category.Username)
+                    @Html.DisplayFor(modelItem => category.UserUserName)
                 </td>
                 <td>
                     @if (category.IsDeleted == false)

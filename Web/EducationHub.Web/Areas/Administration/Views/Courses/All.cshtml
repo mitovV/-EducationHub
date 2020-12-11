@@ -1,4 +1,5 @@
-﻿@model IEnumerable<EducationHub.Web.ViewModels.Administration.CourseAdminViewModel>
+﻿@using EducationHub.Web.ViewModels.Administration.Courses
+@model IEnumerable<CourseAdminViewModel>
 
 @{
     ViewData["Title"] = "Courses";
@@ -16,13 +17,10 @@
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                User
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.User)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
+                Category
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.IsDeleted)
@@ -47,13 +45,10 @@
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Description)
+                    @Html.DisplayFor(modelItem => item.UserUserName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.User)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category)
+                    @Html.DisplayFor(modelItem => item.CategoryName)
                 </td>
                 <td>
                     @if (item.IsDeleted == false)
@@ -72,11 +67,11 @@
                     }
                     else
                     {
-                        @item.DeletedOn.ToStringLocal()
+                        <time datetime="@item.DeletedOn.ToStringLocal()"></time>
                     }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CreatedOn)
+                    <time datetime="@item.CreatedOn.ToStringLocal()"></time>
                 </td>
                 <td>
                     @if (item.ModifiedOn == null)
@@ -85,12 +80,13 @@
                     }
                     else
                     {
-                        @item.ModifiedOn.ToStringLocal()
+                        <time datetime="@item.ModifiedOn.ToStringLocal()"></time>
                     }
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn-small blue waves-effect waves-light">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn-small red waves-effect waves-light">Delete</a>
                 </td>
             </tr>
         }

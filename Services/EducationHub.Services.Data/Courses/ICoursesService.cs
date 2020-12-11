@@ -7,6 +7,8 @@
     {
         Task<IEnumerable<T>> AllAsync<T>();
 
+        Task<IEnumerable<T>> AllWithDeletedAsync<T>();
+
         Task<IEnumerable<T>> GetByUserIdAsync<T>(string userId);
 
         Task<T> GetByIdAsync<T>(string id);
@@ -18,5 +20,7 @@
         Task DeleteAsync(string id);
 
         int GetCountByCategory(int id);
+
+        Task EditAsync(string id, string title, string description, bool isDeleted, int categoryId);
     }
 }

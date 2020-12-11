@@ -1,4 +1,4 @@
-﻿namespace EducationHub.Web.ViewModels.Administration
+﻿namespace EducationHub.Web.ViewModels.Administration.Categories
 {
     using System.ComponentModel.DataAnnotations;
 

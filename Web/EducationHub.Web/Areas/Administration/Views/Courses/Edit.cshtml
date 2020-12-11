@@ -1,31 +1,38 @@
-﻿@model EducationHub.Web.ViewModels.Administration.Categories.CategoryAdminViewModel
+﻿@model EducationHub.Web.ViewModels.Administration.Courses.AdminEditCourseViewModel
 
 @{
     ViewData["Title"] = "Edit";
 }
 
-<h1  class="center light-green-text lighten-2">Edit</h1>
+<h1 class="center light-green-text lighten-2">Edit</h1>
 
-<h4  class="center light-green-text lighten-2">Category</h4>
+<h4 class="center light-green-text lighten-2">Category</h4>
+
+<partial name="_TinyMCEPartial" />
 
 <div class="row">
     <div class="col s6 center offset-s3">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="red-text"></div>
             <div>
-                <label asp-for="Name"></label>
-                <input asp-for="Name" class="center light-green-text lighten-2" />
-                <span asp-validation-for="Name" class="red-text"></span>
+                <label asp-for="Title"></label>
+                <input asp-for="Title" class="center light-green-text lighten-2" />
+                <span asp-validation-for="Title" class="red-text"></span>
             </div>
             <div>
-                <label asp-for="PictureUrl"></label>
-                <input asp-for="PictureUrl" class="center light-green-text lighten-2" />
-                <span asp-validation-for="PictureUrl" class="red-text"></span>
+                <label asp-for="CategoryId"></label>
+                <input asp-for="CategoryId" class="center light-green-text lighten-2" />
+                <span asp-validation-for="CategoryId" class="red-text"></span>
             </div>
             <div>
                 <label asp-for="CreatedOn"></label>
                 <input asp-for="CreatedOn" class="center light-green-text lighten-2" placeholder="yyyy-MM-dd 00:00:00" />
                 <span asp-validation-for="CreatedOn" class="red-text"></span>
+            </div>
+            <div>
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description" class="center light-green-text lighten-2"></textarea>
+                <span asp-validation-for="Description" class="red-text"></span>
             </div>
             <div>
                 <label asp-for="ModifiedOn"></label>
@@ -44,7 +51,7 @@
             </div>
             <div>
                 <label>
-                    <input asp-for="IsDeleted"/>
+                    <input asp-for="IsDeleted" />
                     <span>IsDeleted</span>
                 </label>
             </div>

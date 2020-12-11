@@ -75,5 +75,24 @@
                 .All()
                 .Where(c => c.CategoryId == id)
                 .Count();
+
+        public async Task EditAsync(string id, string title, string description, bool isDeleted, int categoryId)
+        {
+            var course = await this.courseRepository.GetByIdWithDeletedAsync(id);
+
+            course.Title = title;
+            course.Description = description;
+            course.IsDeleted = isDeleted;
+            course.CategoryId = categoryId;
+
+            this.courseRepository.Update(course);
+            await this.courseRepository.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<T>> AllWithDeletedAsync<T>()
+          => await this.courseRepository
+                .AllWithDeleted()
+                .To<T>()
+                .ToListAsync();
     }
 }
