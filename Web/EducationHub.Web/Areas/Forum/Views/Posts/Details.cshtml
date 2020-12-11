@@ -2,7 +2,43 @@
 
 @{
     ViewData["Title"] = Model.Title;
+    async Task DisplayComments(int? parentId)
+    {
+        var comments = this.Model.Comments.Where(x => x.ParentId == parentId);
+        if (!comments.Any())
+        {
+            return;
+        }
+
+        @foreach (var comment in comments)
+        {
+            <article class="forum-post grey lighten-2">
+                <div class="forum-title row">
+                    <div class="col s4 m4 l4">
+                        <div class="right">
+                            <img src="@comment.UserPictureUrl" alt="User picture" class="circle" height="50" />
+                        </div>
+                    </div>
+                    <div class="col s4 l4 m4 margin left">
+                        <a asp-area="" asp-controller="Users" asp-action="Details" asp-route-id="@comment.UserId" class="orange-text lighten-1">@comment.UserUserName</a>
+                    </div>
+                    <div class="col s12 l4 m4 margin">
+                        <i class="material-icons left orange-text lighten-1">event_note</i><time datetime="@comment.CreatedOn.ToStringLocal()" class="orange-text lighten-1"></time>
+                    </div>
+                </div>
+                <div>
+                    @Html.Raw(comment.SanitizedContent)
+                </div>
+                <div class="center grey lighten-3">
+                    <button class="btn-small center waves-effect waves-light purple lighten-4" onclick="showAddCommentForm(@comment.Id)">Answer</button>
+                </div>
+                @{await DisplayComments(comment.Id);}
+            </article>
+        }
+    }
 }
+
+<partial name="_TinyMCEPartial" />
 
 <article class="forum-post">
     <div class="forum-title row">
@@ -22,4 +58,36 @@
     <div>
         @Html.Raw(Model.SanitizedContent)
     </div>
+    <div class="center grey lighten-2">
+        <button class="btn-small center waves-effect waves-light orange lighten-1" onclick="showAddCommentForm(0)">Comment</button>
+    </div>
+    @{ await DisplayComments(null); }
 </article>
+
+<div class="forum-title forum-post">
+    <form asp-controller="Comments" asp-action="Create" method="post" id="add-comment" hidden>
+        <input type="hidden" name="PostId" value="@this.Model.Id" />
+        <input type="hidden" name="ParentId" value="0" />
+        <div>
+            <label for="Content"></label>
+            <textarea name="Content" id="Content" class="form-control"></textarea>
+        </div>
+        <div class="center">
+            <input id="comment-btn" type="submit" class="btn-small center waves-effect waves-light orange lighten-1" value="Add comment" />
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <script>
+        function showAddCommentForm(parentId) {
+            $("#add-comment input[name='ParentId']").val(parentId);
+
+            $("#add-comment").show();
+
+            $([document.documentElement, document.body]).animate({
+                scrollTop: $("#add-comment").offset().top
+            }, 1000);
+        }
+    </script>
+}
