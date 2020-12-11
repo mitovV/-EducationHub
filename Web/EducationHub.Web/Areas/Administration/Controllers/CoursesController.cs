@@ -33,7 +33,7 @@
                 return this.View();
             }
 
-            await this.coursesService.EditAsync(model.Id, model.Title, model.Description,model.IsDeleted, model.CategoryId);
+            await this.coursesService.EditAsync(model.Id, model.Title, model.Description, model.IsDeleted, model.CategoryId);
 
             return this.RedirectToAction(nameof(this.All));
         }
