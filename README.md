@@ -89,7 +89,7 @@ Knowledge sharing platform
 
 ### Home
 
-<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/101890020-d04a3200-3ba8-11eb-9a65-38138b803005.png">
+<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/101891525-d2ad8b80-3baa-11eb-9060-fd64f58d421a.png">
 
 ### Create post
 

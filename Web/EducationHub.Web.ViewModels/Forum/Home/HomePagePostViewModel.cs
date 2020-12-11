@@ -15,6 +15,8 @@
 
         public string UserUserName { get; set; }
 
+        public string CategoryName { get; set; }
+
         public string UserPictureUrl { get; set; }
 
         public DateTime CreatedOn { get; set; }
