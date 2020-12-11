@@ -29,7 +29,7 @@
             <article class="collection-item forum-post">
                 <div class="head-post">
                     <a asp-controller="Posts" asp-action="Details" asp-route-id="@post.Id"><h6 class="left margin-left light-green-text lighten-2">@post.Title</h6></a>
-                    <a asp-controller="Posts" asp-action="Details" asp-route-id="@post.Id"><h6 class="center light-green-text lighten-2">@post.CategoryName</h6></a>
+                    <a asp-controller="Posts" asp-action="ByCategory" asp-route-id="@post.CategoryId"><h6 class="center light-green-text lighten-2">@post.CategoryName</h6></a>
                     <img src="@post.UserPictureUrl" class="circle" height="50">
                     <div class="col margin center">
                         <a asp-area="" asp-controller="Users" asp-action="Details" asp-route-id="@post.UserId" class="orange-text lighten-1">@post.UserUserName</a>
