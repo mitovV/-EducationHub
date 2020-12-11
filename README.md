@@ -85,6 +85,17 @@ Knowledge sharing platform
 
 <img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/101184726-b749fa00-3659-11eb-97d3-9eabb94a9705.png">
 
+## Forum
+
+### Home
+
+<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/101890020-d04a3200-3ba8-11eb-9a65-38138b803005.png">
+
+### Create post
+
+<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/101890226-156e6400-3ba9-11eb-91c1-8e8df192c470.png">
+
+
  Using ASP.NET Core Template originally developed by:
 - [Nikolay Kostov](https://github.com/NikolayIT)
 - [Vladislav Karamfilov](https://github.com/vladislav-karamfilov)
