@@ -16,10 +16,12 @@
         <partial name="_UserBadgePartial" model="@Model" />
     </div>
 </div>
-<div>
+<div class="margin-left">
     <p>Description:</p>
 </div>
-@Html.Raw(Model.SanitiedDescription)
+<div class="margin-left">
+    @Html.Raw(Model.SanitiedDescription)
+</div>
 
 @section Scripts{
     <script src="~/js/ratingStar.js"></script>
