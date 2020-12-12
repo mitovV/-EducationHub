@@ -1,6 +1,10 @@
 # EducationHub
 Knowledge sharing platform
 
+# Deployed in Azure
+
+https://educationhubb.azurewebsites.net
+
 ## Technology stack:
 
 - ASP.NET Core 5.0
