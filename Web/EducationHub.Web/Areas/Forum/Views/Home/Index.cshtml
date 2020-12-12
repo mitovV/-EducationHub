@@ -9,7 +9,7 @@
     <div class="center">
         <a asp-controller="Posts" asp-action="Create" class="btn">New post</a>
     </div>
-    <div class="col s12 l4 offset-l1">
+    <div class="col s12 l5 offset-l1">
         <h4 class="center light-green-text lighten-2">Categories</h4>
         <ul class="collection">
             @foreach (var category in Model.Categories)
@@ -22,7 +22,7 @@
             }
         </ul>
     </div>
-    <section class="col s12 l4 offset-l1">
+    <section class="col s12 l5 offset-l1">
         <h4 class="center light-green-text lighten-2">Latest posts</h4>
         @foreach (var post in Model.Posts)
         {

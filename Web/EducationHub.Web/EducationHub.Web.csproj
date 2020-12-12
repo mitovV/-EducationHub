@@ -8,6 +8,7 @@
 
   <PropertyGroup>
     <CodeAnalysisRuleSet>..\..\Rules.ruleset</CodeAnalysisRuleSet>
+    <ApplicationInsightsResourceId>/subscriptions/75a6aae3-f02a-47fc-90b9-21c64b1e464e/resourceGroups/educationhubb/providers/microsoft.insights/components/educationhubb</ApplicationInsightsResourceId>
   </PropertyGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\..\stylecop.json" />
@@ -16,6 +17,7 @@
   <ItemGroup>
     <PackageReference Include="Cloudinary.Core" Version="1.31.0" />
     <PackageReference Include="HtmlSanitizer" Version="5.0.355" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.15.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.0">
