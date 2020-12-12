@@ -26,7 +26,7 @@
                         <i class="material-icons left orange-text lighten-1">event_note</i><time datetime="@comment.CreatedOn.ToStringLocal()" class="orange-text lighten-1"></time>
                     </div>
                 </div>
-                <div>
+                <div class="margin-left">
                     @Html.Raw(comment.SanitizedContent)
                 </div>
                 <div class="center grey lighten-3">
@@ -55,12 +55,13 @@
             <i class="material-icons left orange-text lighten-1">event_note</i><time datetime="@Model.CreatedOn.ToStringLocal()" class="orange-text lighten-1"></time>
         </div>
     </div>
-    <div>
+    <div class="margin-left">
         @Html.Raw(Model.SanitizedContent)
     </div>
     <div class="center grey lighten-2">
         <button class="btn-small center waves-effect waves-light orange lighten-1" onclick="showAddCommentForm(0)">Comment</button>
     </div>
+    <div>
     @{ await DisplayComments(null); }
 </article>
 
