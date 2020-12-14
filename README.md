@@ -5,6 +5,8 @@ Knowledge sharing platform
 
 https://educationhubb.azurewebsites.net
 
+[![Build Status](https://dev.azure.com/vasilmitovv/EducationHub/_apis/build/status/mitovV.EducationHub?branchName=main)](https://dev.azure.com/vasilmitovv/EducationHub/_build/latest?definitionId=1&branchName=main)
+
 ## Technology stack:
 
 - ASP.NET Core 5.0
