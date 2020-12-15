@@ -21,6 +21,11 @@
         [HttpPost]
         public async Task<ActionResult<PostVoteResponseModel>> Post(PostVoteInputModel model)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return this.BadRequest();
+            }
+
             var votedId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var isValidVote = await this.votesService.SetVoteAsync(votedId, model.VotedForId, model.Value);
 
