@@ -29,7 +29,6 @@ steps:
     configuration: '$(buildConfiguration)'
 
 - task: VSTest@2
-- task: VSTest@2
   inputs:
     testSelector: 'testAssemblies'
     testAssemblyVer2: |
