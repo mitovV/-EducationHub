@@ -5,7 +5,16 @@
 
 trigger:
 - main
-
+- task: VSTest@2
+  inputs:
+    testSelector: 'testAssemblies'
+    testAssemblyVer2: |
+      **\EducationHub.Services.Data.*test*.dll
+      !**\*TestAdapter.dll
+      !**\obj\**
+    searchFolder: '$(System.DefaultWorkingDirectory)'
+    runTestsInIsolation: true
+    codeCoverageEnabled: true
 pool:
   vmImage: 'windows-latest'
 
