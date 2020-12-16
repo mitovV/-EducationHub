@@ -62,7 +62,6 @@
             });
 
             services.AddSingleton(this.configuration);
-            services.AddApplicationInsightsTelemetry();
 
             services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
