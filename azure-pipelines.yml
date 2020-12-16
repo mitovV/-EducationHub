@@ -32,7 +32,7 @@ steps:
   inputs:
     testSelector: 'testAssemblies'
     testAssemblyVer2: |
-      **\EducationHub.Services.Data.*tests*.dll
+      **\EducationHub.Services.Data.*test*.dll
       !**\*TestAdapter.dll
       !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)'
