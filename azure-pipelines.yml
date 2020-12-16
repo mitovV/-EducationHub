@@ -1,28 +1,11 @@
 # ASP.NET
-- task: VSTest@2
-  inputs:
-    testSelector: 'testAssemblies'
-    testAssemblyVer2: |
-      **\Tests.EducationHub.Services.Data.*test*.dll
-      !**\*TestAdapter.dll
-      !**\obj\**
-    searchFolder: '$(System.DefaultWorkingDirectory)'
 # Build and test ASP.NET projects.
 # Add steps that publish symbols, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
 
 trigger:
 - main
-- task: VSTest@2
-  inputs:
-    testSelector: 'testAssemblies'
-    testAssemblyVer2: |
-      **\*test*.dll
-      !**\*TestAdapter.dll
-      !**\obj\**
-    searchFolder: '$(System.DefaultWorkingDirectory)'
-    runTestsInIsolation: true
-    codeCoverageEnabled: true
+
 pool:
   vmImage: 'windows-latest'
 
@@ -47,5 +30,13 @@ steps:
 
 - task: VSTest@2
   inputs:
+    testSelector: 'testAssemblies'
+    testAssemblyVer2: |
+      **\Tests.EducationHub.Services.Data.*test*.dll
+      !**\*TestAdapter.dll
+      !**\obj\**
+    searchFolder: '$(System.DefaultWorkingDirectory)'
+    runTestsInIsolation: true
+    codeCoverageEnabled: true
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
