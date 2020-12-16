@@ -6,6 +6,26 @@
     }
   },
   "parameters": {
+    "educationhubb.resourceGroupName": {
+      "Name": "educationhubb.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "educationhubb"
+    },
+    "educationhubb.resourceGroupLocation": {
+      "Name": "educationhubb.resourceGroupLocation",
+      "Type": null,
+      "Value": "westeurope"
+    },
+    "educationhubb.resourceName": {
+      "Name": "educationhubb.resourceName",
+      "Type": null,
+      "Value": "educationhubb"
+    },
+    "appInsights1.resourceGroupLocation": {
+      "Name": "appInsights1.resourceGroupLocation",
+      "Type": "location",
+      "Value": "westeurope"
+    },
     "appInsights1.subscriptionId": {
       "Name": "appInsights1.subscriptionId",
       "Type": "subscription",
@@ -15,6 +35,16 @@
       "Name": "appInsights1.resourceGroupName",
       "Type": "resourceGroup",
       "Value": "educationhubb"
+    },
+    "subscriptionId": {
+      "Name": "subscriptionId",
+      "Type": "subscription",
+      "Value": "75a6aae3-f02a-47fc-90b9-21c64b1e464e"
+    },
+    "educationhubb.subscriptionId": {
+      "Name": "educationhubb.subscriptionId",
+      "Type": "subscription",
+      "Value": "75a6aae3-f02a-47fc-90b9-21c64b1e464e"
     }
   }
 }
