@@ -22,7 +22,7 @@
         public async Task<IActionResult> Index()
         {
             var viewModel = await this.getCountsService.GetForumPostsCountsAsync();
-            viewModel.Posts = await this.postsService.GetPosts<HomePagePostViewModel>(PostsCount);
+            viewModel.Posts = await this.postsService.GetPostsAsync<HomePagePostViewModel>(PostsCount);
 
             return this.View(viewModel);
         }

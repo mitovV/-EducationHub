@@ -41,7 +41,7 @@
                 .To<T>()
                 .FirstOrDefaultAsync();
 
-        public async Task<IEnumerable<T>> GetPosts<T>(int count)
+        public async Task<IEnumerable<T>> GetPostsAsync<T>(int count)
             => await this.postsRepository
                 .AllAsNoTracking()
                 .OrderByDescending(p => p.CreatedOn)

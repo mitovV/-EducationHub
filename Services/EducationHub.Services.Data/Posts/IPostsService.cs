@@ -5,7 +5,7 @@
 
     public interface IPostsService
     {
-        Task<IEnumerable<T>> GetPosts<T>(int count);
+        Task<IEnumerable<T>> GetPostsAsync<T>(int count);
 
         Task<IEnumerable<T>> GetPostsByCategoryAsync<T>(int categoryId);
 

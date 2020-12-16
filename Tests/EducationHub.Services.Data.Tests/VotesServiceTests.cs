@@ -21,9 +21,9 @@
             var optionsBuilder = new DbContextOptionsBuilder<EducationHubDbContext>()
                .UseInMemoryDatabase("db");
 
-            var dbCntext = new EducationHubDbContext(optionsBuilder.Options);
+            var dbContext = new EducationHubDbContext(optionsBuilder.Options);
 
-            this.votesRepository = new EfRepository<Vote>(dbCntext);
+            this.votesRepository = new EfRepository<Vote>(dbContext);
 
             this.votesService = new VotesService(this.votesRepository);
         }
@@ -41,7 +41,6 @@
 
             var expectedVoteValue = voteValue;
             var actualVoteValue = this.votesRepository.All().FirstOrDefault().Value;
-            this.votesRepository.Dispose();
 
             // Assert
             Assert.True(isSuccsesVote);
@@ -61,7 +60,6 @@
 
             var expectedVotesCount = 1;
             var actualVotesVCount = this.votesRepository.All().Count();
-            this.votesRepository.Dispose();
 
             // Assert
             Assert.Equal(expectedVotesCount, actualVotesVCount);
@@ -74,7 +72,6 @@
 
             // Act
             var isSuccsesVote = await this.votesService.SetVoteAsync("1", "1", 3);
-            this.votesRepository.Dispose();
 
             // Assert
             Assert.False(isSuccsesVote);
