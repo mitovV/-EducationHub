@@ -9,7 +9,7 @@ trigger:
   inputs:
     testSelector: 'testAssemblies'
     testAssemblyVer2: |
-      **\EducationHub.Services.Data.*test*.dll
+      **\*test*.dll
       !**\*TestAdapter.dll
       !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)'
