@@ -29,6 +29,16 @@ steps:
     configuration: '$(buildConfiguration)'
 
 - task: VSTest@2
+- task: VSTest@2
+  inputs:
+    testSelector: 'testAssemblies'
+    testAssemblyVer2: |
+      **\EducationHub.Services.Data.Tests*test*.dll
+      !**\*TestAdapter.dll
+      !**\obj\**
+    searchFolder: '$(System.DefaultWorkingDirectory)'
+    runTestsInIsolation: true
+    codeCoverageEnabled: true
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
