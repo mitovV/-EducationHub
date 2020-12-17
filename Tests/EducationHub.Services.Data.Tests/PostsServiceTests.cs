@@ -44,11 +44,11 @@
         public async Task CratePostAsyncShouldWorkCorrect()
         {
             // Arrange
+            var expectedCount = 1;
 
             // Act
-            await this.FillData(1);
+            await this.FillData(expectedCount);
 
-            var expectedCount = 1;
             var actualCount = this.postsRepository.All().Count();
 
             var expectedTitle = "Test";

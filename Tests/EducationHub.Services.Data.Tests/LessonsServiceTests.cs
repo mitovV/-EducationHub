@@ -201,15 +201,15 @@
         public async Task GetByUserIdAsyncShouldReturnCorrectValues()
         {
             // Arrange
+            var expectedCount = 2;
 
             // Act
-            await this.FillData(2);
+            await this.FillData(expectedCount);
 
             await this.lessonsService.CreateAsync(this.lesson.Title, this.lesson.Description, this.lesson.VideoUrl, "userId", 2);
 
             var lessons = await this.lessonsService.GetByUserIdAsync<LessonModel>(this.lesson.UserId);
 
-            var expectedCount = 2;
             var actualCount = lessons.Count();
 
             // Assert
@@ -258,11 +258,11 @@
         public async Task GetCountByCategoryShouldReturnCorrectValue()
         {
             // Arrange
+            var expectedCount = 2;
 
             // Act
-            await this.FillData(2);
+            await this.FillData(expectedCount);
 
-            var expectedCount = 2;
             var actualCount = this.lessonsService.GetCountByCategory(this.lesson.CategoryId);
 
             // Assert
