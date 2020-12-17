@@ -20,7 +20,7 @@
         private readonly IDeletableEntityRepository<Course> coursesRepository;
         private readonly ICoursesService coursesService;
 
-        private Course course;
+        private readonly Course course;
 
         public CoursesServiceTests()
         {
