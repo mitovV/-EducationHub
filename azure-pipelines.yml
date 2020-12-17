@@ -31,10 +31,6 @@ steps:
 - task: VSTest@2
   inputs:
     testSelector: 'testAssemblies'
-    testAssemblyVer2: |
-      **\Tests.EducationHub.Services.Data.*test*.dll
-      !**\*TestAdapter.dll
-      !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)'
     runTestsInIsolation: true
     codeCoverageEnabled: true
