@@ -53,7 +53,7 @@
             // Arrange
 
             // Act
-            await this.lessonsService.CreateAsync(this.lesson.Title, this.lesson.Description, this.lesson.VideoUrl, this.lesson.UserId, this.lesson.CategoryId);
+            await this.FillData(1);
 
             var lesson = await this.lessonsRepository.All().FirstOrDefaultAsync();
 
@@ -124,7 +124,7 @@
             // Arrange
 
             // Act
-            await this.lessonsService.CreateAsync(this.lesson.Title, this.lesson.Description, this.lesson.VideoUrl, this.lesson.UserId, this.lesson.CategoryId);
+            await this.FillData(1);
 
             var result = await this.lessonsRepository.AllAsNoTracking().FirstOrDefaultAsync();
 
@@ -144,7 +144,7 @@
             // Arrange
 
             // Act
-            await this.lessonsService.CreateAsync(this.lesson.Title, this.lesson.Description, this.lesson.VideoUrl, this.lesson.UserId, this.lesson.CategoryId);
+            await this.FillData(1);
 
             var lesson = await this.lessonsRepository.All().FirstOrDefaultAsync();
 
@@ -164,9 +164,7 @@
             // Arrange
 
             // Act
-            await this.lessonsService.CreateAsync(this.lesson.Title, this.lesson.Description, this.lesson.VideoUrl, this.lesson.UserId, this.lesson.CategoryId);
-
-            await this.lessonsService.CreateAsync(this.lesson.Title, this.lesson.Description, this.lesson.VideoUrl, this.lesson.UserId, this.lesson.CategoryId);
+            await this.FillData(2);
 
             await this.lessonsService.CreateAsync(this.lesson.Title, this.lesson.Description, this.lesson.VideoUrl, this.lesson.UserId, 2);
 
@@ -186,10 +184,9 @@
             var expextedTitle = "Latest";
 
             // Act
-            await this.lessonsService.CreateAsync(this.lesson.Title, this.lesson.Description, this.lesson.VideoUrl, this.lesson.UserId, this.lesson.CategoryId);
+            await this.FillData(2);
 
             await this.lessonsService.CreateAsync(expextedTitle, this.lesson.Description, this.lesson.VideoUrl, this.lesson.UserId, this.lesson.CategoryId);
-
             await this.lessonsService.CreateAsync(this.lesson.Title, this.lesson.Description, this.lesson.VideoUrl, this.lesson.UserId, 2);
 
             var lessons = await this.lessonsService.GetByCategoryIdAsync<LessonModel>(this.lesson.CategoryId, 1, 10);
@@ -206,9 +203,7 @@
             // Arrange
 
             // Act
-            await this.lessonsService.CreateAsync(this.lesson.Title, this.lesson.Description, this.lesson.VideoUrl, this.lesson.UserId, this.lesson.CategoryId);
-
-            await this.lessonsService.CreateAsync(this.lesson.Title, this.lesson.Description, this.lesson.VideoUrl, this.lesson.UserId, this.lesson.CategoryId);
+            await this.FillData(2);
 
             await this.lessonsService.CreateAsync(this.lesson.Title, this.lesson.Description, this.lesson.VideoUrl, "userId", 2);
 
@@ -228,9 +223,7 @@
             var expectedTitle = "Last";
 
             // Act
-            await this.lessonsService.CreateAsync(this.lesson.Title, this.lesson.Description, this.lesson.VideoUrl, this.lesson.UserId, this.lesson.CategoryId);
-
-            await this.lessonsService.CreateAsync(this.lesson.Title, this.lesson.Description, this.lesson.VideoUrl, this.lesson.UserId, this.lesson.CategoryId);
+            await this.FillData(2);
 
             await this.lessonsService.CreateAsync(expectedTitle, this.lesson.Description, this.lesson.VideoUrl, this.lesson.UserId, this.lesson.CategoryId);
 
@@ -248,9 +241,7 @@
             // Arrange
 
             // Act
-            await this.lessonsService.CreateAsync(this.lesson.Title, this.lesson.Description, this.lesson.VideoUrl, this.lesson.UserId, this.lesson.CategoryId);
-
-            await this.lessonsService.CreateAsync(this.lesson.Title, this.lesson.Description, this.lesson.VideoUrl, this.lesson.UserId, this.lesson.CategoryId);
+            await this.FillData(2);
 
             var lessonid = this.lessonsRepository.All().FirstOrDefault().Id;
 
@@ -269,9 +260,7 @@
             // Arrange
 
             // Act
-            await this.lessonsService.CreateAsync(this.lesson.Title, this.lesson.Description, this.lesson.VideoUrl, this.lesson.UserId, this.lesson.CategoryId);
-
-            await this.lessonsService.CreateAsync(this.lesson.Title, this.lesson.Description, this.lesson.VideoUrl, this.lesson.UserId, this.lesson.CategoryId);
+            await this.FillData(2);
 
             var expectedCount = 2;
             var actualCount = this.lessonsService.GetCountByCategory(this.lesson.CategoryId);
@@ -289,6 +278,14 @@
         protected virtual void Dispose(bool value)
         {
             this.lessonsRepository.Dispose();
+        }
+
+        private async Task FillData(int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                await this.lessonsService.CreateAsync(this.lesson.Title, this.lesson.Description, this.lesson.VideoUrl, this.lesson.UserId, this.lesson.CategoryId);
+            }
         }
     }
 }

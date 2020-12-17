@@ -46,7 +46,8 @@
             // Arrange
 
             // Act
-            await this.postsService.CratePostAsync(Title, Content, UserId, CategoryId);
+            await this.FillData(1);
+
             var expectedCount = 1;
             var actualCount = this.postsRepository.All().Count();
 
@@ -64,7 +65,7 @@
             // Arrange
 
             // Act
-            await this.postsService.CratePostAsync(Title, Content, UserId, CategoryId);
+            await this.FillData(1);
             var postId = this.postsRepository.All().FirstOrDefault().Id;
 
             var post = await this.postsService.GetByIdAsync<PostModel>(postId);
@@ -95,7 +96,7 @@
             var secondContent = "test2";
 
             // Act
-            await this.postsService.CratePostAsync(Title, Content, UserId, CategoryId);
+            await this.FillData(1);
             await this.postsService.CratePostAsync(secondTitle, secondContent, UserId, CategoryId);
 
             var expectedCount = 2;
@@ -116,7 +117,7 @@
             var secondContent = "test2";
 
             // Act
-            await this.postsService.CratePostAsync(Title, Content, UserId, CategoryId);
+            await this.FillData(1);
             await this.postsService.CratePostAsync(secondTitle, secondContent, UserId, CategoryId);
 
             var posts = await this.postsService.GetPostsAsync<PostModel>(2);
@@ -139,7 +140,7 @@
             var thirdContent = "test3";
 
             // Act
-            await this.postsService.CratePostAsync(Title, Content, UserId, CategoryId);
+            await this.FillData(1);
             await this.postsService.CratePostAsync(secondTitle, secondContent, UserId, CategoryId);
             await this.postsService.CratePostAsync(thirdTitle, thirdContent, UserId, 3);
 
@@ -160,6 +161,14 @@
         protected virtual void Dispose(bool value)
         {
             this.postsRepository.Dispose();
+        }
+
+        private async Task FillData(int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                await this.postsService.CratePostAsync(Title, Content, UserId, CategoryId);
+            }
         }
     }
 }
