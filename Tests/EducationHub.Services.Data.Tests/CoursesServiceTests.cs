@@ -156,6 +156,7 @@
             var expectedCount = itemsPerPage;
 
             // Act
+            this.EnsureRepositoryIsEmpty();
             await this.FillData(itemsPerPage + 1);
 
             var courses = await this.coursesService.GetByCategoryIdAsync<CourseModel>(this.course.CategoryId, 1, itemsPerPage);
@@ -308,6 +309,16 @@
             for (int i = 0; i < count; i++)
             {
                 await this.coursesService.CreateAsync(this.course.Title, this.course.Description, this.course.UserId, this.course.CategoryId);
+            }
+        }
+
+        private void EnsureRepositoryIsEmpty()
+        {
+            var courses = this.coursesRepository.All();
+
+            foreach (var course in courses)
+            {
+                this.coursesRepository.Delete(course);
             }
         }
     }

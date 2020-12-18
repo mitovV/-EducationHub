@@ -70,13 +70,5 @@
             this.repository.Update(category);
             await this.repository.SaveChangesAsync();
         }
-
-        public IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePair()
-            => this.repository
-                .AllAsNoTracking()
-                .Select(x => new { x.Id, x.Name })
-                .ToList()
-                .Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name))
-                .ToList();
     }
 }
