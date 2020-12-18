@@ -20,7 +20,7 @@
         private readonly IDeletableEntityRepository<Lesson> lessonsRepository;
         private readonly ILessonsService lessonsService;
 
-        private Lesson lesson;
+        private readonly Lesson lesson;
 
         public LessonsServiceTests()
         {

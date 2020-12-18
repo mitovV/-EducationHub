@@ -1,9 +1,11 @@
 ﻿namespace EducationHub.Services.Data.Tests
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
+    using EducationHub.Data;
     using EducationHub.Data.Common.Repositories;
     using EducationHub.Data.Models;
     using EducationHub.Data.Repositories;
@@ -12,64 +14,91 @@
     using Moq;
     using Xunit;
 
-    public class CommentsServiceTests
+    public class CommentsServiceTests : IDisposable
     {
-        private readonly IList<Comment> comments;
-        private readonly Mock<IDeletableEntityRepository<Comment>> mockRepo;
-        private readonly ICommentsService commentsService;
+        private readonly EfDeletableEntityRepository<Comment> commentsRepository;
+        private readonly CommentsService commentsService;
+        private readonly Comment comment;
 
         public CommentsServiceTests()
         {
-            this.comments = new List<Comment>();
-            this.mockRepo = new Mock<IDeletableEntityRepository<Comment>>();
-            this.mockRepo.Setup(x => x.AddAsync(It.IsAny<Comment>())).Callback((Comment comment) => this.comments.Add(comment));
-            this.mockRepo.Setup(x => x.All()).Returns(this.comments.AsQueryable());
-            this.commentsService = new CommentsService(this.mockRepo.Object);
+            var optionsBuilder = new DbContextOptionsBuilder<EducationHubDbContext>()
+             .UseInMemoryDatabase("commentsDb");
+
+            var dbCntext = new EducationHubDbContext(optionsBuilder.Options);
+            dbCntext.Database.EnsureDeleted();
+            dbCntext.Database.EnsureCreated();
+
+            this.commentsRepository = new EfDeletableEntityRepository<Comment>(dbCntext);
+
+            this.commentsService = new CommentsService(this.commentsRepository);
+
+            this.comment = new Comment
+            {
+                Content = "test",
+                ParentId = 1,
+                PostId = 12,
+                UserId = "test",
+            };
         }
 
         [Fact]
         public async Task CreateShouldWorkCorrect()
         {
             // Arrange
-            var comment = new Comment
-            {
-                Content = "test",
-                ParentId = 1,
-                PostId = 12,
-                UserId = "test",
-            };
+            var comments = new List<Comment>();
+            var mockRepo = new Mock<IDeletableEntityRepository<Comment>>();
+            mockRepo.Setup(x => x.AddAsync(It.IsAny<Comment>())).Callback((Comment comment) => comments.Add(comment));
+            mockRepo.Setup(x => x.All()).Returns(comments.AsQueryable());
+
+            var commentsService = new CommentsService(mockRepo.Object);
 
             // Act
-            await this.commentsService.Create(comment.PostId, comment.UserId, comment.Content);
-            var result = this.mockRepo.Object.All().FirstOrDefault();
+            await commentsService.Create(this.comment.PostId, this.comment.UserId, this.comment.Content);
+            var result = mockRepo.Object.All().FirstOrDefault();
 
             // Assert
             Assert.NotNull(result);
-            Assert.NotEmpty(this.comments);
+            Assert.NotEmpty(comments);
         }
 
-        // TODO: Not Complete
         [Fact]
         public async Task IsInPostIdAsyncShouldReturtTrue()
         {
             // Arrange
-            var comment = new Comment
-            {
-                Content = "test",
-                ParentId = 1,
-                PostId = 12,
-                UserId = "test",
-            };
-
-            this.mockRepo.Setup(x => x.All()).Returns(this.comments.AsQueryable()).Callback((IQueryable<Comment> comments) => comments.AsNoTracking<Comment>());
 
             // Act
-            await this.commentsService.Create(comment.PostId, comment.UserId, comment.Content);
-
-            var result = await this.commentsService.IsInPostIdAsync(comment.Id, 12);
+            await this.commentsService.Create(this.comment.PostId, this.comment.UserId, this.comment.Content);
+            var commentId = this.commentsRepository.All().FirstOrDefault().Id;
+            var result = await this.commentsService.IsInPostIdAsync(commentId, this.comment.PostId);
 
             // Assert
             Assert.True(result);
+        }
+
+        [Fact]
+        public async Task IsInPostIdAsyncShouldReturtFalse()
+        {
+            // Arrange
+
+            // Act
+            await this.commentsService.Create(this.comment.PostId, this.comment.UserId, this.comment.Content);
+            var commentId = this.commentsRepository.All().FirstOrDefault().Id;
+            var result = await this.commentsService.IsInPostIdAsync(commentId, 14);
+
+            // Assert
+            Assert.False(result);
+        }
+
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool value)
+        {
+            this.commentsRepository.Dispose();
         }
     }
 }
