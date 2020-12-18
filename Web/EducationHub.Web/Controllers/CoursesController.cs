@@ -42,6 +42,20 @@
                 Courses = await this.coursesService.GetByCategoryIdAsync<ByCategoryCourseViewModel>(id, page, ItemsPerPage),
             };
 
+            if (page > viewModel.PagesCount)
+            {
+                page = viewModel.PagesCount;
+
+                viewModel = new PagingCoursesViewModel
+                {
+                    CategoryId = id,
+                    ItemsPerPage = ItemsPerPage,
+                    PageNumber = page,
+                    ItemsCount = this.coursesService.GetCountByCategory(id),
+                    Courses = await this.coursesService.GetByCategoryIdAsync<ByCategoryCourseViewModel>(id, page, ItemsPerPage),
+                };
+            }
+
             return this.View(viewModel);
         }
 

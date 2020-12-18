@@ -65,6 +65,20 @@
                 Lessons = await this.lessonsService.GetByCategoryIdAsync<ByCategoryLessonViewModel>(id, page, ItemsPerPage),
             };
 
+            if (page > viewModel.PagesCount)
+            {
+                page = viewModel.PagesCount;
+
+                viewModel = new PagingLessonsViewModel
+                {
+                    CategoryId = id,
+                    ItemsPerPage = ItemsPerPage,
+                    PageNumber = page,
+                    ItemsCount = this.lessonsService.GetCountByCategory(id),
+                    Lessons = await this.lessonsService.GetByCategoryIdAsync<ByCategoryLessonViewModel>(id, page, ItemsPerPage),
+                };
+            }
+
             return this.View(viewModel);
         }
 
