@@ -31,7 +31,14 @@
             }
         </span>
         <span>@Model.RatingAsString</span><span>/5</span>
-        <span>With: @Model.VotesCount votes </span>
+        @if (Model.VotesCount == 1)
+        {
+            <span>With: @Model.VotesCount vote </span>
+        }
+        else
+        {
+            <span>With: @Model.VotesCount votes </span>
+        }
     </div>
     <div class="col s12 l3 m3 light-green-text lighten-1">
         <h6>Latest resources</h6>
