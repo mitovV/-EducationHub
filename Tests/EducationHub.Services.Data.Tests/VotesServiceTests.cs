@@ -19,7 +19,7 @@
         public VotesServiceTests()
         {
             var optionsBuilder = new DbContextOptionsBuilder<EducationHubDbContext>()
-               .UseInMemoryDatabase("votesDb");
+               .UseInMemoryDatabase(Guid.NewGuid().ToString());
 
             var dbContext = new EducationHubDbContext(optionsBuilder.Options);
 

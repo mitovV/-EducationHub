@@ -25,7 +25,7 @@
         public LessonsServiceTests()
         {
             var optionsBuilder = new DbContextOptionsBuilder<EducationHubDbContext>()
-              .UseInMemoryDatabase("lessonsDb");
+              .UseInMemoryDatabase(Guid.NewGuid().ToString());
 
             var dbCntext = new EducationHubDbContext(optionsBuilder.Options);
             dbCntext.Database.EnsureDeleted();
@@ -223,6 +223,7 @@
             var expectedTitle = "Last";
 
             // Act
+            this.EnsureRepositoryIsEmpty();
             await this.FillData(2);
 
             await this.lessonsService.CreateAsync(expectedTitle, this.lesson.Description, this.lesson.VideoUrl, this.lesson.UserId, this.lesson.CategoryId);
@@ -285,6 +286,16 @@
             for (int i = 0; i < count; i++)
             {
                 await this.lessonsService.CreateAsync(this.lesson.Title, this.lesson.Description, this.lesson.VideoUrl, this.lesson.UserId, this.lesson.CategoryId);
+            }
+        }
+
+        private void EnsureRepositoryIsEmpty()
+        {
+            var lessons = this.lessonsRepository.All();
+
+            foreach (var lesson in lessons)
+            {
+                this.lessonsRepository.Delete(lesson);
             }
         }
     }

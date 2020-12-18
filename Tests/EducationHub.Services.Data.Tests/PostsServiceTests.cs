@@ -27,7 +27,7 @@
         public PostsServiceTests()
         {
             var optionsBuilder = new DbContextOptionsBuilder<EducationHubDbContext>()
-               .UseInMemoryDatabase("postsDb");
+               .UseInMemoryDatabase(Guid.NewGuid().ToString());
 
             var dbCntext = new EducationHubDbContext(optionsBuilder.Options);
             dbCntext.Database.EnsureDeleted();
