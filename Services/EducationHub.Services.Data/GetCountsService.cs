@@ -26,6 +26,11 @@
             this.coursesRepository = coursesRepository;
         }
 
+        public int GetCategoriesCount()
+            => this.categoriesRepository
+                .All()
+                .Count();
+
         public IndexViewModel GetCounts()
             => new IndexViewModel
             {

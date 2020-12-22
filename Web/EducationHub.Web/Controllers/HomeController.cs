@@ -35,8 +35,14 @@
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        [Route("Home/Error/{code:int?}")]
+        public IActionResult Error(int? code)
         {
+            if (code == this.NotFound().StatusCode)
+            {
+                return this.View("NotFound");
+            }
+
             return this.View(
                 new ErrorViewModel { RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier });
         }

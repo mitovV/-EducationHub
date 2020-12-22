@@ -10,5 +10,7 @@
         IndexViewModel GetCounts();
 
         Task<HomePageViewModel> GetForumPostsCountsAsync();
+
+        int GetCategoriesCount();
     }
 }
