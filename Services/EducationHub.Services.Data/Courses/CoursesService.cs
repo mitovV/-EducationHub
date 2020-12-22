@@ -94,5 +94,12 @@
                 .AllWithDeleted()
                 .To<T>()
                 .ToListAsync();
+
+        public async Task<T> GetByIdWithDeletedAsync<T>(string id)
+        => await this.courseRepository
+                .AllAsNoTrackingWithDeleted()
+                .Where(c => c.Id == id)
+                .To<T>()
+                .FirstOrDefaultAsync();
     }
 }

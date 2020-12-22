@@ -20,7 +20,12 @@
 
         public async Task<IActionResult> Edit(string id)
         {
-            var viewModel = await this.coursesService.GetByIdAsync<AdminEditCourseViewModel>(id);
+            var viewModel = await this.coursesService.GetByIdWithDeletedAsync<AdminEditCourseViewModel>(id);
+
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
 
             return this.View(viewModel);
         }

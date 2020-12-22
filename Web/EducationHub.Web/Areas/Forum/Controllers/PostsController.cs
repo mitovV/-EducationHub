@@ -32,6 +32,11 @@
         {
             var viewModel = await this.postsService.GetByIdAsync<PostDetailsViewModel>(id);
 
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
+
             return this.View(viewModel);
         }
 

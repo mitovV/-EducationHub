@@ -31,6 +31,11 @@
         {
             var viewModel = await this.categoriesService.GetByIdAsync<CategoryAdminViewModel>(id);
 
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
+
             return this.View(viewModel);
         }
 
