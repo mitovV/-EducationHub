@@ -67,6 +67,11 @@
             category.UserId = userId;
             category.IsDeleted = isDeleted;
 
+            if (!isDeleted)
+            {
+                category.DeletedOn = null;
+            }
+
             this.repository.Update(category);
             await this.repository.SaveChangesAsync();
         }
