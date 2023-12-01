@@ -5,7 +5,7 @@
 
     using Comments;
     using Data.Models;
-    using Ganss.XSS;
+    using Ganss.Xss;
     using Services.Mapping;
 
     public class PostDetailsViewModel : IMapFrom<Post>

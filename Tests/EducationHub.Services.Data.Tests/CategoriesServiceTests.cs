@@ -192,7 +192,6 @@
             Assert.Equal(expectedName, actualName);
             Assert.Equal(expectedPictureUrl, actualPictureUrl);
             Assert.Equal(categoryId, actualId);
-
         }
 
         public void Dispose()

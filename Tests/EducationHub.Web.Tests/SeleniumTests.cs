@@ -6,13 +6,12 @@
 
     using Xunit;
 
-    public class SeleniumTests : IClassFixture<SeleniumServerFactory<Startup>>
+    public class SeleniumTests : IClassFixture<SeleniumServerFactory<Program>>
     {
-        private readonly SeleniumServerFactory<Startup> server;
+        private readonly SeleniumServerFactory<Program> server;
         private readonly IWebDriver browser;
 
-        // Be sure that selenium-server-standalone-3.141.59.jar is running
-        public SeleniumTests(SeleniumServerFactory<Startup> server)
+        public SeleniumTests(SeleniumServerFactory<Program> server)
         {
             this.server = server;
             server.CreateClient();

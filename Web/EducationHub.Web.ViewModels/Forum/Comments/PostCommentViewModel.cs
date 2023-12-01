@@ -3,7 +3,7 @@
     using System;
 
     using Data.Models;
-    using Ganss.XSS;
+    using Ganss.Xss;
     using Services.Mapping;
 
     public class PostCommentViewModel : IMapFrom<Comment>

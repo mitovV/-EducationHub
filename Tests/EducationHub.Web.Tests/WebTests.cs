@@ -7,16 +7,16 @@
 
     using Xunit;
 
-    public class WebTests : IClassFixture<WebApplicationFactory<Startup>>
+    public class WebTests : IClassFixture<WebApplicationFactory<Program>>
     {
-        private readonly WebApplicationFactory<Startup> server;
+        private readonly WebApplicationFactory<Program> server;
 
-        public WebTests(WebApplicationFactory<Startup> server)
+        public WebTests(WebApplicationFactory<Program> server)
         {
             this.server = server;
         }
 
-        [Fact(Skip = "Example test. Disabled for CI.")]
+        [Fact]
         public async Task IndexPageShouldReturnStatusCode200WithTitle()
         {
             var client = this.server.CreateClient();
@@ -26,7 +26,7 @@
             Assert.Contains("<title>", responseContent);
         }
 
-        [Fact(Skip = "Example test. Disabled for CI.")]
+        [Fact]
         public async Task AccountManagePageRequiresAuthorization()
         {
             var client = this.server.CreateClient(new WebApplicationFactoryClientOptions { AllowAutoRedirect = false });

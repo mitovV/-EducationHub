@@ -6,7 +6,7 @@
 
     using AutoMapper;
     using Data.Models;
-    using Ganss.XSS;
+    using Ganss.Xss;
     using Services.Mapping;
     using Users;
 
