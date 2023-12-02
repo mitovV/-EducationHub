@@ -21,7 +21,7 @@ Knowledge sharing platform
 
 ### Index page
 
-<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/100426383-6fdfce80-3099-11eb-9874-0578c0300a76.png">
+![index](https://github.com/mitovV/EducationHub/assets/43573153/73451865-e1cd-4501-901f-86da09399b57)
 
 ### Logged in user
 
