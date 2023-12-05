@@ -19,6 +19,7 @@
         [Display(Name = "Category")]
         public string CategoryName { get; set; }
 
+        [Required]
         [Display(Name = "Video URL")]
         [MinLength(DataValidation.Lesson.VideoUrlMinlength)]
         [MaxLength(DataValidation.Lesson.VideoUrlMaxLength)]
