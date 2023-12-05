@@ -83,6 +83,10 @@ Knowledge sharing platform
 
 ![Delete resources ](https://github.com/mitovV/EducationHub/assets/43573153/00f3d579-1c03-48ca-96a3-ebab3115c2f9)
 
+### Vote to user
+
+![Vote](https://github.com/mitovV/EducationHub/assets/43573153/6155ede6-abcc-49db-8f96-81932673394d)
+
 ## Administration
 
 ### Dashboard
