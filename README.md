@@ -21,85 +21,93 @@ Knowledge sharing platform
 
 ### Index page
 
-![index](https://github.com/mitovV/EducationHub/assets/43573153/73451865-e1cd-4501-901f-86da09399b57)
+![index](https://github.com/mitovV/EducationHub/assets/43573153/5bd8b62b-1b26-4589-b18b-5301645836d6)
 
 ### Logged in user
 
-<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/100426634-e086eb00-3099-11eb-9eeb-1be3a2ed3264.png">
+![logged in user](https://github.com/mitovV/EducationHub/assets/43573153/9344d0b0-9efe-49ed-a23b-63bb4eed9f78)
 
 ### My resources
 
-<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/100426744-0d3b0280-309a-11eb-9763-fa5581201421.png">
+![My resources](https://github.com/mitovV/EducationHub/assets/43573153/1dd33b13-0a95-41e1-ba7c-142e6c4db205)
 
 ### Profile
 
-<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/100426802-2479f000-309a-11eb-8bca-8b06b35efe97.png">
+![acount](https://github.com/mitovV/EducationHub/assets/43573153/46b1837b-4817-4a35-8567-3504935f3fda)
 
 ### Courses in Categories
 
-<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/100426909-4a06f980-309a-11eb-9299-2db3e6d839b0.png">
+![Courses in Categories](https://github.com/mitovV/EducationHub/assets/43573153/9da1819a-442a-4970-9265-72fb5148be3e)
+
+### Lesons
+
+![Lessons](https://github.com/mitovV/EducationHub/assets/43573153/657eca2b-aec9-4f0a-b20c-34dcc9980411)
 
 ### Lesson Details
 
-<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/100726751-05e36400-33ce-11eb-8c57-e2c160405239.png">
+![Leson Details](https://github.com/mitovV/EducationHub/assets/43573153/df03785b-ce62-4573-8fe1-241b500afea8)
 
 ### Users lessons
 
-<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/100726925-42af5b00-33ce-11eb-8019-e9c806bdbacc.png">
+![Users lessons ](https://github.com/mitovV/EducationHub/assets/43573153/5c92ef64-c9f3-4fad-9c69-3c12dbd8080b)
 
 ### Create lesson
 
-<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/101183408-27f01700-3658-11eb-89a3-655810e5e801.png">
+![Create lesson ](https://github.com/mitovV/EducationHub/assets/43573153/3c08740e-d161-4839-b7c7-ea714e850fb6)
 
-<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/101183468-3cccaa80-3658-11eb-8ef0-a46ac2b1082f.png">
+![Create lesson  drop down](https://github.com/mitovV/EducationHub/assets/43573153/80334981-3fba-4221-85da-e7b38b11b599)
 
 ### Edit lesson
 
-<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/100728180-e64d3b00-33cf-11eb-885c-1e4fa1a7369d.png">
+![Edit Lesson](https://github.com/mitovV/EducationHub/assets/43573153/0f9fb786-b42e-422d-b311-ab40ea273291)
 
 ### Users courses
 
-<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/101183643-73a2c080-3658-11eb-9b70-b608675e2ccf.png">
+![Users Courses](https://github.com/mitovV/EducationHub/assets/43573153/a1f14852-abb8-4e7d-8b1f-d0952341664a)
 
 ### Edit course
 
-<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/101183806-a64cb900-3658-11eb-953e-3522d7de46ae.png">
+![Edit course](https://github.com/mitovV/EducationHub/assets/43573153/6e2b0946-17de-41b7-b5d6-117e240705de)
 
 ### Create lesson in course
 
-<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/101183932-c4b2b480-3658-11eb-9426-89f2c3cc3705.png">
+![Create Lesson in cource](https://github.com/mitovV/EducationHub/assets/43573153/d76589f1-c364-48fc-8c41-00a25989385c)
 
 ### Edit lesson in course
 
-<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/101183994-dc8a3880-3658-11eb-9828-02d1b8b02b40.png">
+![Edit Lesson In Course](https://github.com/mitovV/EducationHub/assets/43573153/2a3d0e84-bc59-4419-b01c-352e245e4820)
 
 ### Delete resources
 
-<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/101184084-f6c41680-3658-11eb-890d-f5f608ba1b9d.png">
+![Delete resources ](https://github.com/mitovV/EducationHub/assets/43573153/00f3d579-1c03-48ca-96a3-ebab3115c2f9)
 
 ## Administration
 
 ### Dashboard
 
-<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/101184620-9b465880-3659-11eb-9989-e992c4317cec.png">
+![Admin Dashboard](https://github.com/mitovV/EducationHub/assets/43573153/e3ff2f65-6ba9-4ab9-80a3-71c87c8baca2)
 
 ### Categories
 
-<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/101184726-b749fa00-3659-11eb-97d3-9eabb94a9705.png">
+![Categories](https://github.com/mitovV/EducationHub/assets/43573153/82c062a2-44a3-485c-a662-9720c68dcb83)
+
+### Courses
+
+![Courses](https://github.com/mitovV/EducationHub/assets/43573153/5ba41db4-ce64-416c-8985-6290c58e83b4)
 
 ## Forum
 
 ### Home
 
-<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/101891525-d2ad8b80-3baa-11eb-9060-fd64f58d421a.png">
+![Forum](https://github.com/mitovV/EducationHub/assets/43573153/0ef3d736-acd1-4204-8ef3-dba731787cd0)
 
 ### Create post
 
-<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/101890226-156e6400-3ba9-11eb-91c1-8e8df192c470.png">
+![Create Post ](https://github.com/mitovV/EducationHub/assets/43573153/7804ed8e-73bc-4d4c-bd28-5c96292d1c49)
 
 ### Post details
 
-<img alt="Screenshot" src="https://user-images.githubusercontent.com/43573153/101909942-eff05300-3bc6-11eb-93a9-7d07404f9db1.png">
+![Post Details](https://github.com/mitovV/EducationHub/assets/43573153/7b41bfba-3720-44dd-a655-58be48189b90)
 
 
  Using ASP.NET Core Template originally developed by:
