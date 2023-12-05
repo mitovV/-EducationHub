@@ -35,7 +35,7 @@ Knowledge sharing platform
 
 ![acount](https://github.com/mitovV/EducationHub/assets/43573153/46b1837b-4817-4a35-8567-3504935f3fda)
 
-### Courses in Categories
+### Categories Details
 
 ![Courses in Categories](https://github.com/mitovV/EducationHub/assets/43573153/9da1819a-442a-4970-9265-72fb5148be3e)
 
