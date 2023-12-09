@@ -14,6 +14,7 @@
         private readonly ICategoriesService categoriesService;
         private readonly ILessonsService lessonsService;
 
+        // TODO: Validate data when create, edite or delete
         public LessonsController(ICategoriesService categoriesService, ILessonsService lessonsService)
         {
             this.categoriesService = categoriesService;
