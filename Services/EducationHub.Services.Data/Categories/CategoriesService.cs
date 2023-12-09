@@ -75,5 +75,17 @@
             this.repository.Update(category);
             await this.repository.SaveChangesAsync();
         }
+
+        public bool IfExists(int id)
+        {
+            var category = this.repository.AllAsNoTracking().FirstOrDefault(c => c.Id == id);
+
+            if (category != null)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

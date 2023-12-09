@@ -24,5 +24,7 @@
         int GetCountByCategory(int id);
 
         Task EditAsync(string id, string title, string description, bool isDeleted, int categoryId);
+
+        bool IfExist(string courseId);
     }
 }

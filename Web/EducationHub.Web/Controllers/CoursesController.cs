@@ -107,6 +107,12 @@
             var viewModel = await this.coursesService.GetByIdAsync<EditCourseViewModel>(id);
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
+            if (viewModel == null)
+            {
+                this.TempData["Error"] = "There is no such course!";
+                return this.RedirectToAction(nameof(this.ByUser));
+            }
+
             if (userId != viewModel.User.Id)
             {
                 this.TempData["Error"] = "You are not authorized for this operation!";
@@ -120,6 +126,12 @@
         {
             var viewModel = await this.coursesService.GetByIdAsync<CourseViewModel>(id);
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            if (viewModel == null)
+            {
+                this.TempData["Error"] = "There is no such course!";
+                return this.RedirectToAction(nameof(this.ByUser));
+            }
 
             if (userId != viewModel.UserId)
             {
@@ -136,6 +148,12 @@
         public async Task<IActionResult> CreateLesson(string id)
         {
             var course = await this.coursesService.GetByIdAsync<CourseViewModel>(id);
+
+            if (course == null)
+            {
+                this.TempData["Error"] = "There is no such course!";
+                return this.RedirectToAction(nameof(this.ByUser));
+            }
 
             var viewModel = new CreateLessonInCourseInputModel()
             {
@@ -174,6 +192,12 @@
             var viewModel = await this.lessonsService.ByIdAsync<EditLessonInCourseViewModel>(id);
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
+            if (viewModel == null)
+            {
+                this.TempData["Error"] = "There is no such lesson!";
+                return this.RedirectToAction(nameof(this.ByUser));
+            }
+
             if (userId != viewModel.UserId)
             {
                 this.TempData["Error"] = "You are not authorized for this operation!";
@@ -189,6 +213,22 @@
             if (!this.ModelState.IsValid)
             {
                 return this.View(model);
+            }
+
+            var categoryExist = this.categoriesService.IfExists(model.CategoryId);
+
+            if (!categoryExist)
+            {
+                this.TempData["Error"] = "There is no such category!";
+                return this.RedirectToAction(nameof(this.ByUser));
+            }
+
+            var courseExist = this.coursesService.IfExist(model.CourseId);
+
+            if (!courseExist)
+            {
+                this.TempData["Error"] = "There is no such cource!";
+                return this.RedirectToAction(nameof(this.ByUser));
             }
 
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -208,6 +248,12 @@
         {
             var viewModel = await this.lessonsService.ByIdAsync<EditLessonViewModel>(id);
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            if (viewModel == null)
+            {
+                this.TempData["Error"] = "There is no such lesson!";
+                return this.RedirectToAction(nameof(this.ByUser));
+            }
 
             if (userId != viewModel.User.Id)
             {

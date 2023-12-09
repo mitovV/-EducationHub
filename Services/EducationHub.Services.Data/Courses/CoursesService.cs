@@ -101,5 +101,17 @@
                 .Where(c => c.Id == id)
                 .To<T>()
                 .FirstOrDefaultAsync();
+
+        public bool IfExist(string courseId)
+        {
+            var category = this.courseRepository.AllAsNoTracking().FirstOrDefault(c => c.Id == courseId);
+
+            if (category != null)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
