@@ -1,9 +1,10 @@
 ﻿namespace EducationHub.Web.Controllers
 {
     using System;
+    using System.Net;
     using System.Security.Claims;
     using System.Threading.Tasks;
-
+    using Microsoft.AspNetCore.Http.Extensions;
     using Microsoft.AspNetCore.Mvc;
     using Services.Data.Categories;
     using Services.Data.Courses;
@@ -63,6 +64,12 @@
         public async Task<IActionResult> Details(string id)
         {
             var viewModel = await this.coursesService.GetByIdAsync<DetailsCourseViewModel>(id);
+
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
+
             return this.View(viewModel);
         }
 
@@ -109,12 +116,12 @@
 
             if (viewModel == null)
             {
-                return this.RedurectWithErrMessage("There is no such course!", nameof(this.ByUser));
+                return this.RedirectWithErrMessage("There is no such course!", nameof(this.ByUser));
             }
 
             if (userId != viewModel.User.Id)
             {
-                return this.RedurectWithErrMessage("You are not authorized for this operation!", nameof(this.ByUser));
+                return this.RedirectWithErrMessage("You are not authorized for this operation!", nameof(this.ByUser));
             }
 
             return this.View(viewModel);
@@ -127,12 +134,12 @@
 
             if (viewModel == null)
             {
-                return this.RedurectWithErrMessage("There is no such course!", nameof(this.ByUser));
+                return this.RedirectWithErrMessage("There is no such course!", nameof(this.ByUser));
             }
 
             if (userId != viewModel.UserId)
             {
-                return this.RedurectWithErrMessage("You are not authorized for this operation!", nameof(this.ByUser));
+                return this.RedirectWithErrMessage("You are not authorized for this operation!", nameof(this.ByUser));
             }
 
             await this.coursesService.DeleteAsync(id);
@@ -147,7 +154,7 @@
 
             if (course == null)
             {
-                return this.RedurectWithErrMessage("There is no such course!", nameof(this.ByUser));
+                return this.RedirectWithErrMessage("There is no such course!", nameof(this.ByUser));
             }
 
             var viewModel = new CreateLessonInCourseInputModel()
@@ -189,12 +196,12 @@
 
             if (viewModel == null)
             {
-                return this.RedurectWithErrMessage("There is no such lesson!", nameof(this.ByUser));
+                return this.RedirectWithErrMessage("There is no such lesson!", nameof(this.ByUser));
             }
 
             if (userId != viewModel.UserId)
             {
-                return this.RedurectWithErrMessage("You are not authorized for this operation!", nameof(this.ByUser));
+                return this.RedirectWithErrMessage("You are not authorized for this operation!", nameof(this.ByUser));
             }
 
             return this.View(viewModel);
@@ -212,21 +219,21 @@
 
             if (!categoryExist)
             {
-                return this.RedurectWithErrMessage("There is no such category!", nameof(this.ByUser));
+                return this.RedirectWithErrMessage("There is no such category!", nameof(this.ByUser));
             }
 
             var courseExist = this.coursesService.IfExist(model.CourseId);
 
             if (!courseExist)
             {
-                return this.RedurectWithErrMessage("There is no such cource!", nameof(this.ByUser));
+                return this.RedirectWithErrMessage("There is no such cource!", nameof(this.ByUser));
             }
 
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             if (userId != model.UserId)
             {
-                return this.RedurectWithErrMessage("You are not authorized for this operation!", nameof(this.ByUser));
+                return this.RedirectWithErrMessage("You are not authorized for this operation!", nameof(this.ByUser));
             }
 
             await this.lessonsService.EditAsync(model.Id, model.Title, model.Description, model.VideoUrl, model.CategoryId, model.CourseId);
@@ -241,12 +248,12 @@
 
             if (viewModel == null)
             {
-                return this.RedurectWithErrMessage("There is no such lesson!", nameof(this.ByUser));
+                return this.RedirectWithErrMessage("There is no such lesson!", nameof(this.ByUser));
             }
 
             if (userId != viewModel.User.Id)
             {
-                return this.RedurectWithErrMessage("You are not authorized for this operation!", nameof(this.ByUser));
+                return this.RedirectWithErrMessage("You are not authorized for this operation!", nameof(this.ByUser));
             }
 
             await this.lessonsService.DeleteAsync(id);
@@ -255,7 +262,7 @@
             return this.RedirectToAction(nameof(this.Edit), new { id = viewModel.CourseId });
         }
 
-        private RedirectToActionResult RedurectWithErrMessage(string message, string destination)
+        private RedirectToActionResult RedirectWithErrMessage(string message, string destination)
         {
             this.TempData["Error"] = message;
             return this.RedirectToAction(destination);

@@ -14,7 +14,6 @@
         private readonly ICategoriesService categoriesService;
         private readonly ILessonsService lessonsService;
 
-        // TODO: Validate data when create, edite or delete
         public LessonsController(ICategoriesService categoriesService, ILessonsService lessonsService)
         {
             this.categoriesService = categoriesService;
@@ -86,6 +85,11 @@
         public async Task<IActionResult> Details(string id)
         {
             var viewModel = await this.lessonsService.ByIdAsync<DetailsLessonViewModel>(id);
+
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
 
             return this.View(viewModel);
         }
