@@ -56,6 +56,13 @@
                 page = 1;
             }
 
+            var ifCategoryExist = this.categoriesService.IfExists(id);
+
+            if (!ifCategoryExist)
+            {
+                return this.NotFound();
+            }
+
             var viewModel = new PagingLessonsViewModel
             {
                 CategoryId = id,
@@ -64,6 +71,11 @@
                 ItemsCount = this.lessonsService.GetCountByCategory(id),
                 Lessons = await this.lessonsService.GetByCategoryIdAsync<ByCategoryLessonViewModel>(id, page, ItemsPerPage),
             };
+
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
 
             if (page > viewModel.PagesCount)
             {
@@ -108,6 +120,11 @@
             var viewModel = await this.lessonsService.ByIdAsync<EditLessonViewModel>(id);
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
+
             if (userId != viewModel.User.Id)
             {
                 this.TempData["Error"] = "You are not authorized for this operation!";
@@ -148,6 +165,11 @@
         {
             var viewModel = await this.lessonsService.ByIdAsync<EditLessonViewModel>(id);
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
 
             if (userId != viewModel.User.Id)
             {
