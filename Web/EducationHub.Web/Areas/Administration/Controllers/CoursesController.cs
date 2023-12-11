@@ -18,6 +18,11 @@
         public async Task<IActionResult> All()
             => this.View(await this.coursesService.AllWithDeletedAsync<CourseAdminViewModel>());
 
+        public IActionResult Create()
+        {
+            return this.RedirectToActionPermanent("Create", "Courses", new { area = string.Empty });
+        }
+
         public async Task<IActionResult> Edit(string id)
         {
             var viewModel = await this.coursesService.GetByIdWithDeletedAsync<AdminEditCourseViewModel>(id);

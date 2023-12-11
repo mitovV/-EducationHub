@@ -8,87 +8,95 @@
 <h1 class="center light-green-text lighten-2">Courses</h1>
 
 <p class="center">
-    <a class="center light-green-text lighten-2" asp-action="Create">Create New</a>
+    <a class="btn btn-small" asp-action="Create">Create New</a>
 </p>
-<table class="responsive-table centered highlight grey lighten-2">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                User
-            </th>
-            <th>
-                Category
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsDeleted)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DeletedOn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedOn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ModifiedOn)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+@if (!Model.Any())
+{
+    <h4 class ="center light-green-text lighten-2">There are no courses yet!</h4>
+}
+else
+{
+    <table class="responsive-table striped centered highlight light-green lighten-2">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserUserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CategoryName)
-                </td>
-                <td>
-                    @if (item.IsDeleted == false)
-                    {
-                        @:No
-                    }
-                    else
-                    {
-                        @:Yes
-                    }
-                </td>
-                <td>
-                    @if (item.DeletedOn == null)
-                    {
-                        @:No record
-                    }
-                    else
-                    {
-                        <time datetime="@item.DeletedOn.ToStringLocal()"></time>
-                    }
-                </td>
-                <td>
-                    <time datetime="@item.CreatedOn.ToStringLocal()"></time>
-                </td>
-                <td>
-                    @if (item.ModifiedOn == null)
-                    {
-                        @:No record
-                    }
-                    else
-                    {
-                        <time datetime="@item.ModifiedOn.ToStringLocal()"></time>
-                    }
-                </td>
-                <td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn-small blue waves-effect waves-light">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn-small red waves-effect waves-light">Delete</a>
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    User
+                </th>
+                <th>
+                    Category
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsDeleted)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DeletedOn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedOn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModifiedOn)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserUserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryName)
+                    </td>
+                    <td>
+                        @if (item.IsDeleted == false)
+                        {
+                            @:No
+                        }
+                        else
+                        {
+                            @:Yes
+                        }
+                    </td>
+                    <td>
+                        @if (item.DeletedOn == null)
+                        {
+                            @:No record
+                        }
+                        else
+                        {
+                            <time datetime="@item.DeletedOn.ToStringLocal()"></time>
+                        }
+                    </td>
+                    <td>
+                        <time datetime="@item.CreatedOn.ToStringLocal()"></time>
+                    </td>
+                    <td>
+                        @if (item.ModifiedOn == null)
+                        {
+                            @:No record
+                        }
+                        else
+                        {
+                            <time datetime="@item.ModifiedOn.ToStringLocal()"></time>
+                        }
+                    </td>
+                    <td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn-small blue waves-effect waves-light">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn-small red waves-effect waves-light">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
