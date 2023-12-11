@@ -50,6 +50,8 @@
 
         public async Task<IActionResult> Delete(string id)
         {
+            // TODO: Fix an error if trying to delete twice
+
             await this.coursesService.DeleteAsync(id);
 
             return this.RedirectToAction(nameof(this.All));
