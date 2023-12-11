@@ -1,6 +1,6 @@
 ﻿@model EducationHub.Web.ViewModels.Forum.Home.HomePageViewModel
 @{
-    ViewData["Title"] = "EducationHub Forum";
+    ViewData["Title"] = "Education Hub Forum";
 }
 
 <h1 class="center light-green-text lighten-2">@ViewData["Title"]</h1>
@@ -24,20 +24,27 @@
     </div>
     <section class="col s12 l5 offset-l1">
         <h4 class="center light-green-text lighten-2">Latest posts</h4>
-        @foreach (var post in Model.Posts)
+        @if (Model.Posts.Any())
         {
-            <article class="collection-item forum-post">
-                <div class="head-post">
-                    <a asp-controller="Posts" asp-action="Details" asp-route-id="@post.Id"><h6 class="left margin-left light-green-text lighten-2">@post.Title</h6></a>
-                    <a asp-controller="Posts" asp-action="ByCategory" asp-route-id="@post.CategoryId"><h6 class="center light-green-text lighten-2">@post.CategoryName</h6></a>
-                    <img src="@post.UserPictureUrl" class="circle" height="50">
-                    <div class="col margin center">
-                        <a asp-area="" asp-controller="Users" asp-action="Details" asp-route-id="@post.UserId" class="orange-text lighten-1">@post.UserUserName</a>
+            @foreach (var post in Model.Posts)
+            {
+                <article class="collection-item forum-post">
+                    <div class="head-post">
+                        <a asp-controller="Posts" asp-action="Details" asp-route-id="@post.Id"><h6 class="left margin-left light-green-text lighten-2">@post.Title</h6></a>
+                        <a asp-controller="Posts" asp-action="ByCategory" asp-route-id="@post.CategoryId"><h6 class="center light-green-text lighten-2">@post.CategoryName</h6></a>
+                        <img src="@post.UserPictureUrl" class="circle" height="50">
+                        <div class="col margin center">
+                            <a asp-area="" asp-controller="Users" asp-action="Details" asp-route-id="@post.UserId" class="orange-text lighten-1">@post.UserUserName</a>
+                        </div>
+                        <p class="right">
+                            <i class="material-icons left orange-text lighten-1">event_note</i><time datetime="@post.CreatedOn.ToStringLocal()" class="orange-text lighten-1"></time>
                     </div>
-                    <p class="right">
-                        <i class="material-icons left orange-text lighten-1">event_note</i><time datetime="@post.CreatedOn.ToStringLocal()" class="orange-text lighten-1"></time>
-                </div>
-            </article>
+                </article>
+            }
+        }
+        else
+        {
+            <h5 class="center light-green-text lighten-2">There are no posts</h5>
         }
     </section>
 </div>
