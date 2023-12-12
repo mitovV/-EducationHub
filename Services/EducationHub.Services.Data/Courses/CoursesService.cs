@@ -6,16 +6,19 @@
 
     using EducationHub.Data.Common.Repositories;
     using EducationHub.Data.Models;
+    using EducationHub.Services.Data.Lessons;
     using Mapping;
     using Microsoft.EntityFrameworkCore;
 
     public class CoursesService : ICoursesService
     {
         private readonly IDeletableEntityRepository<Course> courseRepository;
+        private readonly ILessonsService lessonsService;
 
-        public CoursesService(IDeletableEntityRepository<Course> courseRepository)
+        public CoursesService(IDeletableEntityRepository<Course> courseRepository, ILessonsService lessonsService)
         {
             this.courseRepository = courseRepository;
+            this.lessonsService = lessonsService;
         }
 
         public async Task<IEnumerable<T>> AllAsync<T>()
@@ -65,6 +68,8 @@
         public async Task DeleteAsync(string id)
         {
             var course = this.courseRepository.All().FirstOrDefault(c => c.Id == id);
+
+            await this.lessonsService.DeleteAllInCourseAsync(id);
 
             this.courseRepository.Delete(course);
             await this.courseRepository.SaveChangesAsync();

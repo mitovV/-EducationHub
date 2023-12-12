@@ -1,18 +1,17 @@
-﻿@using EducationHub.Web.ViewModels.Administration.Courses
-@model IEnumerable<CourseAdminViewModel>
-
+﻿@using EducationHub.Web.ViewModels.Administration.Lessons
+@model IEnumerable<LessonAdminViewModel>
 @{
-    ViewData["Title"] = "Courses";
+    ViewData["Title"] = "Lessons";
 }
 
-<h1 class="center light-green-text lighten-2">Courses</h1>
+<h1 class="center light-green-text lighten-2">Lessons</h1>
 
 <p class="center">
     <a class="btn btn-small" asp-action="Create">Create New</a>
 </p>
 @if (!Model.Any())
 {
-    <h4 class ="center light-green-text lighten-2">There are no courses yet!</h4>
+    <h4 class="center light-green-text lighten-2">There are no lessons yet!</h4>
 }
 else
 {
@@ -27,6 +26,12 @@ else
                 </th>
                 <th>
                     Category
+                </th>
+                <th>
+                    Cource
+                </th>
+                <th>
+                    Video Url
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.IsDeleted)
@@ -55,6 +60,19 @@ else
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.CategoryName)
+                    </td>
+                    <td>
+                        @if(item.CourseTitle != null)
+                        {
+                            @Html.DisplayFor(modelItem => item.CourseTitle)
+                        }
+                        else
+                        {
+                            @: Not realated
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VideoUrl)
                     </td>
                     <td>
                         @if (item.IsDeleted == false)
@@ -98,4 +116,5 @@ else
             }
         </tbody>
     </table>
+
 }

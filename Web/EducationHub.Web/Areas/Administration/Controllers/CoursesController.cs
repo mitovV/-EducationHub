@@ -1,7 +1,7 @@
 ﻿namespace EducationHub.Web.Areas.Administration.Controllers
 {
     using System.Threading.Tasks;
-
+    using EducationHub.Services.Data.Lessons;
     using Microsoft.AspNetCore.Mvc;
     using Services.Data.Courses;
     using ViewModels.Administration.Courses;
@@ -9,6 +9,7 @@
     public class CoursesController : AdministrationController
     {
         private readonly ICoursesService coursesService;
+        private readonly ILessonsService lessonsService;
 
         public CoursesController(ICoursesService coursesService)
         {
@@ -52,7 +53,8 @@
         {
             if (this.coursesService.IfExist(id))
             {
-            await this.coursesService.DeleteAsync(id);
+                var lesoonsInCourse = this.lessonsService.DeleteAllInCourseAsync(id);
+                await this.coursesService.DeleteAsync(id);
             }
 
             return this.RedirectToAction(nameof(this.All));

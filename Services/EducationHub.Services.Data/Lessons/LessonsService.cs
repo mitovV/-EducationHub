@@ -6,7 +6,7 @@
 
     using EducationHub.Data.Common.Repositories;
     using EducationHub.Data.Models;
-    using Mapping;
+    using Services.Mapping;
     using Microsoft.EntityFrameworkCore;
 
     public class LessonsService : ILessonsService
@@ -79,9 +79,9 @@
 
         public async Task DeleteAsync(string id)
         {
-            var category = await this.lessonsRepository.GetByIdWithDeletedAsync(id);
+            var lesson = await this.lessonsRepository.GetByIdWithDeletedAsync(id);
 
-            this.lessonsRepository.Delete(category);
+            this.lessonsRepository.Delete(lesson);
             await this.lessonsRepository.SaveChangesAsync();
         }
 
@@ -90,5 +90,23 @@
                 .All()
                 .Where(l => l.Course == null && l.CategoryId == id)
                 .Count();
+
+        public async Task<IEnumerable<T>> AllWithDeletedAsync<T>()
+            => await this.lessonsRepository
+            .AllAsNoTrackingWithDeleted()
+            .To<T>()
+            .ToListAsync();
+
+        public async Task DeleteAllInCourseAsync(string id)
+        {
+            var lessons = this.lessonsRepository.AllWithDeleted().Where(l => l.CourseId == id);
+
+            foreach (var lesson in lessons)
+            {
+             this.lessonsRepository.Delete(lesson);
+            }
+
+            await this.lessonsRepository.SaveChangesAsync();
+        }
     }
 }

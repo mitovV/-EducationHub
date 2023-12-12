@@ -18,5 +18,9 @@
         Task DeleteAsync(string id);
 
         int GetCountByCategory(int id);
+
+        Task<IEnumerable<T>> AllWithDeletedAsync<T>();
+
+        Task DeleteAllInCourseAsync(string id);
     }
 }
