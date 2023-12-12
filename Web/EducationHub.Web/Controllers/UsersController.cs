@@ -6,7 +6,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Services.Data.Users;
     using Services.Data.Votes;
-    using Web.ViewModels.Users;
+    using ViewModels.Users;
 
     public class UsersController : BaseController
     {

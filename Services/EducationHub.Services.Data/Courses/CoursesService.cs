@@ -6,7 +6,7 @@
 
     using EducationHub.Data.Common.Repositories;
     using EducationHub.Data.Models;
-    using EducationHub.Services.Data.Lessons;
+    using Lessons;
     using Mapping;
     using Microsoft.EntityFrameworkCore;
 

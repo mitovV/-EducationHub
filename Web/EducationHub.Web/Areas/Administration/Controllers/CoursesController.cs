@@ -1,7 +1,8 @@
 ﻿namespace EducationHub.Web.Areas.Administration.Controllers
 {
     using System.Threading.Tasks;
-    using EducationHub.Services.Data.Lessons;
+
+    using Services.Data.Lessons;
     using Microsoft.AspNetCore.Mvc;
     using Services.Data.Courses;
     using ViewModels.Administration.Courses;
@@ -11,9 +12,10 @@
         private readonly ICoursesService coursesService;
         private readonly ILessonsService lessonsService;
 
-        public CoursesController(ICoursesService coursesService)
+        public CoursesController(ICoursesService coursesService, ILessonsService lessonsService)
         {
             this.coursesService = coursesService;
+            this.lessonsService = lessonsService;
         }
 
         public async Task<IActionResult> All()

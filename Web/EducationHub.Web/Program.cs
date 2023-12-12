@@ -19,9 +19,9 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    using Services.Data;
     using Services.Mapping;
     using Services.Messaging;
+    using Services.Data;
     using ViewModels;
 
     public class Program

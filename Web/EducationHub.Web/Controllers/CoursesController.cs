@@ -1,17 +1,15 @@
 ﻿namespace EducationHub.Web.Controllers
 {
-    using System;
-    using System.Net;
     using System.Security.Claims;
     using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Http.Extensions;
-    using Microsoft.AspNetCore.Mvc;
+
     using Services.Data.Categories;
     using Services.Data.Courses;
     using Services.Data.Lessons;
     using ViewModels.Categories;
     using ViewModels.Courses;
-    using Web.ViewModels.Lessons;
+    using ViewModels.Lessons;
+    using Microsoft.AspNetCore.Mvc;
 
     public class CoursesController : BaseController
     {

@@ -10,10 +10,11 @@
     using EducationHub.Data.Common.Repositories;
     using EducationHub.Data.Models;
     using EducationHub.Data.Repositories;
-    using EducationHub.Services.Mapping;
+    using Services.Mapping;
     using Microsoft.EntityFrameworkCore;
     using Models;
     using Xunit;
+    using EducationHub.Services.Data.Lessons;
 
     public class CoursesServiceTests : IDisposable
     {
@@ -33,7 +34,7 @@
 
             this.coursesRepository = new EfDeletableEntityRepository<Course>(dbCntext);
 
-            this.coursesService = new CoursesService(this.coursesRepository);
+            this.coursesService = new CoursesService(this.coursesRepository, null);
 
             this.course = new Course
             {

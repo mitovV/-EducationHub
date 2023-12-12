@@ -5,7 +5,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Services.Data;
-    using Web.ViewModels;
+    using ViewModels;
 
     [AllowAnonymous]
     public class HomeController : BaseController
