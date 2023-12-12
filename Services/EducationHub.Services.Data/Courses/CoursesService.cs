@@ -80,6 +80,11 @@
         {
             var course = await this.courseRepository.GetByIdWithDeletedAsync(id);
 
+            if (!isDeleted)
+            {
+                course.DeletedOn = null;
+            }
+
             course.Title = title;
             course.Description = description;
             course.IsDeleted = isDeleted;
