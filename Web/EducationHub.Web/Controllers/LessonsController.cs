@@ -1,8 +1,10 @@
 ﻿namespace EducationHub.Web.Controllers
 {
+    using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
-
+    using EducationHub.Common;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Services.Data.Categories;
     using Services.Data.Lessons;
@@ -96,7 +98,7 @@
 
         public async Task<IActionResult> Details(string id)
         {
-            var viewModel = await this.lessonsService.ByIdAsync<DetailsLessonViewModel>(id);
+            var viewModel = await this.lessonsService.GetByIdAsync<DetailsLessonViewModel>(id);
 
             if (viewModel == null)
             {
@@ -117,13 +119,15 @@
 
         public async Task<IActionResult> Edit(string id)
         {
-            var viewModel = await this.lessonsService.ByIdAsync<EditLessonViewModel>(id);
+            var viewModel = await this.lessonsService.GetByIdAsync<EditLessonViewModel>(id);
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             if (viewModel == null)
             {
                 return this.NotFound();
             }
+
+    
 
             if (userId != viewModel.User.Id)
             {
@@ -139,7 +143,7 @@
         [HttpPost]
         public async Task<IActionResult> Edit(EditLessonViewModel model)
         {
-            var viewModel = await this.lessonsService.ByIdAsync<EditLessonViewModel>(model.Id);
+            var viewModel = await this.lessonsService.GetByIdAsync<EditLessonViewModel>(model.Id);
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             if (userId != viewModel.User.Id)
@@ -163,7 +167,7 @@
 
         public async Task<IActionResult> Delete(string id)
         {
-            var viewModel = await this.lessonsService.ByIdAsync<EditLessonViewModel>(id);
+            var viewModel = await this.lessonsService.GetByIdAsync<EditLessonViewModel>(id);
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             if (viewModel == null)
@@ -171,7 +175,9 @@
                 return this.NotFound();
             }
 
-            if (userId != viewModel.User.Id)
+            var userClaim = this.User.Claims.FirstOrDefault(c => c.Value == GlobalConstants.AdministratorRoleName).Value;
+
+            if (userId != viewModel.User.Id && userClaim == null)
             {
                 this.TempData["Error"] = "You are not authorized for this operation!";
                 return this.RedirectToAction(nameof(this.ByUser));

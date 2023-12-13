@@ -128,7 +128,7 @@
 
             var result = await this.lessonsRepository.AllAsNoTracking().FirstOrDefaultAsync();
 
-            var lesson = await this.lessonsService.ByIdAsync<LessonModel>(result.Id);
+            var lesson = await this.lessonsService.GetByIdAsync<LessonModel>(result.Id);
 
             // Assert
             Assert.Equal(this.lesson.Title, lesson.Title);

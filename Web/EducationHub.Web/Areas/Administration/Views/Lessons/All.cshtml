@@ -7,7 +7,7 @@
 <h1 class="center light-green-text lighten-2">Lessons</h1>
 
 <p class="center">
-    <a class="btn btn-small" asp-action="Create">Create New</a>
+    <a class="btn btn-small" asp-area="" asp-controller="Lessons" asp-action="Create">Create New</a>
 </p>
 @if (!Model.Any())
 {
@@ -109,8 +109,8 @@ else
                     </td>
                     <td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn-small blue waves-effect waves-light">Edit</a>
-                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn-small red waves-effect waves-light">Delete</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" asp-controller="Lessons" asp-action="Edit" class="btn-small blue waves-effect waves-light">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" asp-controller="Lessons" asp-action="Delete" class="btn-small red waves-effect waves-light">Delete</a>
                     </td>
                 </tr>
             }

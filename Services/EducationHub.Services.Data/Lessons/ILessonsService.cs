@@ -9,7 +9,7 @@
 
         Task<IEnumerable<T>> GetByCategoryIdAsync<T>(int categoryId, int page, int itemsPerPage);
 
-        Task<T> ByIdAsync<T>(string id);
+        Task<T> GetByIdAsync<T>(string id);
 
         Task<IEnumerable<T>> GetByUserIdAsync<T>(string userId);
 

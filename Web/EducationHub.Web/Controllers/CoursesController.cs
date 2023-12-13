@@ -189,7 +189,7 @@
 
         public async Task<IActionResult> EditLesson(string id)
         {
-            var viewModel = await this.lessonsService.ByIdAsync<EditLessonInCourseViewModel>(id);
+            var viewModel = await this.lessonsService.GetByIdAsync<EditLessonInCourseViewModel>(id);
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             if (viewModel == null)
@@ -241,7 +241,7 @@
 
         public async Task<IActionResult> DeleteLesson(string id)
         {
-            var viewModel = await this.lessonsService.ByIdAsync<EditLessonViewModel>(id);
+            var viewModel = await this.lessonsService.GetByIdAsync<EditLessonViewModel>(id);
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             if (viewModel == null)

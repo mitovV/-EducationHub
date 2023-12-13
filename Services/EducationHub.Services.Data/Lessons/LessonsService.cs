@@ -18,7 +18,7 @@
             this.lessonsRepository = lessonsRepository;
         }
 
-        public async Task<T> ByIdAsync<T>(string id)
+        public async Task<T> GetByIdAsync<T>(string id)
             => await this.lessonsRepository
                  .AllAsNoTracking()
                  .Where(l => l.Id == id)
