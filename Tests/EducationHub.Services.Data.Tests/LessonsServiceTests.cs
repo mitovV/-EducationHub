@@ -150,7 +150,7 @@
 
             var expected = "Changed title";
 
-            await this.lessonsService.EditAsync(lesson.Id, expected, lesson.Description, lesson.VideoUrl, lesson.CategoryId);
+            await this.lessonsService.EditAsync(lesson.Id, expected, lesson.Description, lesson.VideoUrl, lesson.CategoryId, lesson.IsDeleted);
 
             var actual = lesson.Title;
 

@@ -3,11 +3,10 @@
     using System.Threading.Tasks;
 
     using Services.Data.Lessons;
-    using Web.ViewModels.Administration.Lessons;
+    using ViewModels.Administration.Lessons;
     using Microsoft.AspNetCore.Mvc;
-    using EducationHub.Web.ViewModels.Categories;
-    using EducationHub.Services.Data.Categories;
-    using Microsoft.CodeAnalysis.CSharp;
+    using ViewModels.Categories;
+    using Services.Data.Categories;
 
     public class LessonsController : AdministrationController
     {

@@ -1,4 +1,5 @@
-﻿@using EducationHub.Web.ViewModels.Administration.Lessons
+﻿@using EducationHub.Web.Infrastructure.Extensions
+@using EducationHub.Web.ViewModels.Administration.Lessons
 @model IEnumerable<NotRelatedLessonAdminViewModel>
 @{
     ViewData["Title"] = "Lessons";
@@ -50,16 +51,16 @@ else
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Title)
+                        @item.Title.ToShortString()
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.UserUserName)
+                        @item.UserUserName.ToShortString()
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.CategoryName)
+                        @item.CategoryName.ToShortString()
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.VideoUrl)
+                        @item.VideoUrl.ToShortString()
                     </td>
                     <td>
                         @if (item.IsDeleted == false)

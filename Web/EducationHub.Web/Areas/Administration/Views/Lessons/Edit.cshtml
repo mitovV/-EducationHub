@@ -25,22 +25,17 @@
             </div>
             <div>
                 <label asp-for="Description"></label>
-                <input asp-for="Description" readonly class="center light-green-text lighten-2" placeholder="yyyy-MM-dd 00:00:00" />
+                <input asp-for="Description" class="center light-green-text lighten-2" placeholder="yyyy-MM-dd 00:00:00" />
                 <span asp-validation-for="Description" class="red-text"></span>
             </div>
             <div class="input-field">
-                <select asp-for="CategoryId" class="icons">
+                <select asp-for="CategoryId" class="icons center">
                     @foreach (var item in Model.CategoriesItems)
                     {
                         <option value="@item.Id" data-icon="@item.PictureUrl">@item.Name</option>
                     }
                 </select>
                 <label asp-for="CategoryId" class="center light-green-text lighten-2"></label>
-            </div>
-            <div>
-                <label asp-for="CourseTitle"></label>
-                <input asp-for="CourseTitle" readonly class="center light-green-text lighten-2" placeholder="yyyy-MM-dd 00:00:00" />
-                <span asp-validation-for="CourseTitle" class="red-text"></span>
             </div>
             <div>
                 <label asp-for="CreatedOn"></label>
