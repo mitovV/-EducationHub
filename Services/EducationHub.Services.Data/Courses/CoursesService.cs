@@ -69,6 +69,11 @@
         {
             var course = this.courseRepository.All().FirstOrDefault(c => c.Id == id);
 
+            if (course == null)
+            {
+                return;
+            }
+
             await this.lessonsService.DeleteAllInCourseAsync(id);
 
             this.courseRepository.Delete(course);
@@ -111,17 +116,5 @@
                 .Where(c => c.Id == id)
                 .To<T>()
                 .FirstOrDefaultAsync();
-
-        public bool IfExist(string courseId)
-        {
-            var category = this.courseRepository.AllAsNoTracking().FirstOrDefault(c => c.Id == courseId);
-
-            if (category != null)
-            {
-                return true;
-            }
-
-            return false;
-        }
     }
 }

@@ -112,14 +112,9 @@
             var viewModel = await this.coursesService.GetByIdAsync<EditCourseViewModel>(id);
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            if (viewModel == null)
+            if (viewModel == null || userId != viewModel.User.Id)
             {
-                return this.RedirectWithErrMessage("There is no such course!", nameof(this.ByUser));
-            }
-
-            if (userId != viewModel.User.Id)
-            {
-                return this.RedirectWithErrMessage("You are not authorized for this operation!", nameof(this.ByUser));
+                return this.NotFound();
             }
 
             return this.View(viewModel);
@@ -130,14 +125,9 @@
             var viewModel = await this.coursesService.GetByIdAsync<CourseViewModel>(id);
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            if (viewModel == null)
+            if (viewModel == null || userId != viewModel.UserId)
             {
-                return this.RedirectWithErrMessage("There is no such course!", nameof(this.ByUser));
-            }
-
-            if (userId != viewModel.UserId)
-            {
-                return this.RedirectWithErrMessage("You are not authorized for this operation!", nameof(this.ByUser));
+                return this.NotFound();
             }
 
             await this.coursesService.DeleteAsync(id);
@@ -152,7 +142,7 @@
 
             if (course == null)
             {
-                return this.RedirectWithErrMessage("There is no such course!", nameof(this.ByUser));
+                return this.NotFound();
             }
 
             var viewModel = new CreateLessonInCourseInputModel()
@@ -192,14 +182,9 @@
             var viewModel = await this.lessonsService.GetByIdAsync<EditLessonInCourseViewModel>(id);
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            if (viewModel == null)
+            if (viewModel == null || userId != viewModel.UserId)
             {
-                return this.RedirectWithErrMessage("There is no such lesson!", nameof(this.ByUser));
-            }
-
-            if (userId != viewModel.UserId)
-            {
-                return this.RedirectWithErrMessage("You are not authorized for this operation!", nameof(this.ByUser));
+                return this.NotFound();
             }
 
             return this.View(viewModel);
@@ -213,25 +198,11 @@
                 return this.View(model);
             }
 
-            var categoryExist = this.categoriesService.IfExists(model.CategoryId);
-
-            if (!categoryExist)
-            {
-                return this.RedirectWithErrMessage("There is no such category!", nameof(this.ByUser));
-            }
-
-            var courseExist = this.coursesService.IfExist(model.CourseId);
-
-            if (!courseExist)
-            {
-                return this.RedirectWithErrMessage("There is no such cource!", nameof(this.ByUser));
-            }
-
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             if (userId != model.UserId)
             {
-                return this.RedirectWithErrMessage("You are not authorized for this operation!", nameof(this.ByUser));
+                return this.NotFound();
             }
 
             await this.lessonsService.EditAsync(model.Id, model.Title, model.Description, model.VideoUrl, model.CategoryId, false);
@@ -244,26 +215,15 @@
             var viewModel = await this.lessonsService.GetByIdAsync<EditLessonViewModel>(id);
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            if (viewModel == null)
-            {
-                return this.RedirectWithErrMessage("There is no such lesson!", nameof(this.ByUser));
-            }
-
             if (userId != viewModel.User.Id)
             {
-                return this.RedirectWithErrMessage("You are not authorized for this operation!", nameof(this.ByUser));
+                return this.NotFound();
             }
 
             await this.lessonsService.DeleteAsync(id);
             this.TempData["Message"] = "Successfully deleted resource.";
 
             return this.RedirectToAction(nameof(this.Edit), new { id = viewModel.CourseId });
-        }
-
-        private RedirectToActionResult RedirectWithErrMessage(string message, string destination)
-        {
-            this.TempData["Error"] = message;
-            return this.RedirectToAction(destination);
         }
     }
 }

@@ -53,11 +53,8 @@
 
         public async Task<IActionResult> Delete(string id)
         {
-            if (this.coursesService.IfExist(id))
-            {
-                var lesoonsInCourse = this.lessonsService.DeleteAllInCourseAsync(id);
-                await this.coursesService.DeleteAsync(id);
-            }
+            var lesoonsInCourse = this.lessonsService.DeleteAllInCourseAsync(id);
+            await this.coursesService.DeleteAsync(id);
 
             return this.RedirectToAction(nameof(this.All));
         }

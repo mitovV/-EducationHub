@@ -16,7 +16,5 @@
         Task<T> GetByIdAsync<T>(int id);
 
         Task EditAsync(int id, string name, string pictureUrl, bool isDeleted, string userId);
-
-        bool IfExists(int id);
     }
 }

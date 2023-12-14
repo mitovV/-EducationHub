@@ -109,7 +109,7 @@
 
             foreach (var lesson in lessons)
             {
-             this.lessonsRepository.Delete(lesson);
+                this.lessonsRepository.Delete(lesson);
             }
 
             await this.lessonsRepository.SaveChangesAsync();

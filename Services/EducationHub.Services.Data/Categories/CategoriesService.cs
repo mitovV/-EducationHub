@@ -54,6 +54,11 @@
         {
             var category = await this.repository.GetByIdWithDeletedAsync(id);
 
+            if (category == null)
+            {
+                return;
+            }
+
             this.repository.Delete(category);
             await this.repository.SaveChangesAsync();
         }

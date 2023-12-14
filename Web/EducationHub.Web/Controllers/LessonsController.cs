@@ -58,13 +58,6 @@
                 page = 1;
             }
 
-            var ifCategoryExist = this.categoriesService.IfExists(id);
-
-            if (!ifCategoryExist)
-            {
-                return this.NotFound();
-            }
-
             var viewModel = new PagingLessonsViewModel
             {
                 CategoryId = id,
@@ -127,8 +120,6 @@
                 return this.NotFound();
             }
 
-    
-
             if (userId != viewModel.User.Id)
             {
                 this.TempData["Error"] = "You are not authorized for this operation!";
@@ -159,7 +150,7 @@
                 return this.View(model);
             }
 
-            await this.lessonsService.EditAsync(model.Id, model.Title, model.Description, model.VideoUrl,model.CategoryId, false);
+            await this.lessonsService.EditAsync(model.Id, model.Title, model.Description, model.VideoUrl, model.CategoryId, false);
 
             this.TempData["Message"] = "Successfully changed.";
             return this.RedirectToAction(nameof(this.ByUser));
