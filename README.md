@@ -49,9 +49,9 @@ Knowledge sharing platform
 
 ![Leson Details](https://github.com/mitovV/EducationHub/assets/43573153/df03785b-ce62-4573-8fe1-241b500afea8)
 
-### Users lessons
+### My lessons
 
-![Users lessons ](https://github.com/mitovV/EducationHub/assets/43573153/5c92ef64-c9f3-4fad-9c69-3c12dbd8080b)
+![My resources](https://github.com/mitovV/EducationHub/assets/43573153/396cce03-f2de-4928-8c7e-bf48ee8c6117)
 
 ### Create lesson
 
@@ -63,9 +63,9 @@ Knowledge sharing platform
 
 ![Edit Lesson](https://github.com/mitovV/EducationHub/assets/43573153/0f9fb786-b42e-422d-b311-ab40ea273291)
 
-### Users courses
+### My courses
 
-![Users Courses](https://github.com/mitovV/EducationHub/assets/43573153/a1f14852-abb8-4e7d-8b1f-d0952341664a)
+![My Courses](https://github.com/mitovV/EducationHub/assets/43573153/fbd78362-2d3f-4522-aa5c-ad39a0d627ed)
 
 ### Edit course
 
@@ -95,11 +95,15 @@ Knowledge sharing platform
 
 ### Categories
 
-![Categories](https://github.com/mitovV/EducationHub/assets/43573153/82c062a2-44a3-485c-a662-9720c68dcb83)
+![Categories](https://github.com/mitovV/EducationHub/assets/43573153/009a080a-db22-406c-a428-de3f8197cb32)
 
 ### Courses
 
-![Courses](https://github.com/mitovV/EducationHub/assets/43573153/5ba41db4-ce64-416c-8985-6290c58e83b4)
+![Courses](https://github.com/mitovV/EducationHub/assets/43573153/8fbadcf8-8f2d-46bd-bb04-c73a9103e4d4)
+
+### Lessons
+
+![Lessons](https://github.com/mitovV/EducationHub/assets/43573153/aba87624-7806-4471-9c9c-ea68b10ec3dd)
 
 ## Forum
 
@@ -114,6 +118,10 @@ Knowledge sharing platform
 ### Post details
 
 ![Post Details](https://github.com/mitovV/EducationHub/assets/43573153/7b41bfba-3720-44dd-a655-58be48189b90)
+
+### NotFound Page
+
+![NotFound](https://github.com/mitovV/EducationHub/assets/43573153/de317344-adea-43fd-ae43-64148b593684)
 
 
  Using ASP.NET Core Template originally developed by:
