@@ -47,7 +47,7 @@ Knowledge sharing platform
 
 ### Lesson Details
 
-![Leson Details](https://github.com/mitovV/EducationHub/assets/43573153/df03785b-ce62-4573-8fe1-241b500afea8)
+![Details](https://github.com/mitovV/EducationHub/assets/43573153/0c2299f7-8e0e-4630-9059-1734786b2e21)
 
 ### My lessons
 
