@@ -41,7 +41,7 @@
             await this.lessonsRepository.SaveChangesAsync();
         }
 
-        public async Task EditAsync(string id, string title, string description, string videoUrl, int categoryId, bool isDeleted, string courseId = null)
+        public async Task EditAsync(string id, string title, string description, string videoUrl, int categoryId, bool isDeleted)
         {
             var lesson = await this.lessonsRepository.GetByIdWithDeletedAsync(id);
 
@@ -49,11 +49,7 @@
             lesson.Description = description;
             lesson.VideoUrl = videoUrl;
             lesson.CategoryId = categoryId;
-
-            if (courseId != null)
-            {
-                lesson.CourseId = courseId;
-            }
+            lesson.IsDeleted = isDeleted;
 
             if (!isDeleted)
             {
@@ -85,6 +81,11 @@
         public async Task DeleteAsync(string id)
         {
             var lesson = await this.lessonsRepository.GetByIdWithDeletedAsync(id);
+
+            if (lesson == null)
+            {
+                return;
+            }
 
             this.lessonsRepository.Delete(lesson);
             await this.lessonsRepository.SaveChangesAsync();

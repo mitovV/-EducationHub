@@ -7,6 +7,7 @@
     using Microsoft.AspNetCore.Mvc;
     using ViewModels.Categories;
     using Services.Data.Categories;
+    using EducationHub.Data.Models;
 
     public class LessonsController : AdministrationController
     {
@@ -46,6 +47,12 @@
 
             await this.lessonsService.EditAsync(model.Id, model.Title, model.Description, model.VideoUrl, model.CategoryId, model.IsDeleted);
 
+            return this.RedirectToAction(nameof(this.All));
+        }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            await this.lessonsService.DeleteAsync(id);
             return this.RedirectToAction(nameof(this.All));
         }
     }

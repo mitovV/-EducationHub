@@ -13,7 +13,7 @@
 
         Task<IEnumerable<T>> GetByUserIdAsync<T>(string userId);
 
-        Task EditAsync(string id, string title, string description, string videoUrl, int categoryId, bool isDeleted, string courseId = null);
+        Task EditAsync(string id, string title, string description, string videoUrl, int categoryId, bool isDeleted);
 
         Task DeleteAsync(string id);
 

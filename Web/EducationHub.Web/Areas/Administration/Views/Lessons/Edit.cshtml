@@ -9,6 +9,7 @@
 
 <h4 class="center light-green-text lighten-2">Lesson</h4>
 
+<partial name="_TinyMCEPartial" />
 <div class="row">
     <div class="col s6 center offset-s3">
         <form asp-action="Edit">
@@ -25,11 +26,11 @@
             </div>
             <div>
                 <label asp-for="Description"></label>
-                <input asp-for="Description" class="center light-green-text lighten-2" placeholder="yyyy-MM-dd 00:00:00" />
-                <span asp-validation-for="Description" class="red-text"></span>
+                <textarea asp-for="Description" class="center light-green-text lighten-2"></textarea>
+                <span asp-validation-for="Description" class="red-text center"></span>
             </div>
             <div class="input-field">
-                <select asp-for="CategoryId" class="icons center">
+                <select asp-for="CategoryId" class="icons">
                     @foreach (var item in Model.CategoriesItems)
                     {
                         <option value="@item.Id" data-icon="@item.PictureUrl">@item.Name</option>
@@ -73,5 +74,4 @@
 @section Scripts {
     <script src="~/js/charactersCounter.js"></script>
     <script src="~/js/categoryDropDawn.js"></script>
-    <script src="~/js/modal.js"></script>
 }
