@@ -1,5 +1,5 @@
 ﻿@using EducationHub.Web.ViewModels.Administration.Lessons
-@model IEnumerable<LessonAdminViewModel>
+@model IEnumerable<NotRelatedLessonAdminViewModel>
 @{
     ViewData["Title"] = "Lessons";
 }
@@ -26,9 +26,6 @@ else
                 </th>
                 <th>
                     Category
-                </th>
-                <th>
-                    Cource
                 </th>
                 <th>
                     Video Url
@@ -60,16 +57,6 @@ else
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.CategoryName)
-                    </td>
-                    <td>
-                        @if(item.CourseTitle != null)
-                        {
-                            @Html.DisplayFor(modelItem => item.CourseTitle)
-                        }
-                        else
-                        {
-                            @: Not realated
-                        }
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.VideoUrl)

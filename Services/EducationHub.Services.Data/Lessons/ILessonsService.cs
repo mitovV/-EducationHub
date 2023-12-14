@@ -13,13 +13,15 @@
 
         Task<IEnumerable<T>> GetByUserIdAsync<T>(string userId);
 
-        Task EditAsync(string id, string title, string description, string videoUrl, int categoryId, string courseId = null);
+        Task EditAsync(string id, string title, string description, string videoUrl, int categoryId, bool isDeleted, string courseId = null);
 
         Task DeleteAsync(string id);
 
         int GetCountByCategory(int id);
 
-        Task<IEnumerable<T>> AllWithDeletedAsync<T>();
+        Task<IEnumerable<T>> GetAllWithDeletedAsync<T>();
+
+        Task<IEnumerable<T>> GetAllNotRelatedToCourseWithDeletedAsync<T>();
 
         Task DeleteAllInCourseAsync(string id);
     }

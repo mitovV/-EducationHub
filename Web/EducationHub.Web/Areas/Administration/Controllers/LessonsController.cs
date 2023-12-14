@@ -7,6 +7,7 @@
     using Microsoft.AspNetCore.Mvc;
     using EducationHub.Web.ViewModels.Categories;
     using EducationHub.Services.Data.Categories;
+    using Microsoft.CodeAnalysis.CSharp;
 
     public class LessonsController : AdministrationController
     {
@@ -20,7 +21,7 @@
         }
 
         public async Task<IActionResult> All()
-         => this.View(await this.lessonsService.AllWithDeletedAsync<LessonAdminViewModel>());
+         => this.View(await this.lessonsService.GetAllNotRelatedToCourseWithDeletedAsync<NotRelatedLessonAdminViewModel>());
 
         public async Task<IActionResult> Edit(string id)
         {
@@ -34,6 +35,19 @@
             viewModel.CategoriesItems = await this.categoriesService.AllAsync<CategoriesItemsViewModel>();
 
             return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditLessonAdminViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View();
+            }
+
+            await this.lessonsService.EditAsync(model.Id, model.Title, model.Description, model.VideoUrl, model.CategoryId, model.IsDeleted);
+
+            return this.RedirectToAction(nameof(this.All));
         }
     }
 }

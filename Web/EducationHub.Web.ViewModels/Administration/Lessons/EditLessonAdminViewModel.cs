@@ -28,8 +28,6 @@
         [MaxLength(VideoUrlMaxLength)]
         public string VideoUrl { get; set; }
 
-        public string CourseId { get; set; }
-
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
 

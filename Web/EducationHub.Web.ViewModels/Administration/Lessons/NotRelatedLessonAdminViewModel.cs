@@ -5,7 +5,7 @@
 
     using Data.Models;
 
-    public class LessonAdminViewModel : BaseDeletableModel<string>, IMapFrom<Lesson>
+    public class NotRelatedLessonAdminViewModel : BaseDeletableModel<string>, IMapFrom<Lesson>
     {
         public string Title { get; set; }
 
@@ -14,7 +14,5 @@
         public string UserUserName { get; set; }
 
         public string CategoryName { get; set; }
-
-        public string CourseTitle { get; set; }
     }
 }

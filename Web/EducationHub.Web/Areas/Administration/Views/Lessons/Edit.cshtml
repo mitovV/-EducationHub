@@ -23,6 +23,11 @@
                 <input asp-for="VideoUrl" class="center light-green-text lighten-2" />
                 <span asp-validation-for="VideoUrl" class="red-text"></span>
             </div>
+            <div>
+                <label asp-for="Description"></label>
+                <input asp-for="Description" readonly class="center light-green-text lighten-2" placeholder="yyyy-MM-dd 00:00:00" />
+                <span asp-validation-for="Description" class="red-text"></span>
+            </div>
             <div class="input-field">
                 <select asp-for="CategoryId" class="icons">
                     @foreach (var item in Model.CategoriesItems)
@@ -31,6 +36,11 @@
                     }
                 </select>
                 <label asp-for="CategoryId" class="center light-green-text lighten-2"></label>
+            </div>
+            <div>
+                <label asp-for="CourseTitle"></label>
+                <input asp-for="CourseTitle" readonly class="center light-green-text lighten-2" placeholder="yyyy-MM-dd 00:00:00" />
+                <span asp-validation-for="CourseTitle" class="red-text"></span>
             </div>
             <div>
                 <label asp-for="CreatedOn"></label>
@@ -49,7 +59,7 @@
             </div>
             <div>
                 <label asp-for="User"></label>
-                <input asp-for="User" class="center light-green-text lighten-2" />
+                <input asp-for="User" readonly class="center light-green-text lighten-2" />
                 <span asp-validation-for="DeletedOn" class="red-text"></span>
             </div>
             <div>

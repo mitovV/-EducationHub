@@ -20,7 +20,7 @@
 
         public async Task<T> GetByIdAsync<T>(string id)
             => await this.lessonsRepository
-                 .AllAsNoTracking()
+                 .AllAsNoTrackingWithDeleted()
                  .Where(l => l.Id == id)
                  .To<T>()
                  .FirstOrDefaultAsync();
@@ -41,7 +41,7 @@
             await this.lessonsRepository.SaveChangesAsync();
         }
 
-        public async Task EditAsync(string id, string title, string description, string videoUrl, int categoryId, string courseId = null)
+        public async Task EditAsync(string id, string title, string description, string videoUrl, int categoryId, bool isDeleted, string courseId = null)
         {
             var lesson = await this.lessonsRepository.GetByIdWithDeletedAsync(id);
 
@@ -53,6 +53,11 @@
             if (courseId != null)
             {
                 lesson.CourseId = courseId;
+            }
+
+            if (!isDeleted)
+            {
+                lesson.DeletedOn = null;
             }
 
             this.lessonsRepository.Update(lesson);
@@ -91,7 +96,7 @@
                 .Where(l => l.Course == null && l.CategoryId == id)
                 .Count();
 
-        public async Task<IEnumerable<T>> AllWithDeletedAsync<T>()
+        public async Task<IEnumerable<T>> GetAllWithDeletedAsync<T>()
             => await this.lessonsRepository
             .AllAsNoTrackingWithDeleted()
             .To<T>()
@@ -108,5 +113,12 @@
 
             await this.lessonsRepository.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<T>> GetAllNotRelatedToCourseWithDeletedAsync<T>()
+            => await this.lessonsRepository
+            .AllWithDeleted()
+            .Where(l => l.CourseId == null)
+            .To<T>()
+            .ToListAsync();
     }
 }

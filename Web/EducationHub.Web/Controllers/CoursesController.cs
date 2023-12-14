@@ -234,7 +234,7 @@
                 return this.RedirectWithErrMessage("You are not authorized for this operation!", nameof(this.ByUser));
             }
 
-            await this.lessonsService.EditAsync(model.Id, model.Title, model.Description, model.VideoUrl, model.CategoryId, model.CourseId);
+            await this.lessonsService.EditAsync(model.Id, model.Title, model.Description, model.VideoUrl, model.CategoryId, false, model.CourseId);
             this.TempData["Message"] = "Successfully changed.";
             return this.RedirectToAction(nameof(this.Edit), new { id = model.CourseId });
         }

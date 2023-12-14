@@ -3,8 +3,8 @@
     using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
+
     using EducationHub.Common;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Services.Data.Categories;
     using Services.Data.Lessons;
@@ -159,7 +159,7 @@
                 return this.View(model);
             }
 
-            await this.lessonsService.EditAsync(model.Id, model.Title, model.Description, model.VideoUrl, model.CategoryId);
+            await this.lessonsService.EditAsync(model.Id, model.Title, model.Description, model.VideoUrl,model.CategoryId, false);
 
             this.TempData["Message"] = "Successfully changed.";
             return this.RedirectToAction(nameof(this.ByUser));
