@@ -33,6 +33,11 @@
                 }
             }
 
+            if (!this.ModelState.IsValid)
+            {
+                return this.Redirect(this.Request.Headers.Referer.ToString());
+            }
+
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             await this.commentsService.Create(input.PostId, userId, input.Content, parentId);

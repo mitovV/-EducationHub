@@ -19,11 +19,13 @@
 <div class="center light-green-text lighten-2">
     <h5>Description</h5>
 </div>
-<div class="margin-left">
-    @Html.Raw(Model.SanitiedDescription)
+<div class="row">
+    <div class="lessondetails col l12 s12 m12 center">
+        @Html.Raw(Model.SanitiedDescription)
+    </div>
 </div>
 
-@section Scripts{
+@section Scripts {
     <script src="~/js/ratingStar.js"></script>
     <script>
         $("i[data-vote]").each(function (el) {
