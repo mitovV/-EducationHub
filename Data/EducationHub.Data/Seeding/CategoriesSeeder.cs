@@ -55,7 +55,7 @@
                 {
                     Name = "Biology",
                     UserId = user.Id,
-                    PictureUrl = "https://res.cloudinary.com/dyxeqmpgh/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1702660218/Biology_ozebtj.jpg?_s=public-apps",
+                    PictureUrl = "https://res.cloudinary.com/dyxeqmpgh/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1702660218/Biology_ozebtj.jpg",
                 },
             };
 
