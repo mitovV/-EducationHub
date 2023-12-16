@@ -28,6 +28,7 @@
                               new RolesSeeder(),
                               new AdminUserSeeder(),
                               new CategoriesSeeder(),
+                              new LessonsSeeder(),
                           };
 
             foreach (var seeder in seeders)
