@@ -88,23 +88,25 @@ html {
 }
 
 .forum-post {
-    border-radius: 15px;
+    border-radius: 0px 50px 30px;
     margin: 20px;
 }
 
 .forum-title {
     background-color: rgba(174,213,130,255);
-}
-
-.index-post {
     border: 1px solid #aed582;
-    margin: 12px;
 }
 
 .post-by-category {
     background-color: rgba(174,213,130,255);
     border-radius: 0px 50px 30px;
     margin: 20px;
+}
+
+.index-post {
+    border-radius: 15px 50px;
+    border: 1px solid #aed582;
+    margin: 12px;
 }
 
 .margin {
