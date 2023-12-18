@@ -7,28 +7,30 @@
 
 @if (Model.Any())
 {
-<section class="row">
-    @foreach (var post in Model)
-    {
-        <article class="collection-item forum-post">
-            <div class="head-post">
-                <a asp-controller="Posts" asp-action="Details" asp-route-id="@post.Id"><h6 class="center light-green-text lighten-2">@post.Title</h6></a>
-                <img src="@post.UserPictureUrl" class="circle" height="50">
-                <div class="col margin center">
-                    <a asp-area="" asp-controller="Users" asp-action="Details" asp-route-id="@post.UserId" class="orange-text lighten-1">@post.UserUserName</a>
+    <section class="row">
+        @foreach (var post in Model)
+        {
+            <article class="collection-item forum-post">
+                <div class="head-post post-by-category">
+                    <a asp-controller="Posts" asp-action="Details" asp-route-id="@post.Id"><h6 class="center white-text">@post.Title</h6></a>
+                    <a asp-area="" asp-controller="Users" asp-action="Details" asp-route-id="@post.UserId">
+                        <img src="@post.UserPictureUrl" class="circle" height="50">
+                    </a>
+                    <div class="col margin center">
+                        <a asp-area="" asp-controller="Users" asp-action="Details" asp-route-id="@post.UserId" class="white-text">@post.UserUserName</a>
+                    </div>
+                    <p class="right">
+                        <i class="material-icons left white-text">event_note</i><time datetime="@post.CreatedOn.ToStringLocal()" class="white-text"></time>
+                    </p>
                 </div>
-                <p class="right">
-                    <i class="material-icons left orange-text lighten-1">event_note</i><time datetime="@post.CreatedOn.ToStringLocal()" class="orange-text lighten-1"></time>
-                </p>
-            </div>
-        </article>
-    }
-</section>
+            </article>
+        }
+    </section>
 }
 else
 {
-<div class="">
-    <h4 class="green-text center">There are no posts yet.</h4>
-</div>
+    <div class="">
+        <h4 class="green-text center">There are no posts yet.</h4>
+    </div>
 }
 

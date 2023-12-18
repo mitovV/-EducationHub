@@ -35,7 +35,7 @@ html {
     color: greenyellow;
 }
 
-.lessondetails {
+.lesson-details {
     border-style: solid;
     border-width: thin;
     border-block-color:forestgreen;
@@ -88,12 +88,17 @@ html {
 }
 
 .forum-post {
-    border: 1px solid #ccc;
+    border: 1px solid #aed582;
     margin: 20px;
 }
 
 .forum-title {
-    border: 1px solid #ccc;
+    background-color: rgba(174,213,130,255);
+    border: 1px solid #aed582;
+}
+
+.post-by-category {
+    background-color: rgba(174,213,130,255);
 }
 
 .margin {

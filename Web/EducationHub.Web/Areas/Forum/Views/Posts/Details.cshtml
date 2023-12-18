@@ -20,10 +20,10 @@
                         </div>
                     </div>
                     <div class="col s4 l4 m4 margin left">
-                        <a asp-area="" asp-controller="Users" asp-action="Details" asp-route-id="@comment.UserId" class="orange-text lighten-1">@comment.UserUserName</a>
+                        <a asp-area="" asp-controller="Users" asp-action="Details" asp-route-id="@comment.UserId" class="white-text">@comment.UserUserName</a>
                     </div>
                     <div class="col s12 l4 m4 margin">
-                        <i class="material-icons left orange-text lighten-1">event_note</i><time datetime="@comment.CreatedOn.ToStringLocal()" class="orange-text lighten-1"></time>
+                        <i class="material-icons left white-text">event_note</i><time datetime="@comment.CreatedOn.ToStringLocal()" class="white-text"></time>
                     </div>
                 </div>
                 <div class="margin-left">
@@ -32,7 +32,9 @@
                 <div class="center grey lighten-3">
                     <button class="btn-small center waves-effect waves-light purple lighten-4" onclick="showAddCommentForm(@comment.Id)">Answer</button>
                 </div>
-                @{await DisplayComments(comment.Id);}
+                @{
+                    await DisplayComments(comment.Id);
+                }
             </article>
         }
     }
@@ -40,29 +42,33 @@
 
 <partial name="_TinyMCEPartial" />
 
-<article class="forum-post">
+<article class="forum-post grey lighten-3">
     <div class="forum-title row">
-        <h2 class="center light-green-text lighten-2">@ViewData["Title"]</h2>
+        <h2 class="center white-text">@ViewData["Title"]</h2>
         <div class="col s4 m4 l4">
             <div class="right">
-                <img src="@Model.UserPictureUrl" alt="User picture" class="circle" height="50" />
+                <a asp-area="" asp-controller="Users" asp-action="Details" asp-route-id="@Model.UserId">
+                    <img src="@Model.UserPictureUrl" alt="User picture" class="circle" height="50" />
+                </a>
             </div>
         </div>
         <div class="col s4 l4 m4 margin left">
-            <a asp-area="" asp-controller="Users" asp-action="Details" asp-route-id="@Model.UserId" class="orange-text lighten-1">@Model.UserUserName</a>
+            <a asp-area="" asp-controller="Users" asp-action="Details" asp-route-id="@Model.UserId" class="white-text">@Model.UserUserName</a>
         </div>
         <div class="col s12 l4 m4 margin">
-            <i class="material-icons left orange-text lighten-1">event_note</i><time datetime="@Model.CreatedOn.ToStringLocal()" class="orange-text lighten-1"></time>
+            <i class="material-icons left white-text">event_note</i><time datetime="@Model.CreatedOn.ToStringLocal()" class="white-text"></time>
         </div>
     </div>
     <div class="margin-left">
         @Html.Raw(Model.SanitizedContent)
     </div>
     <div class="center grey lighten-2">
-        <button class="btn-small center waves-effect waves-light orange lighten-1" onclick="showAddCommentForm(0)">Comment</button>
+        <button class="btn-small center waves-effect waves-purple light-green lighten-1" onclick="showAddCommentForm(0)">Comment</button>
     </div>
     <h4 class="center light-green-text lighten-4">Comments</h4>
-    @{ await DisplayComments(null); }
+    @{
+        await DisplayComments(null);
+    }
 </article>
 
 <div class="forum-title forum-post">
@@ -74,12 +80,12 @@
             <textarea name="Content" id="Content" class="form-control"></textarea>
         </div>
         <div class="center">
-            <input id="comment-btn" type="submit" class="btn-small center waves-effect waves-light orange lighten-1" value="Add comment" />
+            <input id="comment-btn" type="submit" class="btn-small center whiet-text light-green lighten-1" value="Add comment" />
         </div>
     </form>
 </div>
 
-@section Scripts{
+@section Scripts {
     <script>
         function showAddCommentForm(parentId) {
             $("#add-comment input[name='ParentId']").val(parentId);
