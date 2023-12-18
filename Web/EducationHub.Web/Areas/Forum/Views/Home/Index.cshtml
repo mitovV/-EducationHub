@@ -29,7 +29,7 @@
         {
             @foreach (var post in Model.Posts)
             {
-                <article class="collection-item forum-post">
+                <article class="collection-item index-post">
                     <div class="head-post">
                         <a asp-controller="Posts" asp-action="Details" asp-route-id="@post.Id"><h6 class="left margin-left light-green-text lighten-2">@post.Title.ToShortString()</h6></a>
                         <a asp-controller="Posts" asp-action="ByCategory" asp-route-id="@post.CategoryId"><h6 class="center light-green-text lighten-2">@post.CategoryName</h6></a>

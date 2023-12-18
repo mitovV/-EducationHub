@@ -94,7 +94,11 @@ html {
 
 .forum-title {
     background-color: rgba(174,213,130,255);
-    border-radius: 15px;
+}
+
+.index-post {
+    border: 1px solid #aed582;
+    margin: 12px;
 }
 
 .post-by-category {

@@ -9,7 +9,7 @@
 
     public class HomeController : ForumController
     {
-        private const int PostsCount = 5;
+        private const int PostsCount = 4;
         private readonly IGetCountsService getCountsService;
         private readonly IPostsService postsService;
 
