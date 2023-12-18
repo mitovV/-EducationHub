@@ -99,6 +99,8 @@ html {
 
 .post-by-category {
     background-color: rgba(174,213,130,255);
+    border-radius: 0px 50px 30px;
+    margin: 20px;
 }
 
 .margin {

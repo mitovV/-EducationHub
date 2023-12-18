@@ -10,7 +10,7 @@
     <section class="row">
         @foreach (var post in Model)
         {
-            <article class="collection-item forum-post">
+            <article class="collection-item">
                 <div class="head-post post-by-category">
                     <a asp-controller="Posts" asp-action="Details" asp-route-id="@post.Id"><h6 class="center white-text">@post.Title</h6></a>
                     <a asp-area="" asp-controller="Users" asp-action="Details" asp-route-id="@post.UserId">
