@@ -10,6 +10,6 @@
 
         public const string AdministratorPassword = "admin@educationhub.com";
 
-        public const string DefaultProfilePicrureUrl = "https://res.cloudinary.com/dgw65zfwf/image/upload/v1606221905/k9xzhcsejevdeohpq0y7.jpg";
+        public const string DefaultProfilePicrureUrl = "https://res.cloudinary.com/dyxeqmpgh/image/upload/v1702826833/avatardefault_92824_svggzm.png";
     }
 }

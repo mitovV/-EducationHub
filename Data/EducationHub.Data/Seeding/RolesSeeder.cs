@@ -24,6 +24,7 @@
             if (role == null)
             {
                 var result = await roleManager.CreateAsync(new Role(roleName));
+
                 if (!result.Succeeded)
                 {
                     throw new Exception(string.Join(Environment.NewLine, result.Errors.Select(e => e.Description)));

@@ -21,37 +21,37 @@
 
             var categories = new List<Category>
             {
-                new Category
+                new ()
                 {
                     Name = "Programing Languages",
                     UserId = user.Id,
                     PictureUrl = "https://res.cloudinary.com/dgw65zfwf/image/upload/v1605711654/EducationHub/Categories/Best-Programming-Languages-to-Start-Learning-Today_tyaj6n.jpg",
                 },
-                new Category
+                new ()
                 {
                     Name = "Basic Math",
                     UserId = user.Id,
                     PictureUrl = "https://res.cloudinary.com/dgw65zfwf/image/upload/v1605711703/EducationHub/Categories/maxresdefault_tvvi97.jpg",
                 },
-                new Category
+                new ()
                 {
                     Name = "Geography",
                     UserId = user.Id,
                     PictureUrl = "https://res.cloudinary.com/dgw65zfwf/image/upload/v1605711726/EducationHub/Categories/geogImg_r_qshnjy.jpg",
                 },
-                new Category
+                new ()
                 {
                     Name = "Chemistry",
                     UserId = user.Id,
                     PictureUrl = "https://res.cloudinary.com/dgw65zfwf/image/upload/v1605711749/EducationHub/Categories/chemistry_logo_yr5fqx.jpg",
                 },
-                new Category
+                new () 
                 {
                     Name = "Cryptocurrencies",
                     UserId = user.Id,
                     PictureUrl = "https://res.cloudinary.com/dyxeqmpgh/image/upload/v1702657999/top-cryptocurrencies_lgmkz9.webp",
                 },
-                new Category
+                new ()
                 {
                     Name = "Biology",
                     UserId = user.Id,

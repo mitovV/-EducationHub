@@ -10,7 +10,6 @@
     public class Post : BaseDeletableModel<int>
     {
         [Required]
-        [MaxLength(TitleMaxLength)]
         public string Title { get; set; }
 
         [Required]

@@ -29,6 +29,7 @@
                               new AdminUserSeeder(),
                               new CategoriesSeeder(),
                               new LessonsSeeder(),
+                              new ForumPostsSeeder(),
                           };
 
             foreach (var seeder in seeders)
