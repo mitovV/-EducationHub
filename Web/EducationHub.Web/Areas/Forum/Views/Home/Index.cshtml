@@ -16,9 +16,28 @@
             @foreach (var category in Model.Categories)
             {
                 <li class="collection-item avatar">
-                    <img src="@category.PictureUrl" class="circle">
+                    <a asp-controller="Posts" asp-action="ByCategory" asp-route-id="@category.Id">
+                        <img src="@category.PictureUrl" class="circle">
+                    </a>
                     <a asp-controller="Posts" asp-action="ByCategory" asp-route-id="@category.Id"><span class="title orange-text lighten-1">@category.Name</span></a>
-                    <span class="right">(@category.PostsCount)</span>
+                    @if (category.PostsCount > 0)
+                    {
+                        <a asp-controller="Posts" asp-action="ByCategory" asp-route-id="@category.Id">
+                        @if (category.PostsCount == 1)
+                        {
+                            <span class="right orange-text lighten-1">@category.PostsCount - post.</span>
+                           
+                        }
+                        else
+                        {
+                            <span class="right orange-text lighten-1">@category.PostsCount - posts.</span>
+                        }
+                        </a>
+                    }
+                    else
+                    {
+                        <span class="right orange-text lighten-1">No posts yet.</span>
+                    }
                 </li>
             }
         </ul>
@@ -33,7 +52,9 @@
                     <div class="head-post">
                         <a asp-controller="Posts" asp-action="Details" asp-route-id="@post.Id"><h6 class="left margin-left light-green-text lighten-2">@post.Title.ToShortString()</h6></a>
                         <a asp-controller="Posts" asp-action="ByCategory" asp-route-id="@post.CategoryId"><h6 class="center light-green-text lighten-2">@post.CategoryName</h6></a>
-                        <img src="@post.UserPictureUrl" class="circle" height="50">
+                        <a asp-area="" asp-controller="Users" asp-action="Details" asp-route-id="@post.UserId">
+                            <img src="@post.UserPictureUrl" class="circle" height="50">
+                        </a>
                         <div class="col margin center">
                             <a asp-area="" asp-controller="Users" asp-action="Details" asp-route-id="@post.UserId" class="orange-text lighten-1">@post.UserUserName.ToShortString()</a>
                         </div>
