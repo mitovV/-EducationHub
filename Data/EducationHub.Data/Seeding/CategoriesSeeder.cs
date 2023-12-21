@@ -25,37 +25,37 @@
                 {
                     Name = "Programing Languages",
                     UserId = user.Id,
-                    PictureUrl = "https://res.cloudinary.com/dgw65zfwf/image/upload/v1605711654/EducationHub/Categories/Best-Programming-Languages-to-Start-Learning-Today_tyaj6n.jpg",
+                    PictureUrl = GlobalConstants.ProgramingLanguagePictureUrl,
                 },
                 new ()
                 {
                     Name = "Basic Math",
                     UserId = user.Id,
-                    PictureUrl = "https://res.cloudinary.com/dgw65zfwf/image/upload/v1605711703/EducationHub/Categories/maxresdefault_tvvi97.jpg",
+                    PictureUrl = GlobalConstants.BasicMathPictureUrl,
                 },
                 new ()
                 {
                     Name = "Geography",
                     UserId = user.Id,
-                    PictureUrl = "https://res.cloudinary.com/dgw65zfwf/image/upload/v1605711726/EducationHub/Categories/geogImg_r_qshnjy.jpg",
+                    PictureUrl = GlobalConstants.GeographyPictureUrl,
                 },
                 new ()
                 {
                     Name = "Chemistry",
                     UserId = user.Id,
-                    PictureUrl = "https://res.cloudinary.com/dgw65zfwf/image/upload/v1605711749/EducationHub/Categories/chemistry_logo_yr5fqx.jpg",
+                    PictureUrl = GlobalConstants.ChemistryPictureUrl,
                 },
                 new () 
                 {
                     Name = "Cryptocurrencies",
                     UserId = user.Id,
-                    PictureUrl = "https://res.cloudinary.com/dyxeqmpgh/image/upload/v1702657999/top-cryptocurrencies_lgmkz9.webp",
+                    PictureUrl = GlobalConstants.CryptocurrenciesPictureUrl,
                 },
                 new ()
                 {
                     Name = "Biology",
                     UserId = user.Id,
-                    PictureUrl = "https://res.cloudinary.com/dyxeqmpgh/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1702660218/Biology_ozebtj.jpg",
+                    PictureUrl = GlobalConstants.BiologyPictureUrl,
                 },
             };
 
