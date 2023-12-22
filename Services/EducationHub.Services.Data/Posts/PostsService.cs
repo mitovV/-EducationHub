@@ -34,6 +34,31 @@
             return post.Id;
         }
 
+        public async Task DeleteAsync(int id)
+        {
+            var post = this.postsRepository.All().FirstOrDefault(p => p.Id == id);
+
+            if (post == null)
+            {
+                return;
+            }
+
+            this.postsRepository.Delete(post);
+            await this.postsRepository.SaveChangesAsync();
+        }
+
+        public async Task EditAsync(int id, string title, string content, int categoryId)
+        {
+            var post = await this.postsRepository.All().Where(p => p.Id == id).FirstOrDefaultAsync();
+
+            post.Title = title;
+            post.Content = content;
+            post.CategoryId = categoryId;
+
+            this.postsRepository.Update(post);
+            await this.postsRepository.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<T>> GetByCategoryIdAsync<T>(int id, int page, int itemsPerPage)
         => await this.postsRepository
                 .AllAsNoTracking()

@@ -1,6 +1,7 @@
 ﻿namespace EducationHub.Web.Areas.Forum.Controllers
 {
     using System.Security.Claims;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
@@ -120,6 +121,26 @@
             viewModel.CategoriesItems = await this.categoriesService.AllAsync<CategoriesItemsViewModel>();
 
             return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditPostViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View();
+            }
+
+            await this.postsService.EditAsync(model.Id, model.Title, model.Content, model.CategoryId);
+
+            return this.RedirectToAction(nameof(this.ByUser));
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            await this.postsService.DeleteAsync(id);
+
+            return this.RedirectToAction(nameof(this.ByUser));
         }
     }
 }

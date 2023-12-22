@@ -18,5 +18,9 @@
         int GetCountByCategory(int id);
 
         Task<IEnumerable<T>> GetByUserIdAsync<T>(string userId);
+
+        Task EditAsync(int id, string title, string content, int categoryId);
+
+        Task DeleteAsync(int id);
     }
 }

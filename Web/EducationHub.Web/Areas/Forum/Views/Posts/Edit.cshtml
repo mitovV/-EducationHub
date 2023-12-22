@@ -10,18 +10,17 @@
 <h4 class="center light-green-text lighten-2">Post</h4>
 
 <partial name="_TinyMCEPartial" />
-<partial name="_TinyMCEPartial" />
 <div class="row">
-    <div class="col center">
+    <div class="col s6 m10 l10 center offset-s3 offset-l1 offset-m1">
         <form asp-action="Edit" method="post">
             <div asp-validation-summary="All" class="red-text center"></div>
             <div class="input-field col s12 l6 offset-l3">
-                <label asp-for="Title"></label>
-                <input asp-for="Title" class="validate character-counter" data-length="@TitleMaxLength" />
+                <label asp-for="Title" class="light-green-text lighten-2"></label>
+                <input asp-for="Title" class="validate character-counter center light-green-text lighten-2" data-length="@TitleMaxLength" />
                 <span asp-validation-for="Title" class="red-text center"></span>
             </div>
             <div class="input col s12 l6 offset-l3">
-                <label asp-for="Content"></label>
+                <label asp-for="Content" class="light-green-text lighten-2"></label>
                 <textarea asp-for="Content"></textarea>
                 <span asp-validation-for="Content" class="red-text center"></span>
             </div>
@@ -32,7 +31,7 @@
                         <option value="@item.Id" data-icon="@item.PictureUrl">@item.Name</option>
                     }
                 </select>
-                <label asp-for="CategoryId"></label>
+                <label asp-for="CategoryId" class="light-green-text lighten-2"></label>
             </div>
             <div class="input-field col s12 l6 offset-l3">
                 <button type="submit" class="btn green waves-effect waves-light">Save</button>
