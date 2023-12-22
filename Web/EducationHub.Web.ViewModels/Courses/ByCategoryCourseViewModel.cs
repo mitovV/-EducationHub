@@ -3,6 +3,7 @@
     using System;
 
     using Data.Models;
+    using EducationHub.Web.Infrastructure.Extensions;
     using Ganss.Xss;
     using Services.Mapping;
 
@@ -16,7 +17,7 @@
 
         public string SanitizedContent => new HtmlSanitizer().Sanitize(this.Description);
 
-        public string ShortTitle => this.Title.Length > 18 ? this.Title.Substring(0, 18) + "..." : this.Title;
+        public string ShortTitle => this.Title.Length > 18 ? this.Title.ToShortString(18) : this.Title;
 
         public string UserUsername { get; set; }
 

@@ -12,5 +12,9 @@
         Task<T> GetByIdAsync<T>(int id);
 
         Task<int> CratePostAsync(string title, string content, string userId, int categoryId);
+
+        Task<IEnumerable<T>> GetByCategoryIdAsync<T>(int id, int page, int itemsPerPage);
+
+        int GetCountByCategory(int id);
     }
 }

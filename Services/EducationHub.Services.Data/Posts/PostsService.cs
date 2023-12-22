@@ -34,12 +34,28 @@
             return post.Id;
         }
 
+        public async Task<IEnumerable<T>> GetByCategoryIdAsync<T>(int id, int page, int itemsPerPage)
+        => await this.postsRepository
+                .AllAsNoTracking()
+                .Where(p => p.CategoryId == id)
+                .OrderByDescending(p => p.CreatedOn)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .To<T>()
+                .ToListAsync();
+
         public async Task<T> GetByIdAsync<T>(int id)
             => await this.postsRepository
                 .AllAsNoTracking()
                 .Where(p => p.Id == id)
                 .To<T>()
                 .FirstOrDefaultAsync();
+
+        public int GetCountByCategory(int id)
+        => this.postsRepository
+                .All()
+                .Where(p => p.CategoryId == id)
+                .Count();
 
         public async Task<IEnumerable<T>> GetPostsAsync<T>(int count)
             => await this.postsRepository

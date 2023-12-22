@@ -21,9 +21,42 @@
             this.categoriesService = categoriesService;
         }
 
-        public async Task<IActionResult> ByCategory(int id)
+        public async Task<IActionResult> ByCategory(int id, int page = 1)
         {
-            var viewModel = await this.postsService.GetPostsByCategoryAsync<HomePagePostViewModel>(id);
+            const int ItemsPerPage = 4;
+
+            if (page < 1)
+            {
+                page = 1;
+            }
+
+            var viewModel = new PagingPostsViewModel
+            {
+                CategoryId = id,
+                ItemsPerPage = ItemsPerPage,
+                PageNumber = page,
+                ItemsCount = this.postsService.GetCountByCategory(id),
+                Posts = await this.postsService.GetByCategoryIdAsync<HomePagePostViewModel>(id, page, ItemsPerPage),
+            };
+
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
+
+            if (page > viewModel.PagesCount)
+            {
+                page = viewModel.PagesCount;
+
+                viewModel = new PagingPostsViewModel
+                {
+                    CategoryId = id,
+                    ItemsPerPage = ItemsPerPage,
+                    PageNumber = page,
+                    ItemsCount = this.postsService.GetCountByCategory(id),
+                    Posts = await this.postsService.GetByCategoryIdAsync<HomePagePostViewModel>(id, page, ItemsPerPage),
+                };
+            }
 
             return this.View(viewModel);
         }
