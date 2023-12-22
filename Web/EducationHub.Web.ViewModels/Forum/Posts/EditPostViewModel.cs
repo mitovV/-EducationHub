@@ -1,14 +1,18 @@
-﻿namespace EducationHub.Data.Models
+﻿namespace EducationHub.Web.ViewModels.Forum.Posts
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using Data.Common.Models;
+    using EducationHub.Data.Models;
+    using EducationHub.Services.Mapping;
+    using EducationHub.Web.ViewModels.Categories;
 
     using static EducationHub.Data.Common.Validations.DataValidation.Post;
 
-    public class Post : BaseDeletableModel<int>
+    public class EditPostViewModel : IMapFrom<Post>
     {
+        public int Id { get; set; }
+
         [Required]
         [MinLength(TitleMinLength)]
         [MaxLength(TitleMaxLength)]
@@ -26,6 +30,7 @@
 
         public virtual Category Category { get; set; }
 
-        public virtual ICollection<Comment> Comments { get; set; }
+        public IEnumerable<CategoriesItemsViewModel> CategoriesItems { get; set; }
+
     }
 }

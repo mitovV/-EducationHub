@@ -1,0 +1,73 @@
+﻿@using EducationHub.Web.Infrastructure.Extensions
+@using EducationHub.Web.ViewModels.Forum.Home
+@using EducationHub.Web.ViewModels.Forum.Posts
+@model IEnumerable<ByUserViewModel>
+
+@{
+    ViewData["Title"] = "My posts";
+}
+
+@if (Model.Any())
+{
+    <h1 class="center light-green-text lighten-2">@ViewData["Title"]</h1>
+
+    <table class="responsive-table striped centered highlight light-green lighten-2">
+        <thead>
+            <tr>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Category
+                </th>
+                <th>
+                    Content
+                </th>
+                <th>
+                    Created on
+                </th>
+                <th>
+                    Modified on
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Title.ToShortString()
+                    </td>
+                    <td>
+                        @item.Category.Name
+                    </td>
+                    <td>
+                        @item.Content.ToShortString()
+                    </td>
+                    <td>
+                        <time datetime="@item.CreatedOn.ToStringLocal()"></time>
+                    </td>
+                    <td>
+                        @if (item.ModifiedOn == null)
+                        {
+                            @:No record
+                        }
+                        else
+                        {
+                            <time datetime="@item.ModifiedOn.ToStringLocal()"></time>
+                        }
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn-small btn-floating green waves-effect waves-light"><i class="material-icons">create</i>Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="">
+        <h4 class="green-text center">You have no posts yet.</h4>
+    </div>
+}

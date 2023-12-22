@@ -61,6 +61,15 @@
             return this.View(viewModel);
         }
 
+        public async Task<IActionResult> ByUser()
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            var viewModel = await this.postsService.GetByUserIdAsync<ByUserViewModel>(userId);
+
+            return this.View(viewModel);
+        }
+
         public async Task<IActionResult> Details(int id)
         {
             var viewModel = await this.postsService.GetByIdAsync<PostDetailsViewModel>(id);
@@ -97,6 +106,20 @@
             var id = await this.postsService.CratePostAsync(model.Title, model.Content, userId, model.CategoryId);
 
             return this.RedirectToAction(nameof(this.Details), new { id });
+        }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var viewModel = await this.postsService.GetByIdAsync<EditPostViewModel>(id);
+
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
+
+            viewModel.CategoriesItems = await this.categoriesService.AllAsync<CategoriesItemsViewModel>();
+
+            return this.View(viewModel);
         }
     }
 }

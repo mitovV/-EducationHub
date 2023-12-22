@@ -16,5 +16,7 @@
         Task<IEnumerable<T>> GetByCategoryIdAsync<T>(int id, int page, int itemsPerPage);
 
         int GetCountByCategory(int id);
+
+        Task<IEnumerable<T>> GetByUserIdAsync<T>(string userId);
     }
 }

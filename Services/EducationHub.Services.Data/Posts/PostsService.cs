@@ -51,6 +51,13 @@
                 .To<T>()
                 .FirstOrDefaultAsync();
 
+        public async Task<IEnumerable<T>> GetByUserIdAsync<T>(string userId)
+            => await this.postsRepository
+                .AllAsNoTracking()
+                .Where(p => p.UserId == userId)
+                .To<T>()
+                .ToListAsync();
+
         public int GetCountByCategory(int id)
         => this.postsRepository
                 .All()
