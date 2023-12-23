@@ -14,8 +14,12 @@ html {
     }
 }
 
+.select-dropdown {
+    color: #8bc576;
+}
+
 .notfound {
-    max-width:40%;
+    max-width: 40%;
 }
 
 .border-top {

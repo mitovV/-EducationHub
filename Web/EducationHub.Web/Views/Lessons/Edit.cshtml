@@ -16,17 +16,17 @@
             <div asp-validation-summary="All" class="red-text center"></div>
             <div class="input-field col s12 l6 offset-l3">
                 <label asp-for="Title" class="light-green-text lighten-2"></label>
-                <input asp-for="Title" class="validate character-counter" data-length="@TitleMaxLength" />
+                <input asp-for="Title" class="validate character-counter light-green-text lighten-2" data-length="@TitleMaxLength" />
                 <span asp-validation-for="Title" class="red-text center"></span>
             </div>
             <div class="input col s12 l6 offset-l3">
                 <label asp-for="Description" class="light-green-text lighten-2"></label>
-                <textarea asp-for="Description"></textarea>
+                <textarea asp-for="Description" class="light-green-text lighten-2"></textarea>
                 <span asp-validation-for="Description" class="red-text center"></span>
             </div>
             <div class="input-field col s12 l6 offset-l3">
                 <label asp-for="VideoUrl" class="light-green-text lighten-2"></label>
-                <input asp-for="VideoUrl" class="validate character-counter" data-length="@VideoUrlMaxLength" />
+                <input asp-for="VideoUrl" class="validate character-counter light-green-text lighten-2" data-length="@VideoUrlMaxLength" />
                 <span asp-validation-for="VideoUrl" class="red-text center"></span>
             </div>
             <div class="input-field col s12 l6 offset-l3">
