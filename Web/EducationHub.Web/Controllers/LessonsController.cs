@@ -67,6 +67,11 @@
                 Lessons = await this.lessonsService.GetByCategoryIdAsync<ByCategoryLessonViewModel>(id, page, ItemsPerPage),
             };
 
+            if (viewModel.PagesCount == 0)
+            {
+                return this.NotFound();
+            }
+
             if (viewModel == null)
             {
                 return this.NotFound();
