@@ -16,5 +16,12 @@
     <div class="col s6 l6 center green-text"><strong>@TempData["Message"]</strong></div>
 }
 
-<partial name="_ListingResoursesPartial" model="@Model" />
+@if (Model.Any())
+{
+    <partial name="_ListingResoursesPartial" model="@Model" />
+}
+else
+{
+    <h4 class ="center light-green-text lighten-2">You have no courses yet.</h4>
+}
 
