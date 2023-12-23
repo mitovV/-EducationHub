@@ -1,4 +1,5 @@
-﻿@using EducationHub.Web.ViewModels.Courses
+﻿@using EducationHub.Web.Infrastructure.Extensions
+@using EducationHub.Web.ViewModels.Courses
 @model PagingCoursesViewModel
 @{
     ViewData["Title"] = "Courses";
@@ -14,7 +15,7 @@
                 <img class="activator responsive-img" src="~/Images/office.jpg">
             </div>
             <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">@course.ShortTitle<i class="material-icons right">more_vert</i></span>
+                <span class="card-title activator grey-text text-darken-4">@course.Title.ToShortString(18)<i class="material-icons right">more_vert</i></span>
                 <div>
                     <span><i class="material-icons left green-text">event_note</i> Created at: <time datetime=" @course.CreatedOn.ToStringLocal()"></time></span>
                 </div>
