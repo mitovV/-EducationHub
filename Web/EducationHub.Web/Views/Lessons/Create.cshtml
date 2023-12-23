@@ -19,20 +19,20 @@
                         <option value="@item.Id" data-icon="@item.PictureUrl">@item.Name</option>
                     }
                 </select>
-                <label asp-for="CategoryId"></label>
+                <label asp-for="CategoryId" class="light-green-text lighten-2"></label>
             </div>
             <div class="input-field">
                 <input asp-for="Title" class="validate character-counter" data-length="@TitleMaxLength">
-                <label asp-for="Title"></label>
+                <label asp-for="Title" class="light-green-text lighten-2"></label>
                 <span asp-validation-for="Title" class="red-text center"></span>
             </div>
             <div class="input-field">
                 <input asp-for="VideoUrl" class="validate character-counter" data-length="@VideoUrlMaxLength">
-                <label asp-for="VideoUrl"></label>
+                <label asp-for="VideoUrl" class="light-green-text lighten-2"></label>
                 <span asp-validation-for="VideoUrl" class="red-text center"></span>
             </div>
             <div class="input">
-                <label asp-for="Description"></label>
+                <label asp-for="Description" class="light-green-text lighten-2"></label>
                 <textarea asp-for="Description"></textarea>
                 <span asp-validation-for="Description" class="red-text center"></span>
             </div>
