@@ -34,6 +34,7 @@
         public async Task<IEnumerable<T>> AllAsync<T>()
             => await this.repository
                 .AllAsNoTracking()
+                .OrderBy(x => x.Name)
                 .To<T>()
                 .ToListAsync();
 
