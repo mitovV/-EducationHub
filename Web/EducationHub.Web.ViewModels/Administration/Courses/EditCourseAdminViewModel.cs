@@ -9,7 +9,7 @@
     using Services.Mapping;
     using Web.ViewModels.Categories;
 
-    public class AdminEditCourseViewModel : BaseDeletableModel<string>, IMapFrom<Course>
+    public class EditCourseAdminViewModel : BaseDeletableModel<string>, IMapFrom<Course>
     {
         [Required]
         [MaxLength(DataValidation.Course.TitleMaxLength)]

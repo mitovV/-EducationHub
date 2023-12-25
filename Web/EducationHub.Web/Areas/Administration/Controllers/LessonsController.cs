@@ -7,7 +7,7 @@
     using Microsoft.AspNetCore.Mvc;
     using ViewModels.Categories;
     using Services.Data.Categories;
-    using EducationHub.Data.Models;
+    using EducationHub.Web.ViewModels.Lessons;
 
     public class LessonsController : AdministrationController
     {
@@ -20,8 +20,49 @@
             this.categoriesService = categoriesService;
         }
 
-        public async Task<IActionResult> All()
-         => this.View(await this.lessonsService.GetAllNotRelatedToCourseWithDeletedAsync<NotRelatedLessonAdminViewModel>());
+        public async Task<IActionResult> All(int page = 1)
+        {
+            const int ItemsPerPage = 5;
+
+            if (page < 1)
+            {
+                page = 1;
+            }
+
+            var viewModel = new PagingLessonsAdminViewModel
+            {
+                ItemsPerPage = ItemsPerPage,
+                PageNumber = page,
+                ItemsCount = this.lessonsService.GetAllNotRelatedWithDelethedCount(),
+                Lessons = await this.lessonsService.GetAllNotRelatedToCourseWithDeletedAsync<NotRelatedLessonAdminViewModel>(page, ItemsPerPage),
+            };
+
+            if (viewModel.PagesCount == 0)
+            {
+                return this.NotFound();
+            }
+
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
+
+            if (page > viewModel.PagesCount)
+            {
+                page = viewModel.PagesCount;
+
+                viewModel = new PagingLessonsAdminViewModel
+                {
+                    ItemsPerPage = ItemsPerPage,
+                    PageNumber = page,
+                    ItemsCount = this.lessonsService.GetAllNotRelatedWithDelethedCount(),
+                    Lessons = await this.lessonsService
+                    .GetAllNotRelatedToCourseWithDeletedAsync<NotRelatedLessonAdminViewModel>(page, ItemsPerPage),
+                };
+            }
+
+            return this.View(viewModel);
+        }
 
         public async Task<IActionResult> Edit(string id)
         {

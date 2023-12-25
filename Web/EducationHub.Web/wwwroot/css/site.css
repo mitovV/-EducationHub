@@ -45,13 +45,6 @@ html {
     box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
-.forum-posts-pagination {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    margin-bottom: 55px;
-}
 button.accept-policy {
     font-size: 1rem;
     line-height: inherit;

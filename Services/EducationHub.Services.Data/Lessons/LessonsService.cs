@@ -115,11 +115,20 @@
             await this.lessonsRepository.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<T>> GetAllNotRelatedToCourseWithDeletedAsync<T>()
-            => await this.lessonsRepository
+        public async Task<IEnumerable<T>> GetAllNotRelatedToCourseWithDeletedAsync<T>(int page, int itemsPerPage)
+        => await this.lessonsRepository
+                .AllAsNoTrackingWithDeleted()
+                .Where(l => l.CourseId == null)
+                .OrderByDescending(l => l.CreatedOn)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .To<T>()
+                .ToListAsync();
+
+        public int GetAllNotRelatedWithDelethedCount()
+            => this.lessonsRepository
             .AllWithDeleted()
             .Where(l => l.CourseId == null)
-            .To<T>()
-            .ToListAsync();
+            .Count();
     }
 }

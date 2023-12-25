@@ -21,8 +21,10 @@
 
         Task<IEnumerable<T>> GetAllWithDeletedAsync<T>();
 
-        Task<IEnumerable<T>> GetAllNotRelatedToCourseWithDeletedAsync<T>();
+        Task<IEnumerable<T>> GetAllNotRelatedToCourseWithDeletedAsync<T>(int page, int itemsPerPage);
 
         Task DeleteAllInCourseAsync(string id);
+
+        int GetAllNotRelatedWithDelethedCount();
     }
 }

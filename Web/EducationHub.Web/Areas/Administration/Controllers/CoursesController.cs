@@ -35,7 +35,7 @@
 
         public async Task<IActionResult> Edit(string id)
         {
-            var viewModel = await this.coursesService.GetByIdWithDeletedAsync<AdminEditCourseViewModel>(id);
+            var viewModel = await this.coursesService.GetByIdWithDeletedAsync<EditCourseAdminViewModel>(id);
 
             if (viewModel == null)
             {
@@ -48,7 +48,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(AdminEditCourseViewModel model)
+        public async Task<IActionResult> Edit(EditCourseAdminViewModel model)
         {
             if (!this.ModelState.IsValid)
             {
