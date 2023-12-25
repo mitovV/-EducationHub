@@ -1,4 +1,5 @@
-﻿@using EducationHub.Web.ViewModels.Administration.Courses
+﻿@using EducationHub.Web.Infrastructure.Extensions
+@using EducationHub.Web.ViewModels.Administration.Courses
 @model IEnumerable<CourseAdminViewModel>
 
 @{
@@ -29,6 +30,9 @@ else
                     Category
                 </th>
                 <th>
+                    Description
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.IsDeleted)
                 </th>
                 <th>
@@ -55,6 +59,10 @@ else
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.CategoryName)
+                    </td>
+                    <td>
+
+                        @item.Description.ToShortString()
                     </td>
                     <td>
                         @if (item.IsDeleted == false)

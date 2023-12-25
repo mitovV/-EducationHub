@@ -6,16 +6,23 @@
     using Microsoft.AspNetCore.Mvc;
     using Services.Data.Courses;
     using ViewModels.Administration.Courses;
+    using Web.ViewModels.Categories;
+    using Services.Data.Categories;
 
     public class CoursesController : AdministrationController
     {
         private readonly ICoursesService coursesService;
         private readonly ILessonsService lessonsService;
+        private readonly ICategoriesService categoriesService;
 
-        public CoursesController(ICoursesService coursesService, ILessonsService lessonsService)
+        public CoursesController(
+            ICoursesService coursesService,
+            ILessonsService lessonsService,
+            ICategoriesService categoriesService)
         {
             this.coursesService = coursesService;
             this.lessonsService = lessonsService;
+            this.categoriesService = categoriesService;
         }
 
         public async Task<IActionResult> All()
@@ -34,6 +41,8 @@
             {
                 return this.NotFound();
             }
+
+            viewModel.CategoriesItems = await this.categoriesService.AllAsync<CategoriesItemsViewModel>();
 
             return this.View(viewModel);
         }

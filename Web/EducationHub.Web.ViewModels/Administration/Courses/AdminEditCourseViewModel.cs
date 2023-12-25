@@ -1,12 +1,13 @@
 ﻿namespace EducationHub.Web.ViewModels.Administration.Courses
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using Data.Common.Models;
+    using Data.Common.Validations;
     using Data.Models;
     using Services.Mapping;
-
-    using Data.Common.Validations;
+    using Web.ViewModels.Categories;
 
     public class AdminEditCourseViewModel : BaseDeletableModel<string>, IMapFrom<Course>
     {
@@ -19,9 +20,12 @@
         public string Description { get; set; }
 
         [Required]
+        [Display(Name = "User")]
         public string UserUserName { get; set; }
 
-        [Range(1, int.MaxValue)]
+        [Display(Name = "Category")]
         public int CategoryId { get; set; }
+
+        public IEnumerable<CategoriesItemsViewModel> CategoriesItems { get; set; }
     }
 }
