@@ -109,15 +109,19 @@ Knowledge sharing platform
 
 ### Home
 
-![Forum](https://github.com/mitovV/EducationHub/assets/43573153/0ef3d736-acd1-4204-8ef3-dba731787cd0)
+![Forum](https://github.com/mitovV/EducationHub/assets/43573153/3cb89d50-4f7e-4171-a555-3c0a0e28edaf)
 
 ### Create post
 
 ![Create Post ](https://github.com/mitovV/EducationHub/assets/43573153/7804ed8e-73bc-4d4c-bd28-5c96292d1c49)
 
+### By Category
+
+![By Catagory](https://github.com/mitovV/EducationHub/assets/43573153/d7c96ca4-5ad5-4a78-8e48-4e279a1f1afd)
+
 ### Post details
 
-![Post Details](https://github.com/mitovV/EducationHub/assets/43573153/7b41bfba-3720-44dd-a655-58be48189b90)
+![Post details](https://github.com/mitovV/EducationHub/assets/43573153/a752278f-4480-4a06-9de4-577dcfe89a47)
 
 ### NotFound Page
 
