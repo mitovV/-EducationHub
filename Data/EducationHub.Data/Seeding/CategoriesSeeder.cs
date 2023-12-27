@@ -45,7 +45,7 @@
                     UserId = user.Id,
                     PictureUrl = GlobalConstants.ChemistryPictureUrl,
                 },
-                new () 
+                new ()
                 {
                     Name = "Cryptocurrencies",
                     UserId = user.Id,

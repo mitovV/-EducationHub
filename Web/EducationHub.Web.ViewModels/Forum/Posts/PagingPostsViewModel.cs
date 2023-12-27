@@ -9,6 +9,5 @@
         public int CategoryId { get; set; }
 
         public IEnumerable<HomePagePostViewModel> Posts { get; set; }
-
     }
 }

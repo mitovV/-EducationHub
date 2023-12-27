@@ -1,12 +1,12 @@
 ﻿namespace EducationHub.Data.Seeding
 {
-    using EducationHub.Common;
-    using EducationHub.Data.Models;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
+
+    using EducationHub.Common;
+    using EducationHub.Data.Models;
 
     internal class CoursesSeeder : ISeeder
     {
@@ -16,6 +16,7 @@
             {
                 return;
             }
+
             var categoryName = "programing languages";
 
             var user = dbContext.Users.FirstOrDefault(u => u.Email == GlobalConstants.AdministratorEmail);
@@ -35,7 +36,7 @@
                     Title = "C# for Beginners Video Series",
                     Description = "Get a full Intro to C# video series, Scott Hanselman and Kendra Havens review the basics of C# from building a simple Hello World application to knowing about Object Oriented Programming.",
                     UserId = user.Id,
-                    CategoryId =category.Id,
+                    CategoryId = category.Id,
                 },
             };
 

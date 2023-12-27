@@ -5,6 +5,5 @@
     public class PagingLessonsAdminViewModel : PagingViewModel
     {
         public IEnumerable<NotRelatedLessonAdminViewModel> Lessons { get; set; }
-
     }
 }

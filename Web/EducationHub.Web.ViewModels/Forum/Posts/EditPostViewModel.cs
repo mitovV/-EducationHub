@@ -33,6 +33,5 @@
         public virtual Category Category { get; set; }
 
         public IEnumerable<CategoriesItemsViewModel> CategoriesItems { get; set; }
-
     }
 }
