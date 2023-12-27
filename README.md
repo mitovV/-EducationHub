@@ -25,7 +25,7 @@ Knowledge sharing platform
 
 ### Logged in user
 
-![logged in user](https://github.com/mitovV/EducationHub/assets/43573153/9344d0b0-9efe-49ed-a23b-63bb4eed9f78)
+![Categories](https://github.com/mitovV/EducationHub/assets/43573153/6a52ffbc-2ec2-45f9-b88e-d6ad3934a422)
 
 ### My resources
 
@@ -95,7 +95,7 @@ Knowledge sharing platform
 
 ### Categories
 
-![Categories](https://github.com/mitovV/EducationHub/assets/43573153/009a080a-db22-406c-a428-de3f8197cb32)
+![Categories](https://github.com/mitovV/EducationHub/assets/43573153/5e35680d-bb75-440e-ae57-1a9b9bbb2ca6)
 
 ### Courses
 
@@ -103,7 +103,7 @@ Knowledge sharing platform
 
 ### Lessons
 
-![Lessons](https://github.com/mitovV/EducationHub/assets/43573153/aba87624-7806-4471-9c9c-ea68b10ec3dd)
+![Lessons](https://github.com/mitovV/EducationHub/assets/43573153/d93a3c55-81a6-473b-9757-d773cbb020a0)
 
 ## Forum
 
