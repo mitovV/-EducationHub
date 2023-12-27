@@ -60,7 +60,7 @@
             {
                 this.host.Dispose();
                 this.process.CloseMainWindow();
-                this.process.Dispose();// Be sure to stop Selenium Standalone
+                this.process.Dispose(); // Be sure to stop Selenium Standalone
             }
         }
 
