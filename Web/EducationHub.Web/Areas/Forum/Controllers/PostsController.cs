@@ -1,7 +1,6 @@
 ﻿namespace EducationHub.Web.Areas.Forum.Controllers
 {
     using System.Security.Claims;
-    using System.Threading;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
@@ -33,7 +32,8 @@
 
             var viewModel = new PagingPostsViewModel
             {
-                CategoryId = id,
+                Actoin = "ByCategory",
+                RouteId = id,
                 ItemsPerPage = ItemsPerPage,
                 PageNumber = page,
                 ItemsCount = this.postsService.GetCountByCategory(id),
@@ -49,14 +49,10 @@
             {
                 page = viewModel.PagesCount;
 
-                viewModel = new PagingPostsViewModel
-                {
-                    CategoryId = id,
-                    ItemsPerPage = ItemsPerPage,
-                    PageNumber = page,
-                    ItemsCount = this.postsService.GetCountByCategory(id),
-                    Posts = await this.postsService.GetByCategoryIdAsync<HomePagePostViewModel>(id, page, ItemsPerPage),
-                };
+                viewModel.PageNumber = page;
+                viewModel.Posts = await this
+                    .postsService
+                    .GetByCategoryIdAsync<HomePagePostViewModel>(id, page, ItemsPerPage);
             }
 
             return this.View(viewModel);

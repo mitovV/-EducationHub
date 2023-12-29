@@ -4,6 +4,10 @@
 
     public class PagingViewModel
     {
+        public string Actoin { get; set; }
+
+        public int? RouteId { get; set; }
+
         public int PageNumber { get; set; }
 
         public bool HasPreviousPage => this.PageNumber > 1;

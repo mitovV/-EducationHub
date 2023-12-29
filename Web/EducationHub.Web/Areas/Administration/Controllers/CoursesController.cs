@@ -8,6 +8,8 @@
     using ViewModels.Administration.Courses;
     using Web.ViewModels.Categories;
     using Services.Data.Categories;
+    using Azure;
+    using EducationHub.Web.ViewModels.Administration.Lessons;
 
     public class CoursesController : AdministrationController
     {
@@ -25,8 +27,45 @@
             this.categoriesService = categoriesService;
         }
 
-        public async Task<IActionResult> All()
-            => this.View(await this.coursesService.AllWithDeletedAsync<CourseAdminViewModel>());
+        public async Task<IActionResult> All(int page)
+        {
+            const int ItemsPerPage = 5;
+
+            if (page < 1)
+            {
+                page = 1;
+            }
+
+            var viewModel = new PagingCoursesAdminViewModel
+            {
+                Actoin = "All",
+                ItemsPerPage = ItemsPerPage,
+                PageNumber = page,
+                ItemsCount = this.coursesService.GetAllWithDelethedCount(),
+                Courses = await this.coursesService.GetAllWithDeletedAsync<CourseAdminViewModel>(page, ItemsPerPage),
+            };
+
+            if (viewModel.PagesCount == 0)
+            {
+                return this.NotFound();
+            }
+
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
+
+            if (page > viewModel.PagesCount)
+            {
+                page = viewModel.PagesCount;
+
+                viewModel.PageNumber = page;
+                viewModel.Courses = await this.coursesService
+                    .GetAllWithDeletedAsync<CourseAdminViewModel>(page, ItemsPerPage);
+            }
+
+            return this.View(viewModel);
+        }
 
         public IActionResult Create()
         {

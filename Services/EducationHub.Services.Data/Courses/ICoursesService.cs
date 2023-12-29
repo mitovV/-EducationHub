@@ -24,5 +24,9 @@
         int GetCountByCategory(int id);
 
         Task EditAsync(string id, string title, string description, bool isDeleted, int categoryId);
+
+        int GetAllWithDelethedCount();
+
+        Task<IEnumerable<T>> GetAllWithDeletedAsync<T>(int page, int itemsPerPage);
     }
 }

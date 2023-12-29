@@ -7,7 +7,6 @@
     using Microsoft.AspNetCore.Mvc;
     using ViewModels.Categories;
     using Services.Data.Categories;
-    using EducationHub.Web.ViewModels.Lessons;
 
     public class LessonsController : AdministrationController
     {
@@ -31,6 +30,7 @@
 
             var viewModel = new PagingLessonsAdminViewModel
             {
+                Actoin = "All",
                 ItemsPerPage = ItemsPerPage,
                 PageNumber = page,
                 ItemsCount = this.lessonsService.GetAllNotRelatedWithDelethedCount(),
@@ -51,14 +51,9 @@
             {
                 page = viewModel.PagesCount;
 
-                viewModel = new PagingLessonsAdminViewModel
-                {
-                    ItemsPerPage = ItemsPerPage,
-                    PageNumber = page,
-                    ItemsCount = this.lessonsService.GetAllNotRelatedWithDelethedCount(),
-                    Lessons = await this.lessonsService
-                    .GetAllNotRelatedToCourseWithDeletedAsync<NotRelatedLessonAdminViewModel>(page, ItemsPerPage),
-                };
+                viewModel.PageNumber = page;
+                viewModel.Lessons = await this.lessonsService
+                    .GetAllNotRelatedToCourseWithDeletedAsync<NotRelatedLessonAdminViewModel>(page, ItemsPerPage);
             }
 
             return this.View(viewModel);

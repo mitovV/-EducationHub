@@ -1,6 +1,6 @@
 ﻿@using EducationHub.Web.Infrastructure.Extensions
 @using EducationHub.Web.ViewModels.Administration.Courses
-@model IEnumerable<CourseAdminViewModel>
+@model PagingCoursesAdminViewModel
 
 @{
     ViewData["Title"] = "Courses";
@@ -11,7 +11,7 @@
 <p class="center">
     <a class="btn btn-small" asp-action="Create">Create New</a>
 </p>
-@if (!Model.Any())
+@if (!Model.Courses.Any())
 {
     <h4 class ="center light-green-text lighten-2">There are no courses yet!</h4>
 }
@@ -21,7 +21,7 @@ else
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Title)
+                    Title
                 </th>
                 <th>
                     User
@@ -33,39 +33,38 @@ else
                     Description
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.IsDeleted)
+                   IsDeleted
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.DeletedOn)
+                    DeletedOn
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.CreatedOn)
+                    CreatedOn
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.ModifiedOn)
+                    ModifiedOn
                 </th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var course in Model.Courses)
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Title)
+                        @Html.DisplayFor(modelItem => course.Title)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.UserUserName)
+                        @Html.DisplayFor(modelItem => course.UserUserName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.CategoryName)
+                        @Html.DisplayFor(modelItem => course.CategoryName)
                     </td>
                     <td>
 
-                        @item.Description.ToShortString()
+                        @course.Description.ToShortString()
                     </td>
                     <td>
-                        @if (item.IsDeleted == false)
+                        @if (course.IsDeleted == false)
                         {
                             @:No
                         }
@@ -75,35 +74,36 @@ else
                         }
                     </td>
                     <td>
-                        @if (item.DeletedOn == null)
+                        @if (course.DeletedOn == null)
                         {
                             @:No record
                         }
                         else
                         {
-                            <time datetime="@item.DeletedOn.ToStringLocal()"></time>
+                            <time datetime="@course.DeletedOn.ToStringLocal()"></time>
                         }
                     </td>
                     <td>
-                        <time datetime="@item.CreatedOn.ToStringLocal()"></time>
+                        <time datetime="@course.CreatedOn.ToStringLocal()"></time>
                     </td>
                     <td>
-                        @if (item.ModifiedOn == null)
+                        @if (course.ModifiedOn == null)
                         {
                             @:No record
                         }
                         else
                         {
-                            <time datetime="@item.ModifiedOn.ToStringLocal()"></time>
+                            <time datetime="@course.ModifiedOn.ToStringLocal()"></time>
                         }
                     </td>
                     <td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn-small blue waves-effect waves-light">Edit</a>
-                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn-small red waves-effect waves-light">Delete</a>
+                        <a asp-action="Edit" asp-route-id="@course.Id" class="btn-small blue waves-effect waves-light">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@course.Id" class="btn-small red waves-effect waves-light">Delete</a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 }
+<partial name="_PagingPartial" />

@@ -116,5 +116,19 @@
                 .Where(c => c.Id == id)
                 .To<T>()
                 .FirstOrDefaultAsync();
+
+        public int GetAllWithDelethedCount()
+        => this.courseRepository
+            .AllAsNoTrackingWithDeleted()
+            .Count();
+
+        public async Task<IEnumerable<T>> GetAllWithDeletedAsync<T>(int page, int itemsPerPage)
+         => await this.courseRepository
+                .AllAsNoTrackingWithDeleted()
+                .OrderByDescending(c => c.CreatedOn)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .To<T>()
+                .ToListAsync();
     }
 }
