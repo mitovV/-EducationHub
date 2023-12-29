@@ -41,7 +41,7 @@ Knowledge sharing platform
 
 ### Lesons
 
-![Lessons](https://github.com/mitovV/EducationHub/assets/43573153/657eca2b-aec9-4f0a-b20c-34dcc9980411)
+![Lessons](https://github.com/mitovV/EducationHub/assets/43573153/05a7520f-a68f-41ec-8fd4-2a529645df18)
 
 ![Lessons](https://github.com/mitovV/EducationHub/assets/43573153/907d7c45-4598-491d-b74c-dff755de4554)
 
@@ -99,7 +99,7 @@ Knowledge sharing platform
 
 ### Courses
 
-![Courses](https://github.com/mitovV/EducationHub/assets/43573153/8fbadcf8-8f2d-46bd-bb04-c73a9103e4d4)
+![Courses](https://github.com/mitovV/EducationHub/assets/43573153/197973d4-3269-4b1d-9562-f120fa749b85)
 
 ### Lessons
 
