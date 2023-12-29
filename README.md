@@ -39,7 +39,7 @@ Knowledge sharing platform
 
 ![Courses in Categories](https://github.com/mitovV/EducationHub/assets/43573153/9da1819a-442a-4970-9265-72fb5148be3e)
 
-### Lesons
+### Lessons
 
 ![Lessons](https://github.com/mitovV/EducationHub/assets/43573153/05a7520f-a68f-41ec-8fd4-2a529645df18)
 
