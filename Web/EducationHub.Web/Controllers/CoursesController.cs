@@ -35,7 +35,8 @@
 
             var viewModel = new PagingCoursesViewModel
             {
-                CategoryId = id,
+                Actoin = "ByCategory",
+                RouteId = id,
                 ItemsPerPage = ItemsPerPage,
                 PageNumber = page,
                 ItemsCount = this.coursesService.GetCountByCategory(id),
@@ -51,14 +52,10 @@
             {
                 page = viewModel.PagesCount;
 
-                viewModel = new PagingCoursesViewModel
-                {
-                    CategoryId = id,
-                    ItemsPerPage = ItemsPerPage,
-                    PageNumber = page,
-                    ItemsCount = this.coursesService.GetCountByCategory(id),
-                    Courses = await this.coursesService.GetByCategoryIdAsync<ByCategoryCourseViewModel>(id, page, ItemsPerPage),
-                };
+                viewModel.PageNumber = page;
+                viewModel.Courses = await this
+                .coursesService
+                .GetByCategoryIdAsync<ByCategoryCourseViewModel>(id, page, ItemsPerPage);
             }
 
             return this.View(viewModel);

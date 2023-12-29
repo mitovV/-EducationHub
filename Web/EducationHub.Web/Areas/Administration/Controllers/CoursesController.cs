@@ -8,8 +8,6 @@
     using ViewModels.Administration.Courses;
     using Web.ViewModels.Categories;
     using Services.Data.Categories;
-    using Azure;
-    using EducationHub.Web.ViewModels.Administration.Lessons;
 
     public class CoursesController : AdministrationController
     {

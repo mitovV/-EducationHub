@@ -4,8 +4,6 @@
 
     public class PagingLessonsViewModel : PagingViewModel
     {
-        public int CategoryId { get; set; }
-
         public IEnumerable<ByCategoryLessonViewModel> Lessons { get; set; }
     }
 }

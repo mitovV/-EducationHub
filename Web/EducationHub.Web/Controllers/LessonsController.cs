@@ -60,7 +60,8 @@
 
             var viewModel = new PagingLessonsViewModel
             {
-                CategoryId = id,
+                Actoin = "ByCategory",
+                RouteId = id,
                 ItemsPerPage = ItemsPerPage,
                 PageNumber = page,
                 ItemsCount = this.lessonsService.GetCountByCategory(id),
@@ -81,14 +82,10 @@
             {
                 page = viewModel.PagesCount;
 
-                viewModel = new PagingLessonsViewModel
-                {
-                    CategoryId = id,
-                    ItemsPerPage = ItemsPerPage,
-                    PageNumber = page,
-                    ItemsCount = this.lessonsService.GetCountByCategory(id),
-                    Lessons = await this.lessonsService.GetByCategoryIdAsync<ByCategoryLessonViewModel>(id, page, ItemsPerPage),
-                };
+                viewModel.PageNumber = page;
+                viewModel.Lessons = await this
+                    .lessonsService
+                    .GetByCategoryIdAsync<ByCategoryLessonViewModel>(id, page, ItemsPerPage);
             }
 
             return this.View(viewModel);
