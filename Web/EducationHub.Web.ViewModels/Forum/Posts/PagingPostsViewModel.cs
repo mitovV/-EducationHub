@@ -4,7 +4,7 @@
 
     using Home;
 
-    public class PagingPostsViewModel : PagingViewModel
+    public class PagingPostsViewModel : BasePagingViewModel
     {
         public IEnumerable<HomePagePostViewModel> Posts { get; set; }
     }

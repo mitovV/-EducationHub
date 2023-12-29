@@ -76,10 +76,13 @@
                 .To<T>()
                 .FirstOrDefaultAsync();
 
-        public async Task<IEnumerable<T>> GetByUserIdAsync<T>(string userId)
+        public async Task<IEnumerable<T>> GetByUserIdAsync<T>(string userId, int page, int itemsPerPage)
             => await this.postsRepository
                 .AllAsNoTracking()
                 .Where(p => p.UserId == userId)
+                .OrderByDescending(p => p.CreatedOn)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
                 .To<T>()
                 .ToListAsync();
 
@@ -88,6 +91,12 @@
                 .All()
                 .Where(p => p.CategoryId == id)
                 .Count();
+
+        public int GetCountByUserId(string id)
+        => this.postsRepository
+            .AllAsNoTracking()
+            .Where(p => p.UserId == id)
+            .Count();
 
         public async Task<IEnumerable<T>> GetPostsAsync<T>(int count)
             => await this.postsRepository

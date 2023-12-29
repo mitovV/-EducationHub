@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class PagingViewModel
+    public class BasePagingViewModel
     {
         public string Actoin { get; set; }
 

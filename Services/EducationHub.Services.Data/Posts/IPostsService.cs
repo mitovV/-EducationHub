@@ -17,10 +17,12 @@
 
         int GetCountByCategory(int id);
 
-        Task<IEnumerable<T>> GetByUserIdAsync<T>(string userId);
+        Task<IEnumerable<T>> GetByUserIdAsync<T>(string userId, int page, int itemsPerPage);
 
         Task EditAsync(int id, string title, string content, int categoryId);
 
         Task DeleteAsync(int id);
+
+        int GetCountByUserId(string id);
     }
 }

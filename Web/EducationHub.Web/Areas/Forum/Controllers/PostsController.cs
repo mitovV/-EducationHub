@@ -58,11 +58,40 @@
             return this.View(viewModel);
         }
 
-        public async Task<IActionResult> ByUser()
+        public async Task<IActionResult> ByUser(int page)
         {
+            const int ItemsPerPage = 6;
+
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            var viewModel = await this.postsService.GetByUserIdAsync<ByUserViewModel>(userId);
+            if (page < 1)
+            {
+                page = 1;
+            }
+
+            var viewModel = new PaginPostsByUserViewModel
+            {
+                Actoin = "ByUser",
+                ItemsPerPage = ItemsPerPage,
+                PageNumber = page,
+                ItemsCount = this.postsService.GetCountByUserId(userId),
+                Posts = await this.postsService.GetByUserIdAsync<ByUserViewModel>(userId, page, ItemsPerPage),
+            };
+
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
+
+            if (page > viewModel.PagesCount)
+            {
+                page = viewModel.PagesCount;
+
+                viewModel.PageNumber = page;
+                viewModel.Posts = await this
+                    .postsService
+                    .GetByUserIdAsync<ByUserViewModel>(userId, page, ItemsPerPage);
+            }
 
             return this.View(viewModel);
         }

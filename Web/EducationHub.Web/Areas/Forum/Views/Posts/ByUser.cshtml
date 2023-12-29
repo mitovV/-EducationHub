@@ -1,13 +1,13 @@
 ﻿@using EducationHub.Web.Infrastructure.Extensions
 @using EducationHub.Web.ViewModels.Forum.Home
 @using EducationHub.Web.ViewModels.Forum.Posts
-@model IEnumerable<ByUserViewModel>
+@model PaginPostsByUserViewModel
 
 @{
     ViewData["Title"] = "My posts";
 }
 
-@if (Model.Any())
+@if (Model.Posts.Any())
 {
     <h1 class="center light-green-text lighten-2">@ViewData["Title"]</h1>
 
@@ -32,33 +32,33 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var post in Model.Posts)
             {
                 <tr>
                     <td>
-                        @item.Title.ToShortString()
+                        @post.Title.ToShortString()
                     </td>
                     <td>
-                        @item.Category.Name
+                        @post.Category.Name
                     </td>
                     <td>
-                        @item.Content.ToShortString()
+                        @post.Content.ToShortString()
                     </td>
                     <td>
-                        <time datetime="@item.CreatedOn.ToStringLocal()"></time>
+                        <time datetime="@post.CreatedOn.ToStringLocal()"></time>
                     </td>
                     <td>
-                        @if (item.ModifiedOn == null)
+                        @if (post.ModifiedOn == null)
                         {
                             @:No record
                         }
                         else
                         {
-                            <time datetime="@item.ModifiedOn.ToStringLocal()"></time>
+                            <time datetime="@post.ModifiedOn.ToStringLocal()"></time>
                         }
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn-small btn-floating green waves-effect waves-light"><i class="material-icons">create</i>Edit</a>
+                        <a asp-action="Edit" asp-route-id="@post.Id" class="btn-small btn-floating green waves-effect waves-light"><i class="material-icons">create</i>Edit</a>
                     </td>
                 </tr>
             }
@@ -71,3 +71,4 @@ else
         <h4 class="green-text center">You have no posts yet.</h4>
     </div>
 }
+<partial name="_PagingPartial" />
