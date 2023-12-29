@@ -115,6 +115,10 @@ Knowledge sharing platform
 
 ![Create Post ](https://github.com/mitovV/EducationHub/assets/43573153/7804ed8e-73bc-4d4c-bd28-5c96292d1c49)
 
+### By User
+
+![My posts](https://github.com/mitovV/EducationHub/assets/43573153/c9ab7489-63e1-4dd6-ba30-43feb54adcb6)
+
 ### By Category
 
 ![By Catagory](https://github.com/mitovV/EducationHub/assets/43573153/d7c96ca4-5ad5-4a78-8e48-4e279a1f1afd)
