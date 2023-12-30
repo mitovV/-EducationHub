@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public class PagingLessonsViewModel : BasePagingViewModel
+    public class PagingLessonsByCategoryViewModel : BasePagingViewModel
     {
         public IEnumerable<ByCategoryLessonViewModel> Lessons { get; set; }
     }

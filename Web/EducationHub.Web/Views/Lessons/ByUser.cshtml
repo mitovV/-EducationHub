@@ -1,5 +1,5 @@
 ﻿@using EducationHub.Web.ViewModels.Lessons
-@model IEnumerable<ListingLessonsViewModel>
+@model PagingLessonsByUserViewModel
 @{
     ViewData["Title"] = "My lessons";
 }
@@ -15,9 +15,10 @@
     <div class="col s6 l6 center green-text"><strong>@TempData["Message"]</strong></div>
 }
 
-@if (Model.Any())
+@if (Model.Lessons.Any())
 {
-    <partial name="_ListingResoursesPartial" model="@Model" />
+    <partial name="_ListingResoursesPartial" model="@Model.Lessons" />
+    <partial name="_PagingPartial" />
 }
 else
 {

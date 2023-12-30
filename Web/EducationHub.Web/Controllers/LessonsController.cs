@@ -58,7 +58,7 @@
                 page = 1;
             }
 
-            var viewModel = new PagingLessonsViewModel
+            var viewModel = new PagingLessonsByCategoryViewModel
             {
                 Actoin = "ByCategory",
                 RouteId = id,
@@ -91,6 +91,49 @@
             return this.View(viewModel);
         }
 
+        public async Task<IActionResult> ByUser(int page = 1)
+        {
+            const int ItemsPerPage = 5;
+
+            if (page < 1)
+            {
+                page = 1;
+            }
+
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            var viewModel = new PagingLessonsByUserViewModel
+            {
+                Actoin = "ByUser",
+                ItemsPerPage = ItemsPerPage,
+                PageNumber = page,
+                ItemsCount = this.lessonsService.GetCountByUser(userId),
+                Lessons = await this.lessonsService.GetByUserIdAsync<ListingLessonsViewModel>(userId, page, ItemsPerPage),
+            };
+
+            if (viewModel.PagesCount == 0)
+            {
+                return this.NotFound();
+            }
+
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
+
+            if (page > viewModel.PagesCount)
+            {
+                page = viewModel.PagesCount;
+
+                viewModel.PageNumber = page;
+                viewModel.Lessons = await this
+                    .lessonsService
+                    .GetByUserIdAsync<ListingLessonsViewModel>(userId, page, ItemsPerPage);
+            }
+
+            return this.View(viewModel);
+        }
+
         public async Task<IActionResult> Details(string id)
         {
             var viewModel = await this.lessonsService.GetByIdAsync<DetailsLessonViewModel>(id);
@@ -99,15 +142,6 @@
             {
                 return this.NotFound();
             }
-
-            return this.View(viewModel);
-        }
-
-        public async Task<IActionResult> ByUser()
-        {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-
-            var viewModel = await this.lessonsService.GetByUserIdAsync<ListingLessonsViewModel>(userId);
 
             return this.View(viewModel);
         }

@@ -70,11 +70,13 @@
                 .To<T>()
                 .ToListAsync();
 
-        public async Task<IEnumerable<T>> GetByUserIdAsync<T>(string userId)
+        public async Task<IEnumerable<T>> GetByUserIdAsync<T>(string userId, int page, int itemsPerPage)
             => await this.lessonsRepository
                 .AllAsNoTracking()
-                .Where(l => l.UserId == userId && l.CourseId == null)
+                .Where(l => l.UserId == userId && l.IsDeleted == false)
                 .OrderByDescending(l => l.CreatedOn)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
                 .To<T>()
                 .ToListAsync();
 
@@ -129,6 +131,12 @@
             => this.lessonsRepository
             .AllWithDeleted()
             .Where(l => l.CourseId == null)
+            .Count();
+
+        public int GetCountByUser(string userId)
+            => this.lessonsRepository
+            .AllAsNoTracking()
+            .Where(l => l.UserId == userId)
             .Count();
     }
 }
