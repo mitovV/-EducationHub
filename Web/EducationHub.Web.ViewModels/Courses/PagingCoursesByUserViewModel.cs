@@ -5,6 +5,5 @@
     public class PagingCoursesByUserViewModel : BasePagingViewModel
     {
         public IEnumerable<ListingCoursesViewModel> Courses { get; set; }
-
     }
 }

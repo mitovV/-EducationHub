@@ -139,7 +139,7 @@
         public int GetCountByUser(string userId)
             => this.courseRepository
                 .AllAsNoTracking()
-                .Where(c=> c.UserId == userId)
+                .Where(c => c.UserId == userId)
                 .Count();
     }
 }
