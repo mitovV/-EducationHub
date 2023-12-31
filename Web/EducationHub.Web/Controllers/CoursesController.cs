@@ -138,6 +138,7 @@
 
             await this.coursesService.CreateAsync(model.Title, model.Description, userId, model.CategoryId);
 
+            this.TempData["Message"] = "Successfully created course.";
             return this.RedirectToAction("MyResources", "Users");
         }
 

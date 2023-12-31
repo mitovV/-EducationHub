@@ -46,6 +46,8 @@
 
             await this.lessonsService.CreateAsync(model.Title, model.Description, model.VideoUrl, userId, model.CategoryId);
 
+            this.TempData["Message"] = "Successfully created lesson.";
+
             return this.RedirectToAction("MyResources", "Users");
         }
 
