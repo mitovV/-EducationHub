@@ -33,7 +33,7 @@
                 page = 1;
             }
 
-            var viewModel = new PagingCoursesViewModel
+            var viewModel = new PagingCoursesByCategoryViewModel
             {
                 Actoin = "ByCategory",
                 RouteId = id,
@@ -73,11 +73,43 @@
             return this.View(viewModel);
         }
 
-        public async Task<IActionResult> ByUser()
+        public async Task<IActionResult> ByUser(int page = 1)
         {
+            const int ItemsPerPage = 5;
+
+            if (page < 1)
+            {
+                page = 1;
+            }
+
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            var viewModel = await this.coursesService.GetByUserIdAsync<ListingCoursesViewModel>(userId);
+            var viewModel = new PagingCoursesByUserViewModel
+            {
+                Actoin = "ByUser",
+                ItemsPerPage = ItemsPerPage,
+                PageNumber = page,
+                ItemsCount = this.coursesService.GetCountByUser(userId),
+                Courses = await this.coursesService.GetByUserIdAsync<ListingCoursesViewModel>(userId, page, ItemsPerPage),
+            };
+
+            if (viewModel.PagesCount == 0)
+            {
+                return this.NotFound();
+            }
+
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
+
+            if (page > viewModel.PagesCount)
+            {
+                page = viewModel.PagesCount;
+
+                viewModel.PageNumber = page;
+                viewModel.Courses = await this.lessonsService.GetByUserIdAsync<ListingCoursesViewModel>(userId, page, ItemsPerPage);
+            }
 
             return this.View(viewModel);
         }

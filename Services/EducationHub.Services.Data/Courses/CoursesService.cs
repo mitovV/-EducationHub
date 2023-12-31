@@ -41,15 +41,18 @@
             await this.courseRepository.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<T>> GetByUserIdAsync<T>(string userId)
+        public async Task<IEnumerable<T>> GetByUserIdAsync<T>(string userId, int page, int itemsPerPage)
             => await this.courseRepository
                 .AllAsNoTracking()
                 .Where(c => c.UserId == userId)
+                .OrderByDescending(c => c.CreatedOn)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
                 .To<T>()
                 .ToListAsync();
 
         public async Task<IEnumerable<T>> GetByCategoryIdAsync<T>(int categoryId, int page, int itemsPerPage = 4)
-             => await this.courseRepository
+            => await this.courseRepository
                  .AllAsNoTracking()
                  .Where(c => c.CategoryId == categoryId)
                  .OrderByDescending(c => c.CreatedOn)
@@ -67,7 +70,9 @@
 
         public async Task DeleteAsync(string id)
         {
-            var course = this.courseRepository.All().FirstOrDefault(c => c.Id == id);
+            var course = this.courseRepository
+                .All()
+                .FirstOrDefault(c => c.Id == id);
 
             if (course == null)
             {
@@ -105,30 +110,36 @@
         }
 
         public async Task<IEnumerable<T>> AllWithDeletedAsync<T>()
-          => await this.courseRepository
+            => await this.courseRepository
                 .AllWithDeleted()
                 .To<T>()
                 .ToListAsync();
 
         public async Task<T> GetByIdWithDeletedAsync<T>(string id)
-        => await this.courseRepository
+            => await this.courseRepository
                 .AllAsNoTrackingWithDeleted()
                 .Where(c => c.Id == id)
                 .To<T>()
                 .FirstOrDefaultAsync();
 
         public int GetAllWithDelethedCount()
-        => this.courseRepository
+            => this.courseRepository
             .AllAsNoTrackingWithDeleted()
             .Count();
 
         public async Task<IEnumerable<T>> GetAllWithDeletedAsync<T>(int page, int itemsPerPage)
-         => await this.courseRepository
+            => await this.courseRepository
                 .AllAsNoTrackingWithDeleted()
                 .OrderByDescending(c => c.CreatedOn)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
                 .To<T>()
                 .ToListAsync();
+
+        public int GetCountByUser(string userId)
+            => this.courseRepository
+                .AllAsNoTracking()
+                .Where(c=> c.UserId == userId)
+                .Count();
     }
 }
