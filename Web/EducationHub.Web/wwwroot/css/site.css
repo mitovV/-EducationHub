@@ -37,8 +37,8 @@ html {
 .lesson-details {
     border-style: solid;
     border-width: thin;
-    border-block-color:forestgreen;
-    background-color:lightgray;
+    border-block-color: forestgreen;
+    background-color: #a5d6a7;
 }
 
 .box-shadow {
