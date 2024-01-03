@@ -11,6 +11,8 @@
 
         Task<T> GetByIdAsync<T>(string id);
 
+        Task<IEnumerable<T>> GetByUserIdAsync<T>(string userId);
+
         Task<IEnumerable<T>> GetByUserIdAsync<T>(string userId, int page, int itemsPerPage);
 
         Task EditAsync(string id, string title, string description, string videoUrl, int categoryId, bool isDeleted);
@@ -26,6 +28,7 @@
         Task DeleteAllInCourseAsync(string id);
 
         int GetAllNotRelatedWithDelethedCount();
+
         int GetCountByUser(string userId);
     }
 }

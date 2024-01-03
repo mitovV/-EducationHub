@@ -70,6 +70,14 @@
                 .To<T>()
                 .ToListAsync();
 
+        public async Task<IEnumerable<T>> GetByUserIdAsync<T>(string userId)
+          => await this.lessonsRepository
+              .AllAsNoTracking()
+              .Where(l => l.UserId == userId && l.IsDeleted == false)
+              .OrderByDescending(l => l.CreatedOn)
+              .To<T>()
+              .ToListAsync();
+
         public async Task<IEnumerable<T>> GetByUserIdAsync<T>(string userId, int page, int itemsPerPage)
             => await this.lessonsRepository
                 .AllAsNoTracking()

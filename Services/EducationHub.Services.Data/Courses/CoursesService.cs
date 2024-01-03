@@ -41,6 +41,14 @@
             await this.courseRepository.SaveChangesAsync();
         }
 
+        public async Task<IEnumerable<T>> GetByUserIdAsync<T>(string userId)
+          => await this.courseRepository
+              .AllAsNoTracking()
+              .Where(c => c.UserId == userId)
+              .OrderByDescending(c => c.CreatedOn)
+              .To<T>()
+              .ToListAsync();
+
         public async Task<IEnumerable<T>> GetByUserIdAsync<T>(string userId, int page, int itemsPerPage)
             => await this.courseRepository
                 .AllAsNoTracking()
