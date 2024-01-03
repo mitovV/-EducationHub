@@ -14,7 +14,6 @@
     using Microsoft.EntityFrameworkCore;
     using Models;
     using Xunit;
-    using EducationHub.Services.Data.Lessons;
 
     public class CoursesServiceTests : IDisposable
     {

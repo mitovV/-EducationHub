@@ -9,9 +9,7 @@
 
         Task<IEnumerable<T>> AllWithDeletedAsync<T>();
 
-        Task<IEnumerable<T>> GetByUserIdAsync<T>(string userId);
-
-        Task<IEnumerable<T>> GetByUserIdAsync<T>(string userId, int page, int itemsPerPage);
+        Task<IEnumerable<T>> GetByUserIdAsync<T>(string userId, int page = 1, int itemsPerPage = 10);
 
         Task<T> GetByIdAsync<T>(string id);
 
