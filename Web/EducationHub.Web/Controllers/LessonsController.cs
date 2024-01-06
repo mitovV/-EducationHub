@@ -95,7 +95,7 @@
 
         public async Task<IActionResult> ByUser(int page = 1)
         {
-            const int ItemsPerPage = 5;
+            const int ItemsPerPage = 6;
 
             if (page < 1)
             {

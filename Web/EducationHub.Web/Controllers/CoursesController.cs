@@ -75,7 +75,7 @@
 
         public async Task<IActionResult> ByUser(int page = 1)
         {
-            const int ItemsPerPage = 5;
+            const int ItemsPerPage = 6;
 
             if (page < 1)
             {
@@ -108,7 +108,7 @@
                 page = viewModel.PagesCount;
 
                 viewModel.PageNumber = page;
-                viewModel.Courses = await this.lessonsService.GetByUserIdAsync<ListingCoursesViewModel>(userId, page, ItemsPerPage);
+                viewModel.Courses = await this.coursesService.GetByUserIdAsync<ListingCoursesViewModel>(userId, page, ItemsPerPage);
             }
 
             return this.View(viewModel);
