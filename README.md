@@ -77,7 +77,7 @@ Knowledge sharing platform
 
 ### Create lesson in course
 
-![Create Lesson in cource](https://github.com/mitovV/EducationHub/assets/43573153/d76589f1-c364-48fc-8c41-00a25989385c)
+![Create Lesson](https://github.com/mitovV/EducationHub/assets/43573153/3cf4b2b1-f6bc-4510-a030-9a009c3fad2d)
 
 ### Edit lesson in course
 
