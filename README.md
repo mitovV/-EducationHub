@@ -81,7 +81,7 @@ Knowledge sharing platform
 
 ### Edit lesson in course
 
-![Edit Lesson In Course](https://github.com/mitovV/EducationHub/assets/43573153/2a3d0e84-bc59-4419-b01c-352e245e4820)
+![Edit Lesson](https://github.com/mitovV/EducationHub/assets/43573153/3e0c6328-700c-479f-be18-df93b6936b6f)
 
 ### Delete resources
 
@@ -117,7 +117,7 @@ Knowledge sharing platform
 
 ### Create post
 
-![Create Post ](https://github.com/mitovV/EducationHub/assets/43573153/7804ed8e-73bc-4d4c-bd28-5c96292d1c49)
+![Create Post](https://github.com/mitovV/EducationHub/assets/43573153/5a269e97-173c-4e77-952c-b0cce5bf5f5f)
 
 ### By User
 
