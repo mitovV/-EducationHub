@@ -18,21 +18,21 @@
             <input asp-for="CourseId" type="hidden" />
             <div class="center red-text" asp-validation-summary="All"></div>
             <div class="input-field">
-                <label asp-for="@Model.CategoryName"></label>
-                <input asp-for="@Model.CategoryName" readonly />
+                <label asp-for="@Model.CategoryName" class="light-green-text lighten-2"></label>
+                <input asp-for="@Model.CategoryName" class="light-green-text lighten-2" readonly />
             </div>
             <div class="input-field">
-                <input asp-for="Title" class="validate character-counter" data-length="@TitleMaxLength">
-                <label asp-for="Title"></label>
+                <input asp-for="Title" class="validate character-counter light-green-text lighten-2" data-length="@TitleMaxLength">
+                <label asp-for="Title" class="light-green-text lighten-2"></label>
                 <span asp-validation-for="Title" class="red-text center"></span>
             </div>
             <div class="input-field">
-                <input asp-for="VideoUrl" class="validate character-counter" data-length="@VideoUrlMaxLength">
-                <label asp-for="VideoUrl"></label>
+                <input asp-for="VideoUrl" class="validate character-counter light-green-text lighten-2" data-length="@VideoUrlMaxLength">
+                <label asp-for="VideoUrl" class="light-green-text lighten-2"></label>
                 <span asp-validation-for="VideoUrl" class="red-text center"></span>
             </div>
             <div class="input">
-                <label asp-for="Description"></label>
+                <label asp-for="Description" class="light-green-text lighten-2"></label>
                 <textarea asp-for="Description"></textarea>
                 <span asp-validation-for="Description" class="red-text center"></span>
             </div>
