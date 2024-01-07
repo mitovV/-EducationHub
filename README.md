@@ -23,6 +23,10 @@ Knowledge sharing platform
 
 ![index](https://github.com/mitovV/EducationHub/assets/43573153/5bd8b62b-1b26-4589-b18b-5301645836d6)
 
+### Log in page
+
+![Log in](https://github.com/mitovV/EducationHub/assets/43573153/f1d38718-80e1-4f01-9486-3dec5b387d40)
+
 ### Logged in user
 
 ![Categories](https://github.com/mitovV/EducationHub/assets/43573153/6a52ffbc-2ec2-45f9-b88e-d6ad3934a422)
