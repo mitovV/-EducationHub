@@ -37,7 +37,11 @@ Knowledge sharing platform
 
 ### Profile
 
-![acount](https://github.com/mitovV/EducationHub/assets/43573153/46b1837b-4817-4a35-8567-3504935f3fda)
+![Profile](https://github.com/mitovV/EducationHub/assets/43573153/11eab00c-5ce5-4c68-83d6-3c6784881eef)
+
+#### Two ways to change the photo
+
+![Profile](https://github.com/mitovV/EducationHub/assets/43573153/6fd33da1-b303-4257-8398-ade208eb6a89)
 
 ### Categories Details
 
