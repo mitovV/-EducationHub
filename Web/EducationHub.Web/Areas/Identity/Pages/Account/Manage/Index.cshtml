@@ -14,18 +14,18 @@
         <form id="profile-form" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="All" class="class=center red-text"></div>
             <div class="input-field">
-                <label asp-for="Input.Username"></label>
+                <label asp-for="Input.Username" class="light-green-text lighten-2"></label>
                 <input asp-for="Input.Username" data-length="@UsernameMaxLenght" class="center light-green-text lighten-2 character-counter" value="@Model.Username" />
                 <span asp-validation-for="Input.Username" class="red-text"></span>
             </div>
             <div class="input-field">
-                <label asp-for="Input.PhoneNumber"></label>
+                <label asp-for="Input.PhoneNumber" class="light-green-text lighten-2"></label>
                 <input asp-for="Input.PhoneNumber" class="center light-green-text lighten-2" />
                 <span asp-validation-for="Input.PhoneNumber" class="red-text"></span>
             </div>
             <div class="input-field picture-url">
-                <input asp-for="Input.PictureUrl" data-length="@PictureUrlMaxLength" value="@Model.PictureUrl" class="character-counter">
-                <label asp-for="Input.PictureUrl"></label>
+                <input asp-for="Input.PictureUrl" data-length="@PictureUrlMaxLength" value="@Model.PictureUrl" class="character-counter light-green-text lighten-2">
+                <label asp-for="Input.PictureUrl" class="light-green-text lighten-2"></label>
                 <span asp-validation-for="Input.PictureUrl" class="red-text"></span>
             </div>
             <div class="file-field input-field col s12  l6 offset-l3 upload-image" hidden>
